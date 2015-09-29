@@ -1,13 +1,13 @@
 SightGuide::Application.routes.draw do
+  get "welcome/index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  resources :cities
 
   # You can have the root of your site routed with "root"
-  root 'pages#login'
-  get 'administrator', to: redirect('administrator/dashboard')
-  get 'administrator/dashboard' => 'administrator#dashboard'
-  get 'administrator/cities/new' => 'cities#new'
+  resources :cities
+  resources :markers
+
+  root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

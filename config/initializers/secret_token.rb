@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-SightGuide::Application.config.secret_key_base = '23ee31249f1ebc0b5e6d1079cfbd1237b014d7ca0714f80e4718109509cb4a55471cb7c54c89d82b134d7c97f0094141265c2e039e570be30437ea1fd6dbd673'
+SightGuide::Application.config.secret_key_base = '9e0e36b60db9edb3848f2c2bb9b2702878ae51d3e813f7279ade52cb8bfd9a579165409804146cad6277678a2572a634e983bb80d5ea07d81f707f5a792a5b95'
