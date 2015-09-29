@@ -1,0 +1,21 @@
+<h1>New Marker</h1>
+<%= form_for :markers do |f| %>
+  <p>
+    <%= f.label :marker_name %><br>
+    <%= f.text_field :marker_name %>
+  </p>
+
+  <p>
+    <%= f.label :language %><br>
+    <%= f.text_field :language %>
+  </p>
+ 
+  <p>
+    <%= f.label :marker_text %><br>
+    <%= f.text_area :marker_text %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
