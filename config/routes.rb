@@ -5,8 +5,8 @@ SightGuide::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'pages#login'
-  get 'administrator', to: redirect('administrator/dashboard')
-  get 'administrator/dashboard' => 'administrator#dashboard'
+  get 'administrator', to: redirect('administrator/cities')
+  get 'administrator/cities' => 'administrator#cities'
   get 'administrator/cities/new' => 'cities#new'
 
   # Example of regular route:
