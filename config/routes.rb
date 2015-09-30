@@ -6,7 +6,7 @@ SightGuide::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # resources :cities
   # resources :markers
-
+  resources :markers
   resources :cities do
     resources :markers
   end
