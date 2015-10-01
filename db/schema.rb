@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema.define(version: 20150930083518) do
 
-ActiveRecord::Schema.define(version: 20150930091040) do
-
-
+  create_table "cities", force: true do |t|
+    t.string   "city_name"
+    t.string   "language"
+    t.text     "city_text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "markers", force: true do |t|
     t.string   "name"
@@ -24,14 +29,5 @@ ActiveRecord::Schema.define(version: 20150930091040) do
   end
 
   add_index "markers", ["city_id"], name: "index_markers_on_city_id"
-
-
-  create_table "cities", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "city_name"
-    t.string   "language"
-    t.text     "city_text"
-  end
 
 end

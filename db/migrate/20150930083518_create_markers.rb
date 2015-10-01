@@ -1,7 +1,7 @@
 class CreateMarkers < ActiveRecord::Migration
   def change
     create_table :markers do |t|
-      t.string :naam
+      t.string :name
       t.references :city, index: true, foreign_key: true
 
       t.timestamps
