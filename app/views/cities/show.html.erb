@@ -1,11 +1,15 @@
 <p>
-  <strong>Title:</strong>
+  <strong>Stadsnaam:</strong>
   <%= @city.city_name %>
 </p>
-
 <p>
-  <strong>Text:</strong>
+  <strong>Taal:</strong>
+  <%= @city.language %>
+</p>
+<p>
+  <strong>Omschrijving:</strong>
   <%= @city.city_text %>
 </p>
 
-<%= link_to 'Back', cities_path %>
+<%= link_to 'Edit', edit_city_path(@city) %>
+<%= link_to 'Back', cities_path %> 
