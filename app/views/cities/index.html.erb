@@ -1,0 +1,10 @@
+steden lijst hier<br/>
+<a href="/cities/new">toevoegen</a><br/>
+
+<table>
+	<tr><th>Naam</th><th>...</th></tr>
+	
+	<% @cities.each do |city| %>
+		<tr><td><%= city.name %></td><td><%= link_to 'Show', city_path(city) %></td></tr>
+	<% end %>
+</table>

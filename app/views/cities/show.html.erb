@@ -1,0 +1,31 @@
+<p>
+	<strong>Stad naam:</strong>
+	<%= @city.name %>
+</p>
+ 
+<p>
+	<strong>Stad info:</strong>
+	<%= @city.info %>
+</p>
+
+<h2>Markers</h2>
+<% @city.markers.each do |marker| %>
+  <p>
+    <strong>Marker:</strong>
+    <%= marker.name %>
+
+  </p>
+<% end %>
+
+<h2>Marker toevoegen:</h2>
+<%= form_for([@city, @city.markers.build]) do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+ 
+<%= link_to 'Back', cities_path %>

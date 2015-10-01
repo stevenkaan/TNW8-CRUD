@@ -1,0 +1,17 @@
+stad toevoegen
+
+<%= form_for :city, url: cities_path do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+ 
+  <p>
+    <%= f.label :info %><br>
+    <%= f.text_area :info %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
