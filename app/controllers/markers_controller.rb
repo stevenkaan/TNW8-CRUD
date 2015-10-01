@@ -24,7 +24,7 @@ class MarkersController < ApplicationController
 			@city = City.find(@marker.city_id)
 			redirect_to @city
 		else
-			render 'edit'
+			render 'edit1'
 		end
 	end
 
