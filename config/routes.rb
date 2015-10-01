@@ -4,6 +4,7 @@ SightGuide::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+
   # resources :cities
   # resources :markers
   resources :markers
@@ -11,7 +12,11 @@ SightGuide::Application.routes.draw do
     resources :markers
   end
 
-  root 'welcome#index'
+  root 'pages#login'
+  get 'administrator', to: redirect('administrator/cities')
+  get 'administrator/cities' => 'administrator#cities'
+  get 'administrator/cities/new' => 'cities#new'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
