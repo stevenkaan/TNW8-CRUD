@@ -1,0 +1,21 @@
+
+<h1>Listing Countries</h1>
+
+<a href="countries/new">New country</a>
+<br></br>
+<table>
+  <tr>
+    <th>Naam land</th>
+  </tr>
+
+  <% @countries.each do |country| %>
+    <tr>
+      <td><%= country.country_name %></td>
+      <td><%= link_to 'Show', country_path(country) %></td>
+      <td><%= link_to 'Edit', edit_country_path(country) %></td>
+      <td><%= link_to 'Delete', country_path(country),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>

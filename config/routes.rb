@@ -1,5 +1,5 @@
 SightGuide::Application.routes.draw do
-  get "welcome/index"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -7,16 +7,16 @@ SightGuide::Application.routes.draw do
 
   # resources :cities
   # resources :markers
-  resources :markers
-  resources :cities do
-    resources :markers
+  # resources :markers
+  # resources :cities
+  
+  resources :countries do
+    resources :cities do
+      resources :markers
+    end
   end
 
   root 'pages#login'
-  get 'administrator', to: redirect('administrator/cities')
-  get 'administrator/cities' => 'administrator#cities'
-  get 'administrator/cities/new' => 'cities#new'
-
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

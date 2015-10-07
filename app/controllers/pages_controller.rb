@@ -1,4 +1,4 @@
 class PagesController < ApplicationController
-  def login
+	def login
 	end
 end

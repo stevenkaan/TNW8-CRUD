@@ -22,19 +22,19 @@ class CitiesController < ApplicationController
 	end
 
 	def update
-  	@city = City.find(params[:id])
+  		@city = City.find(params[:id])
 
-  	if @city.update(city_params)
-    	redirect_to @city
-  	else
-    	render 'edit'
-  	end
+  		if @city.update(city_params)
+    		redirect_to @city
+  		else
+    		render 'edit'
+  		end
 	end
 
 	def destroy
 	    @city = City.find(params[:id])
 	    @city.destroy
-			redirect_to cities_path
+		redirect_to cities_path
 	end
 
 	private
