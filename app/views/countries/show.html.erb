@@ -6,3 +6,14 @@
 
 
 <h2>Steden in <%= @country.country_name %></h2>
+
+<% @country.cities.each do |city| %>
+  <p>
+    <strong>city:</strong>
+    <%= city.name %>
+    <%= link_to 'Edit', edit_city_path(city) %>
+    <%= link_to 'Delete', city_path(city),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+  </p>
+<% end %>

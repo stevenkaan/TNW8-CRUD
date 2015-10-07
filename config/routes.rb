@@ -7,13 +7,15 @@ SightGuide::Application.routes.draw do
 
   # resources :cities
   # resources :markers
-  # resources :markers
+  resources :markers
   # resources :cities
   
   resources :countries do
-    resources :cities do
-      resources :markers
-    end
+    resources :cities
+  end
+
+  resources :cities do
+    resources :markers
   end
 
   root 'pages#login'
