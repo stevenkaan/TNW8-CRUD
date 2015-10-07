@@ -1,13 +1,9 @@
 class CitiesController < ApplicationController
 	def index
-		@city = City.all
 	end
 
 	def show
 		@city = City.find(params[:id])
-	end
-
-	def new
 	end
 
 	def edit
@@ -15,17 +11,17 @@ class CitiesController < ApplicationController
 	end
 
 	def create
-		@city = City.new(city_params)
-
- 		@city.save
-		redirect_to @city
+		@county = Country.find(params[:country_id])
+		@city = @county.cities.create(city_params)
+		redirect_to country_path(@county)
 	end
 
 	def update
   		@city = City.find(params[:id])
 
   		if @city.update(city_params)
-    		redirect_to @city
+  			@country = Country.find(@city.country_id)
+    		redirect_to @country
   		else
     		render 'edit'
   		end
@@ -33,12 +29,13 @@ class CitiesController < ApplicationController
 
 	def destroy
 	    @city = City.find(params[:id])
+	    @country = Country.find(@city.country_id)
 	    @city.destroy
-		redirect_to cities_path
+		redirect_to @country
 	end
 
 	private
 		def city_params
-			params.require(:city).permit(:city_name, :city_text , :language)
+			params.require(:city).permit(:city_name)
 		end
 end

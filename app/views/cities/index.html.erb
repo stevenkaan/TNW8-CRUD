@@ -13,8 +13,6 @@
   <% @city.each do |city| %>
     <tr>
       <td><%= city.city_name %></td>
-      <td><%= city.language %></td>
-      <td><%= city.city_text %></td>
       <td><%= link_to 'Show', city_path(city) %></td>
       <td><%= link_to 'Edit', edit_city_path(city) %></td>
       <td><%= link_to 'Delete', city_path(city),

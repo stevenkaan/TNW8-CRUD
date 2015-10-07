@@ -6,15 +6,14 @@ class MarkersController < ApplicationController
 		@marker = Marker.find(params[:id])
 	end
 
+	def edit
+		@marker = Marker.find(params[:id])
+	end
+
 	def create
 	    @city = City.find(params[:city_id])
 	    @marker = @city.markers.create(marker_params)
 	    redirect_to city_path(@city)
-	end
-
-	def edit
-		@marker = Marker.find(params[:id])
-
 	end
 
 	def update
@@ -29,10 +28,10 @@ class MarkersController < ApplicationController
 	end
 
 	def destroy
-			@marker = Marker.find(params[:id])
-			@city = City.find(@marker.city_id)
-			@marker.destroy
-			redirect_to @city
+		@marker = Marker.find(params[:id])
+		@city = City.find(@marker.city_id)
+		@marker.destroy
+		redirect_to @city
 	end
 
 	private

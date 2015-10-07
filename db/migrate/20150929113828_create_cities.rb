@@ -3,8 +3,6 @@ class CreateCities < ActiveRecord::Migration
     create_table :cities do |t|
 
       t.string :city_name
-      t.string :language
-      t.text :city_text
       t.references :country, index: true, foreign_key: true
 
       t.timestamps null: false

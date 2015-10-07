@@ -8,6 +8,7 @@ SightGuide::Application.routes.draw do
   # resources :cities
   # resources :markers
   resources :markers
+  resources :cities_infos
   # resources :cities
   
   resources :countries do
@@ -15,6 +16,7 @@ SightGuide::Application.routes.draw do
   end
 
   resources :cities do
+    resources :cities_infos
     resources :markers
   end
 
