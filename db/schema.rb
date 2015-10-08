@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007102457) do
+ActiveRecord::Schema.define(version: 20151008122536) do
 
   create_table "cities", force: true do |t|
     t.string   "city_name"
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(version: 20151007102457) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "marker_infos", force: true do |t|
+    t.text     "body"
+    t.string   "language"
+    t.integer  "marker_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "marker_infos", ["marker_id"], name: "index_marker_infos_on_marker_id"
 
   create_table "markers", force: true do |t|
     t.string   "name"

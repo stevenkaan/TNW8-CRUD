@@ -1,6 +1,7 @@
 <p>
 	<strong>City Info:</strong>
-	<%= city_info.name %>
+	<%= city_info.body %>
+	<b><i><%= city_info.language %></i></b>
 	<%= link_to 'Show', city_info_path(city_info) %>
     <%= link_to 'Edit', edit_city_info_path(city_info) %>
     <%= link_to 'Delete', city_info_path(city_info), method: :delete, data: { confirm: 'Are you sure?' } %>

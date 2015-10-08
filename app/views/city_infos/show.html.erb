@@ -1,0 +1,13 @@
+<strong>Stad: <%= @city.city_name %></strong>
+
+<h2>Stad info</h2>
+
+<b> Taal </b>
+
+<%= @city_info.language %><br>
+
+<b> Tekst </b><br>
+
+<%= @city_info.body %><br><br>
+
+<%= link_to 'Back', city_path(@city_info.city_id) %>

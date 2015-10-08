@@ -3,11 +3,13 @@ class CityInfosController < ApplicationController
 	end
 
 	def show
-		@city_info = City_info.find(params[:id])
+		@city_info = CityInfo.find(params[:id])
+		@city = City.find(@city_info.city_id)
 	end
 
 	def edit
-		@city_info = City_info.find(params[:id])
+		@city_info = CityInfo.find(params[:id])
+		@city = City.find(@city_info.city_id)
 	end
 
 	def create
@@ -17,7 +19,7 @@ class CityInfosController < ApplicationController
 	end
 
 	def update
-		@city_info = City_info.find(params[:id])
+		@city_info = CityInfo.find(params[:id])
 
 		if @city_info.update(city_info_params)
 			@city = City.find(@city_info.city_id)
@@ -28,7 +30,7 @@ class CityInfosController < ApplicationController
 	end
 
 	def destroy
-		@city_info = City_info.find(params[:id])
+		@city_info = CityInfo.find(params[:id])
 		@city = City.find(@city_info.city_id)
 		@city_info.destroy
 		redirect_to @city
@@ -36,6 +38,6 @@ class CityInfosController < ApplicationController
 
 	private
 		def city_info_params
-			params.require(:marker).permit(:body, :language)
+			params.require(:city_info).permit(:body, :language)
 		end
 end
