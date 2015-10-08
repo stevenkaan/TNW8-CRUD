@@ -1,0 +1,13 @@
+<%= form_for([@city, @city.city_infos.build]) do |f| %>
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_field :body %>
+  </p>
+  <p>
+    <%= f.label :language %><br>
+    <%= f.text_field :language %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

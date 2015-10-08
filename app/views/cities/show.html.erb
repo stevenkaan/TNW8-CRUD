@@ -1,5 +1,13 @@
 <strong>Stad: <%= @city.city_name %></strong>
 
+<h2>Stad info</h2>
+
+<%= render @city.city_infos %>
+
+<h2>Stad info toevoegen:</h2>
+
+<%= render 'city_infos/form' %>
+
 <h2>Markers</h2>
 
 <%= render @city.markers %>
