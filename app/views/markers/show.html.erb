@@ -6,3 +6,7 @@
 
 <h2>Marker info toevoegen:</h2>
 
+<%= render 'marker_infos/form' %>
+
+<%= link_to 'Edit', edit_marker_path(@marker) %>
+<%= link_to 'Back', city_path(@marker.city_id) %>

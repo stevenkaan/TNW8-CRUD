@@ -1,5 +1,8 @@
 <p>
 	<strong>Marker Info:</strong>
 	<%= marker_info.body %>
-	
+	<b><i><%= marker_info.language %></i></b>
+	<%= link_to 'Show', marker_info_path(marker_info) %>
+
+    <%= link_to 'Delete', marker_info_path(marker_info), method: :delete, data: { confirm: 'Are you sure?' } %>
 </p>

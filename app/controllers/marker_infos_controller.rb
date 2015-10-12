@@ -15,7 +15,7 @@ class MarkerInfosController < ApplicationController
 	def create
 	    @marker = Marker.find(params[:marker_id])
 	    @marker_info = @marker.marker_infos.create(marker_info_params)
-	    redirect_to city_path(@marker)
+	    redirect_to marker_path(@marker)
 	end
 
 	def update
@@ -37,8 +37,8 @@ class MarkerInfosController < ApplicationController
 	end
 
 	private
-		def Marker_info_params
-			params.require(:Marker_info).permit(:body, :language)
+		def marker_info_params
+			params.require(:marker_info).permit(:body, :language)
 		end
 
 end

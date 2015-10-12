@@ -1,1 +1,13 @@
-_form.html.erb
+<%= form_for([@marker, @marker.marker_infos.build]) do |f| %>
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_field :body %>
+  </p>
+  <p>
+    <%= f.label :language %><br>
+    <%= f.text_field :language %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
