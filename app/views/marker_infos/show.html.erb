@@ -1,4 +1,4 @@
-<h1>Editing marker info</h1>
+<h1>Editing marker info <%= @marker.name %></h1>
  
 <%= form_for :marker_info, url: marker_info_path(@marker_info), method: :patch do |f| %>
  
