@@ -1,7 +1,4 @@
 <p>
 	<strong>Marker:</strong>
-	<%= marker.name %>
-	<%= link_to 'Show', marker_path(marker) %>
-    <%= link_to 'Edit', edit_marker_path(marker) %>
-    <%= link_to 'Delete', marker_path(marker), method: :delete, data: { confirm: 'Are you sure?' } %>
+	<%= link_to marker.name, marker_path(marker) %>
 </p>

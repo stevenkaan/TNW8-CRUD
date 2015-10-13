@@ -20,10 +20,11 @@
 <% end %>
 
 <h2>Stad toevoegen:</h2>
-<%= form_for([@country, @country.cities.build]) do |f| %>
+<%= form_for([@country, @country.cities.build], :html => {:multipart => true}) do |f| %>
   <p>
     <%= f.label :city_name %><br>
-    <%= f.text_field :city_name %>
+    <%= f.text_field :city_name %><br>
+    <%= f.file_field :city_images %>
   </p>
   <p>
     <%= f.submit %>

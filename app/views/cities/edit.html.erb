@@ -1,5 +1,5 @@
 <h1>Editing city</h1>
-
+<%= image_tag @city.city_images.url.to_s %>
 <%= form_for :city, url: city_path(@city), method: :patch do |f| %>
 
   <% if @city.errors.any? %>
@@ -17,6 +17,7 @@
   <% end %>
 
   <p>
+  <%= f.file_field :city_images %><br>
     <%= f.label :city_name %><br>
     <%= f.text_field :city_name %>
   </p>
@@ -27,4 +28,4 @@
 
 <% end %>
 
-<%= link_to 'Back', country_path(@city.country_id) %>
+<%= link_to 'Back', city_path(@city) %>

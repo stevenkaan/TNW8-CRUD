@@ -20,8 +20,8 @@ class CitiesController < ApplicationController
   		@city = City.find(params[:id])
 
   		if @city.update(city_params)
-  			@country = Country.find(@city.country_id)
-    		redirect_to @country
+
+    		redirect_to @city
   		else
     		render 'edit'
   		end
@@ -36,6 +36,6 @@ class CitiesController < ApplicationController
 
 	private
 		def city_params
-			params.require(:city).permit(:city_name)
+			params.require(:city).permit(:city_name, :city_images)
 		end
 end

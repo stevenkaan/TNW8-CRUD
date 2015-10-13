@@ -1,4 +1,7 @@
-<strong>Stad: <%= @city.city_name %></strong>
+<%= image_tag @city.city_images.url.to_s %><br>
+<strong>Stad: <%= @city.city_name %> </strong> <%= link_to 'Edit', edit_city_path(@city) %> <%= link_to 'Delete', city_path(@city),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
 
 <h2>Stad info</h2>
 
@@ -16,5 +19,5 @@
 
 <%= render 'markers/form' %>
 
-<%= link_to 'Edit', edit_city_path(@city) %>
+
 <%= link_to 'Back', country_path(@city.country_id) %>

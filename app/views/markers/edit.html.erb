@@ -17,6 +17,7 @@
   <% end %>
 
   <p>
+  <%= f.file_field :marker_images %><br>
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </p>
@@ -27,4 +28,4 @@
 
 <% end %>
 
-<%= link_to 'Back', marker_path %>
+<%= link_to 'Back', marker_path(@marker) %>
