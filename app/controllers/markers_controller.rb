@@ -20,8 +20,8 @@ class MarkersController < ApplicationController
 		@marker = Marker.find(params[:id])
 
 		if @marker.update(marker_params)
-			@city = City.find(@marker.city_id)
-			redirect_to @city
+			
+			redirect_to @marker
 		else
 			render 'edit'
 		end
@@ -34,8 +34,22 @@ class MarkersController < ApplicationController
 		redirect_to @city
 	end
 
+	def deleteMarkerImage
+		@marker = Marker.find(params[:id])
+		@marker.remove_marker_images!
+		@marker.save
+		redirect_to @marker
+	end
+
+	def deleteMarkerAudio
+		@marker = Marker.find(params[:id])
+		@marker.remove_marker_audio!
+		@marker.save
+		redirect_to @marker
+	end
+
 	private
 		def marker_params
-			params.require(:marker).permit(:name, :marker_images)
+			params.require(:marker).permit(:name, :marker_images, :marker_audio)
 		end
 end

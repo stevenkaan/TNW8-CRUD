@@ -4,7 +4,10 @@ SightGuide::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-
+  get 'cities/:id/delete_city_image' => 'cities#deleteCityImage'
+  get 'markers/:id/delete_marker_image' => 'markers#deleteMarkerImage'
+  get 'cities/:id/delete_city_audio' => 'cities#deleteCityAudio'
+  get 'markers/:id/delete_marker_audio' => 'markers#deleteMarkerAudio'
   # resources :cities
   # resources :markers
   resources :marker_infos
@@ -26,6 +29,7 @@ SightGuide::Application.routes.draw do
 
 
   root 'pages#login'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,3 +1,6 @@
+<%= image_tag @marker.marker_images.url.to_s %><br>
+<%= @marker.marker_audio.url.to_s %>
+
 <h1>Editing marker</h1>
 
 <%= form_for :marker, url: marker_path(@marker), method: :patch do |f| %>
@@ -17,7 +20,14 @@
   <% end %>
 
   <p>
-  <%= f.file_field :marker_images %><br>
+  <%= f.label :marker_images %><br>
+  <%= f.file_field :marker_images %>
+  </p>
+  <p>
+  <%= f.label :marker_audio %><br>
+  <%= f.file_field :marker_audio %>
+  </p>
+  <p>
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </p>
