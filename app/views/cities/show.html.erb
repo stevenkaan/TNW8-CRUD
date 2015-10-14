@@ -1,7 +1,10 @@
-<%= image_tag @city.city_images.url.to_s %><br>
-<%= @city.city_audio.url.to_s %>
-<%= link_to "Delete image", :controller => :cities, :action => :deleteCityImage %>
-<%= link_to "Delete audio", :controller => :cities, :action => :deleteCityAudio %><br>
+<% if @city.city_images.url.to_s!='' %>
+	<%= image_tag @city.city_images.url.to_s %><br>
+	<%= link_to "Delete image", :controller => :cities, :action => :deleteCityImage %><br>
+<% end %>
+
+
+
 
 <strong>Stad: <%= @city.city_name %> </strong> <%= link_to 'Edit', edit_city_path(@city) %> <%= link_to 'Delete', city_path(@city),
               method: :delete,

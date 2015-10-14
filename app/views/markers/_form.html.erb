@@ -1,11 +1,7 @@
 <%= form_for([@city, @city.markers.build]) do |f| %>
   <p>
-  <%= f.label :city_images %><br>
-  <%= f.file_field :city_images %>
-  </p>
-  <p>
-  <%= f.label :city_audio %><br>
-  <%= f.file_field :city_audio %>
+  <%= f.label :marker_images %><br>
+  <%= f.file_field :marker_images %>
   </p>
   <p>
     <%= f.label :name %><br>

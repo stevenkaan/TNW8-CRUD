@@ -4,5 +4,4 @@ class City < ActiveRecord::Base
 	has_many :markers
 	has_many :city_infos
 	mount_uploader :city_images, CityImageUploader
-	mount_uploader :city_audio, CityAudioUploader
 end

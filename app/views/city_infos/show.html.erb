@@ -1,5 +1,8 @@
 <h1>Editing city info <%= @city.city_name %></h1>
- 
+<% if @city_info.city_audio.url.to_s!='' %>
+  <%= @city_info.city_audio.url.to_s %><br>
+  <%= link_to "Delete audio", :controller => :city_infos, :action => :deleteCityAudio %>
+<% end %>
 <%= form_for :city_info, url: city_info_path(@city_info), method: :patch do |f| %>
  
   <% if @city_info.errors.any? %>
@@ -20,7 +23,10 @@
     <%= f.label :body %><br>
     <%= f.text_field :body %>
   </p>
- 
+ <p>
+  <%= f.label :city_audio %><br>
+  <%= f.file_field :city_audio %>
+  </p>
   <p>
     <%= f.label :language %><br>
     <%= f.text_area :language %>
@@ -32,16 +38,4 @@
  
 <% end %>
 
-<!-- <strong>Stad: <%= @city.city_name %></strong>
-
-<h2>Stad info</h2>
-
-<b> Taal </b>
-
-<%= @city_info.language %><br>
-
-<b> Tekst </b><br>
-
-<%= @city_info.body %><br><br>
- -->
 <%= link_to 'Back', city_path(@city_info.city_id) %>

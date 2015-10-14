@@ -36,9 +36,16 @@ class MarkerInfosController < ApplicationController
 		redirect_to @marker
 	end
 
+	def deleteMarkerAudio
+		@marker_info = MarkerInfo.find(params[:id])
+		@marker_info.remove_marker_audio!
+		@marker_info.save
+		redirect_to @marker_info
+	end
+
 	private
 		def marker_info_params
-			params.require(:marker_info).permit(:body, :language)
+			params.require(:marker_info).permit(:body, :language, :marker_audio)
 		end
 
 end

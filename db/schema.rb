@@ -16,15 +16,8 @@ ActiveRecord::Schema.define(version: 20151013090602) do
 # Could not dump table "cities" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
 
-  create_table "city_infos", force: true do |t|
-    t.text     "body"
-    t.string   "language"
-    t.integer  "city_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "city_infos", ["city_id"], name: "index_city_infos_on_city_id"
+# Could not dump table "city_infos" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "countries", force: true do |t|
     t.string   "country_name"
@@ -32,15 +25,8 @@ ActiveRecord::Schema.define(version: 20151013090602) do
     t.datetime "updated_at"
   end
 
-  create_table "marker_infos", force: true do |t|
-    t.text     "body"
-    t.string   "language"
-    t.integer  "marker_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "marker_infos", ["marker_id"], name: "index_marker_infos_on_marker_id"
+# Could not dump table "marker_infos" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
 # Could not dump table "markers" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass

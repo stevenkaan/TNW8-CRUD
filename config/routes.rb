@@ -6,8 +6,8 @@ SightGuide::Application.routes.draw do
   # You can have the root of your site routed with "root"
   get 'cities/:id/delete_city_image' => 'cities#deleteCityImage'
   get 'markers/:id/delete_marker_image' => 'markers#deleteMarkerImage'
-  get 'cities/:id/delete_city_audio' => 'cities#deleteCityAudio'
-  get 'markers/:id/delete_marker_audio' => 'markers#deleteMarkerAudio'
+  get 'city_infos/:id/delete_city_audio' => 'city_infos#deleteCityAudio'
+  get 'marker_infos/:id/delete_marker_audio' => 'marker_infos#deleteMarkerAudio'
   # resources :cities
   # resources :markers
   resources :marker_infos

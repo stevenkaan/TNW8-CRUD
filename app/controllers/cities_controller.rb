@@ -41,15 +41,15 @@ class CitiesController < ApplicationController
 		redirect_to @city
 	end
 
-	def deleteCityAudio
-		@city = City.find(params[:id])
-		@city.remove_city_audio!
-		@city.save
-		redirect_to @city
-	end
+	# def deleteCityAudio
+	# 	@city = City.find(params[:id])
+	# 	@city.remove_city_audio!
+	# 	@city.save
+	# 	redirect_to @city
+	# end
 
 	private
 		def city_params
-			params.require(:city).permit(:city_name, :city_images, :city_audio)
+			params.require(:city).permit(:city_name, :city_images)
 		end
 end
