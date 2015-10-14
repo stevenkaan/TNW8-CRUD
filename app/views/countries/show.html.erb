@@ -1,33 +1,14 @@
 <p>
-
   <strong>Land:</strong>
   <%= @country.country_name %>
 </p>
 
-
 <h2>Steden in <%= @country.country_name %></h2>
 
-<% @country.cities.each do |city| %>
-  <p>
-    <strong>Stad:</strong>
-    <%= link_to city.city_name, city_path(city) %>
-  </p>
-<% end %>
+<%= render @country.cities %>
 
 <h2>Stad toevoegen:</h2>
-<%= form_for([@country, @country.cities.build], :html => {:multipart => true}) do |f| %>
-  <p>
-  <%= f.label :city_images %><br>
-  <%= f.file_field :city_images %>
-  </p>
-  <p>
-  <p>
-    <%= f.label :city_name %><br>
-    <%= f.text_field :city_name %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+
+<%= render 'cities/form' %>
 
 <%= link_to 'Back', countries_path() %>

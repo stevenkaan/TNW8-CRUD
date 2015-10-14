@@ -3,9 +3,6 @@
 	<%= link_to "Delete image", :controller => :cities, :action => :deleteCityImage %><br>
 <% end %>
 
-
-
-
 <strong>Stad: <%= @city.city_name %> </strong> <%= link_to 'Edit', edit_city_path(@city) %> <%= link_to 'Delete', city_path(@city),
               method: :delete,
               data: { confirm: 'Are you sure?' } %>
