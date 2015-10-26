@@ -8,7 +8,7 @@ SightGuide::Application.routes.draw do
   get 'markers/:id/delete_marker_image' => 'markers#deleteMarkerImage'
   get 'city_infos/:id/delete_city_audio' => 'city_infos#deleteCityAudio'
   get 'marker_infos/:id/delete_marker_audio' => 'marker_infos#deleteMarkerAudio'
-  # resources :cities whoooo
+  # resources :cities
   # resources :markers
   resources :marker_infos
   resources :city_infos
