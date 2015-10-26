@@ -1,4 +1,7 @@
 class MarkersController < ApplicationController
+
+	before_filter :authorize
+
 	def index
 	end
 
