@@ -1,4 +1,7 @@
 class CityInfosController < ApplicationController
+
+	before_filter :authorize
+	
 	def index
 	end
 

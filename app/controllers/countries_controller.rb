@@ -1,4 +1,7 @@
 class CountriesController < ApplicationController
+
+	before_filter :authorize
+	
 	def index
 		@countries = Country.all
 	end
