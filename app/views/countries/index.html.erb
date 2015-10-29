@@ -1,20 +1,13 @@
 
-<h1>Landen overzicht</h1>
-
-<br></br>
+<h2>Landen overzicht</h2>
 <table>
   <tr>
-    <th>Naam land</th>
+    <th>Land</th>
   </tr>
 
   <% @countries.each do |country| %>
-    <tr>
-      <td><%= country.country_name %></td>
-      <td><%= link_to 'Show', country_path(country) %></td>
-      <td><%= link_to 'Edit', edit_country_path(country) %></td>
-      <td><%= link_to 'Delete', country_path(country),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
+    <tr data-href='<%= country_path(country) %>'>
+      <td><%= link_to country.country_name, country_path(country)%></td>
     </tr>
   <% end %>
 </table>

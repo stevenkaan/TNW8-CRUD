@@ -1,14 +1,49 @@
-<p>
-  <strong>Land:</strong>
-  <%= @country.country_name %>
-</p>
+<h2><%= @country.country_name %></h2>
 
-<h2>Steden in <%= @country.country_name %></h2>
+<%= link_to 'Delete', country_path(@country),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
 
-<%= render @country.cities %>
+<%= form_for :country, url: country_path(@country), method: :patch do |f| %>
 
-<h2>Stad toevoegen:</h2>
+  <% if @country.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@country.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @country.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
+  <p>
+    <%= f.label :country_name %><br>
+    <%= f.text_field :country_name %>
+  </p>
+
+  <p>
+    <%= f.submit "Opslaan" %>
+  </p>
+
+<% end %>
+
+
+<!-- sssss -->
+
+
+
+<table>
+	<tr>
+		<th>
+			Steden
+		</th>
+	</tr>
+	<%= render @country.cities %>
+</table>
 <%= render 'cities/form' %>
 
 <%= link_to 'Back', countries_path() %>

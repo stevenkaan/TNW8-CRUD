@@ -18,7 +18,7 @@ class CityInfosController < ApplicationController
 	def create
 	    @city = City.find(params[:city_id])
 	    @city_info = @city.city_infos.create(city_info_params)
-	    redirect_to city_path(@city)
+	    redirect_to @city_info
 	end
 
 	def update

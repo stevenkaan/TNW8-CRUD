@@ -16,7 +16,7 @@ class CitiesController < ApplicationController
 	def create
 		@county = Country.find(params[:country_id])
 		@city = @county.cities.create(city_params)
-		redirect_to country_path(@county)
+		redirect_to @city
 	end
 
 	def update

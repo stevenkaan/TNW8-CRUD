@@ -1,9 +1,4 @@
-<p>
-	<strong>Marker Info:</strong>
-	<%= marker_info.body %>
-	<b><i><%= marker_info.language %></i></b>
-	<%= marker_info.marker_audio.url.to_s %>
-	<%= link_to 'Show', marker_info_path(marker_info) %>
-
-    <%= link_to 'Delete', marker_info_path(marker_info), method: :delete, data: { confirm: 'Are you sure?' } %>
-</p>
+<tr data-href='<%= marker_info_path(marker_info) %>'>
+	<td><%= link_to marker_info.body, marker_info_path(marker_info) %></td>
+	<td><%= marker_info.language %></td>
+</tr>

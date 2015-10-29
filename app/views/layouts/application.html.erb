@@ -3,17 +3,28 @@
 <head>
   <title>SightGuide</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
- 
+
   <%= csrf_meta_tags %>
   <!-- Google Maps API -->
-   
+  <%= javascript_include_tag "jquery.js", "data-no-turbolink" => true %> 
+  <%= javascript_include_tag "jquery_ujs.js", "data-no-turbolink" => true %> 
   <%= javascript_include_tag "http://maps.googleapis.com/maps/api/js?v=3&sensor=false", "data-no-turbolink" => true %>
+<script>
 
+jQuery(document).ready(function($) {
+
+    $('tr').click(function() {
+        window.document.location = $(this).data("href");
+    });
+    
+});
+</script>
 </head>
 <body>
 
+
 <% if current_user %>
-  Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
+<div class="top-bar"><p>Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %></p></div>
 <% else %>
   <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
 <% end %>

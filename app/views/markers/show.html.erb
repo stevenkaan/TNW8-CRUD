@@ -1,18 +1,92 @@
-<% if @marker.marker_images.url.to_s!='' %>
-	<%= image_tag @marker.marker_images.url.to_s %><br>
-	<%= link_to "Delete image", :controller => :markers, :action => :deleteMarkerImage %><br>
+
+<script>
+
+var myCenter = new google.maps.LatLng(<% if @marker.marker_lat.to_s!='' %><%= @marker.marker_lat %>,<%= @marker.marker_lng %><% else %>52.3779046344369,4.897584915161133<% end %>);
+var marker;
+
+function initialize() {
+
+  var mapOptions = {
+    center:myCenter,
+    zoom:15,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+
+  var map = new google.maps.Map(document.getElementById("googleMap"),mapOptions);
+  var marker = new google.maps.Marker({
+    position:myCenter,
+    map: map,
+    title: 'Hello World!',
+    draggable:true
+  });
+
+  google.maps.event.addListener(marker, 'dragend', function (event) {
+    document.getElementById("marker_marker_lat").value = this.getPosition().lat();
+    document.getElementById("marker_marker_lng").value = this.getPosition().lng();
+
+  });
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+
+<h1><%= @marker.name %></h1>
+
+<%= form_for :marker, url: marker_path(@marker), method: :patch do |f| %>
+
+  <% if @marker.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@marker.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @marker.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+  <%= f.label 'Afbeelding wijzigen/toevoegen' %><br>
+  <%= f.file_field :marker_images %>
+  </p>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.hidden_field :marker_lng %>
+  </p>
+   <p>
+    <%= f.hidden_field :marker_lat %>
+  </p>
+
+  <p>
+    <%= f.submit "Opslaan" %>
+  </p>
+
 <% end %>
 
-<strong>Marker: <%= @marker.name %> </strong> <%= link_to 'Edit', edit_marker_path(@marker) %> <%= link_to 'Delete', marker_path(@marker),
+<%= link_to 'Delete marker', marker_path(@marker),
               method: :delete,
-              data: { confirm: 'Are you sure?' } %>
+              data: { confirm: 'Are you sure?' } %><br>
+
+<% if @marker.marker_images.url.to_s!='' %>
+	<%= link_to "Delete image", :controller => :markers, :action => :deleteMarkerImage %><br>
+	<%= image_tag @marker.marker_images.url.to_s %>
+<% end %>
+<div id="googleMap"  style="width:800px;height:380px;">123</div>
 
 <h2>Marker info</h2>
 
-<%= render @marker.marker_infos %>
-
-<h2>Marker info toevoegen:</h2>
-
+<table>
+  <tr>
+    <th>Tekst</th><th>Taal</th>
+  </tr>
+  <%= render @marker.marker_infos %>
+</table>
 <%= render 'marker_infos/form' %>
 
 

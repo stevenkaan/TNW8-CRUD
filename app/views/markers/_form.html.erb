@@ -1,13 +1,7 @@
 <%= form_for([@city, @city.markers.build]) do |f| %>
-  <p>
-  <%= f.label :marker_images %><br>
-  <%= f.file_field :marker_images %>
+    <%= f.hidden_field :name, value: 'nieuwe marker' %>
   </p>
   <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.submit %>
+    <%= f.submit "Niewe marker" %>
   </p>
 <% end %>

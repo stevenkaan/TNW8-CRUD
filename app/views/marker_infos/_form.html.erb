@@ -1,17 +1,4 @@
 <%= form_for([@marker, @marker.marker_infos.build]) do |f| %>
-  <p>
-    <%= f.label :body %><br>
-    <%= f.text_field :body %>
-  </p>
-    <p>
-  <%= f.label :marker_audio %><br>
-  <%= f.file_field :marker_audio %>
-  </p>
-  <p>
-    <%= f.label :language %><br>
-    <%= f.text_field :language %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+  <%= f.hidden_field :body, value: 'nieuwe marker informatie' %>
+  <%= f.submit "Nieuwe marker informatie" %>
 <% end %>

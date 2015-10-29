@@ -1,4 +1,3 @@
-<p>
-	<strong>City:</strong>
-	<%= link_to city.city_name, city_path(city) %>
-</p>
+<tr data-href='<%= city_path(city) %>'>
+	<td><%= link_to city.city_name, city_path(city) %></td>
+</tr>

@@ -18,7 +18,7 @@ class MarkerInfosController < ApplicationController
 	def create
 	    @marker = Marker.find(params[:marker_id])
 	    @marker_info = @marker.marker_infos.create(marker_info_params)
-	    redirect_to marker_path(@marker)
+	    redirect_to @marker_info
 	end
 
 	def update

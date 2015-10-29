@@ -1,3 +1,8 @@
+<%= link_to 'Destroy', city_info_path(@city_info),
+  method: :delete,
+  data: { confirm: 'Are you sure?' }
+%>
+
 <h1>Editing city info <%= @city.city_name %></h1>
 <% if @city_info.city_audio.url.to_s!='' %>
   <%= @city_info.city_audio.url.to_s %><br>
@@ -33,7 +38,7 @@
   </p>
  
   <p>
-    <%= f.submit %>
+    <%= f.submit "Opslaan" %>
   </p>
  
 <% end %>

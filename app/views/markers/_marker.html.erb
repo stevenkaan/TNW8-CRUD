@@ -1,4 +1,3 @@
-<p>
-	<strong>Marker:</strong>
-	<%= link_to marker.name, marker_path(marker) %>
-</p>
+<tr data-href='<%= marker_path(marker) %>'>
+	<td><%= link_to marker.name, marker_path(marker) %></td>
+</tr>

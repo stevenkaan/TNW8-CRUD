@@ -28,7 +28,7 @@ class CountriesController < ApplicationController
   		@country = Country.find(params[:id])
 
   		if @country.update(country_params)
-    		redirect_to countries_path
+    		redirect_to @country
   		else
     		render 'edit'
   		end

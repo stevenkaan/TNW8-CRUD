@@ -3,7 +3,8 @@
   <%= @marker_info.marker_audio.url.to_s %><br>
   <%= link_to "Delete audio", :controller => :marker_infos, :action => :deleteMarkerAudio %>
 <% end %>
-
+ <%= link_to 'Delete', marker_info_path(@marker_info), method: :delete, data: { confirm: 'Are you sure?' } %>
+ 
 <%= form_for :marker_info, url: marker_info_path(@marker_info), method: :patch do |f| %>
  
   <% if @marker_info.errors.any? %>
@@ -34,7 +35,7 @@
   </p>
  
   <p>
-    <%= f.submit %>
+    <%= f.submit "Opslaan" %>
   </p>
  
 <% end %>

@@ -1,10 +1,4 @@
-<p>
-	<strong>City Info:</strong>
-	<%= city_info.body %>
-	<b><i><%= city_info.language %></i></b>
-	<%= city_info.city_audio.url.to_s %>
-	<%= link_to 'Show', city_info_path(city_info) %>
-
-    <%= link_to 'Delete', city_info_path(city_info), method: :delete, data: { confirm: 'Are you sure?' } %>
-  	
-</p>
+<tr data-href='<%= city_info_path(city_info) %>' >
+	<td><%= link_to city_info.body , city_info_path(city_info)%></td>
+	<td><%= city_info.language %></td>
+</tr>

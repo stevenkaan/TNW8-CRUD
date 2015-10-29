@@ -1,25 +1,61 @@
-<% if @city.city_images.url.to_s!='' %>
-	<%= image_tag @city.city_images.url.to_s %><br>
-	<%= link_to "Delete image", :controller => :cities, :action => :deleteCityImage %><br>
+<h2><%= @city.city_name %></h2>
+<%= form_for :city, url: city_path(@city), method: :patch do |f| %>
+<% if @city.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@city.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @city.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <p>
+  <%= f.label 'afbeelding_wijzigen/toevoegen' %><br>
+  <%= f.file_field :city_images %>
+  </p>
+  <p>
+    <%= f.label :naam_stad %><br>
+    <%= f.text_field :city_name %>
+  </p>
+
+  <p>
+    <%= f.submit "Opslaan"%>
+  </p>
+
 <% end %>
 
-<strong>Stad: <%= @city.city_name %> </strong> <%= link_to 'Edit', edit_city_path(@city) %> <%= link_to 'Delete', city_path(@city),
+<%= link_to 'Stad verwijderen', city_path(@city),
               method: :delete,
-              data: { confirm: 'Are you sure?' } %>
+              data: { confirm: 'Are you sure?' } %><br>
+
+<% if @city.city_images.url.to_s!='' %>
+	<%= link_to "Afbeelding verwijderen", :controller => :cities, :action => :deleteCityImage %><br>
+	<%= image_tag @city.city_images.url.to_s %><br>
+<% end %>
 
 <h2>Stad info</h2>
-
-<%= render @city.city_infos %>
-
-<h2>Stad info toevoegen:</h2>
+<table>
+<tr>
+	<th>Tekst</th>
+	<th>Taal</th>
+</tr>
+	<%= render @city.city_infos %>
+</table>
 
 <%= render 'city_infos/form' %>
 
 <h2>Markers</h2>
-
-<%= render @city.markers %>
-
-<h2>Marker toevoegen:</h2>
+<table>
+	<tr>
+		<th>Naam</th>
+	</tr>
+	<%= render @city.markers %>
+</table>
 
 <%= render 'markers/form' %>
 

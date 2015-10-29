@@ -16,7 +16,7 @@ class MarkersController < ApplicationController
 	def create
 	    @city = City.find(params[:city_id])
 	    @marker = @city.markers.create(marker_params)
-	    redirect_to city_path(@city)
+	    redirect_to @marker
 	end
 
 	def update

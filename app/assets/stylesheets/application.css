@@ -11,3 +11,56 @@
  *= require_self
  *= require_tree .
  */
+
+html,body {
+	background-color: #ffffff; 
+	font-family: arial;
+	font-size: 11px;
+	margin: 0;
+	line-height: 24px;
+}
+
+a {
+	color: red;
+	text-decoration: none;
+}
+
+a:hover {
+	color: orange;
+}
+
+.top-bar {
+	display: block;
+	width: 100%;
+	height: 25px;
+	color: #fff;
+	background-color: #000000;
+}
+
+.top-bar p {
+	margin: 0 0 0 12px;
+}
+
+table {
+	width: 750px;
+	border-collapse: collapse;
+}
+
+tr {
+	border-top:2px solid #fff;
+}
+tr:nth-child(even) {background: #CCC}
+tr:nth-child(odd) {background: #FFF}
+
+tr:hover {
+	cursor: pointer;
+	background: #c0c0c0;
+}
+
+table tr td {
+	border: 0px;
+}
+
+th {
+	float:left;
+}
