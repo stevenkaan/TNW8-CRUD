@@ -1,6 +1,10 @@
 class SessionsController < ApplicationController
 
   def new
+    if current_user
+
+      redirect_to '/countries'
+    end
   end
 
   def create

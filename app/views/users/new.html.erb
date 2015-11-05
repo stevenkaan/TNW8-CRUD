@@ -1,13 +1,17 @@
-<h1>Signup!</h1>
-
 <%= form_for :user, url: '/users' do |f| %>
 
-<p>
-  Name: <%= f.text_field :name %>
-  Email: <%= f.text_field :email %>
-  Password: <%= f.password_field :password %>
-  Password Confirmation: <%= f.password_field :password_confirmation %>
-  <%= f.submit "Submit" %>
+<form accept-charset="UTF-8" action="/users" method="post">
+
+<p class="login"><br>
+	<%= image_tag("logo_darkbg.png", height: '250') %><br>
+<input id="user_name" name="user[name]" type="text" placeholder="gebruikersnaam"><br>
+<input id="user_email" name="user[email]" type="text" placeholder="email"><br>
+<input id="user_password" name="user[password]" type="password" placeholder="wachtwoord"><br>
+<input id="user_password_confirmation" name="user[password_confirmation]" type="password" placeholder="herhaal wachtwoord"><br>
+<input name="commit" type="submit" value="Registreer">
 </p>
 
+</form>
+
 <% end %>
+

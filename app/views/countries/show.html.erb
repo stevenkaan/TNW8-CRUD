@@ -1,11 +1,16 @@
+<div class="container content">
+<div class="col xl8 l8 m8 s8">
+
+
 <h2><%= @country.country_name %></h2>
 
-<%= link_to 'Delete', country_path(@country),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %>
 
 <%= form_for :country, url: country_path(@country), method: :patch do |f| %>
+    <p>
+    <%= f.submit "Opslaan" %>
+    <%= link_to 'Land verwijderen', country_path(@country), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'deleteButton' %>
 
+  </p>
   <% if @country.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -21,12 +26,8 @@
   <% end %>
 
   <p>
-    <%= f.label :country_name %><br>
+    <%= f.label :Naam_land %><br>
     <%= f.text_field :country_name %>
-  </p>
-
-  <p>
-    <%= f.submit "Opslaan" %>
   </p>
 
 <% end %>
@@ -45,5 +46,6 @@
 	<%= render @country.cities %>
 </table>
 <%= render 'cities/form' %>
-
-<%= link_to 'Back', countries_path() %>
+</div>
+<div class="clear"></div>
+</div>

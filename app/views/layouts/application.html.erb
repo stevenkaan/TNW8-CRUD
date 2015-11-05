@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>SightGuide</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 
   <%= csrf_meta_tags %>
@@ -21,15 +22,35 @@ jQuery(document).ready(function($) {
 </script>
 </head>
 <body>
+  <div class="container">
+
+    <% if current_user %>
+    <div class="s12 m12 l12 xl12 top-bar">
+      <p>Ingelogd als <%= current_user.name %> | <%= link_to "Log uit", '/logout', :class => "button logout" %>
 
 
-<% if current_user %>
-<div class="top-bar"><p>Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %></p></div>
-<% else %>
-  <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+      <%= link_to '/logout' do %>
+
 <% end %>
 
-<%= yield %>
+</p>
+      
+<p><%= GetBreadcrumbs() %></p>
 
+
+      <% else %>
+
+      <% end %>
+
+    </div>
+  </div>
+
+  <div class="clear"></div>
+
+
+    <%= yield %>
+
+
+  
 </body>
 </html>

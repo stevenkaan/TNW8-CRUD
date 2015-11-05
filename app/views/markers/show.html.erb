@@ -29,12 +29,21 @@ function initialize() {
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
+$(function() {
+    $( "#tabs" ).tabs();
+  });
+
 </script>
-
-<h1><%= @marker.name %></h1>
-
-<%= form_for :marker, url: marker_path(@marker), method: :patch do |f| %>
-
+<div class="container content">
+<div class="col xl8 l8 m8 s8">
+  <h2><%= @marker_info_array[0].name %></h2>
+  
+<div id="tabs">
+  </div>
+  <%= form_for :marker, url: marker_path(@marker), method: :patch do |f| %>
+  <p>
+    <%= f.submit "Opslaan" %><%= link_to 'Delete marker', marker_path(@marker), method: :delete, data: { confirm: 'Weet je het zeker?' }, :class => 'deleteButton' %>
+  </p>
   <% if @marker.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -48,13 +57,46 @@ google.maps.event.addDomListener(window, 'load', initialize);
       </ul>
     </div>
   <% end %>
+  <div class="tabs">
+  <p class='tab-nld active'>nld</p>
+  <p class='tab-eng'>eng</p>
+  <p class='tab-esp'>esp</p>
+  <div class='clear'></div>
+  <div class='tabs-content'>
+  <div class='info-nld' style='display:block;'>
+  <%= f.label :marker_info_name_nld %><br>
+  <%= f.text_field :marker_info_name_nld, value: @marker_info_array[0].name %><br>
+  <%= f.label :marker_info_text_nld %><br>
+  <%= f.text_area :marker_info_text_nld, value: @marker_info_array[0].body %><br>
+  <%= f.label :marker_info_audio_nld %><br>
+  <%= f.file_field :marker_info_audio_nld %><br>
+  <%= @marker_info_array[0].marker_audio %><br>
+</div>
+<div class='info-eng' style='display:none;'>
+  <%= f.label :marker_info_name_eng %><br>
+  <%= f.text_field :marker_info_name_eng, value: @marker_info_array[1].name %><br>
+  <%= f.label :marker_info_text_eng %><br>
+  <%= f.text_area :marker_info_text_eng, value: @marker_info_array[1].body %><br>
+  <%= f.label :marker_info_audio_eng %><br>
+  <%= f.file_field :marker_info_audio_eng %><br>
+  <%= @marker_info_array[1].marker_audio %><br>
+</div>
+<div class='info-esp' style='display:none;'>
+  <%= f.label :marker_info_name_esp %><br>
+  <%= f.text_field :marker_info_name_esp, value: @marker_info_array[2].name %><br>
+  <%= f.label :marker_info_text_esp %><br>
+  <%= f.text_area :marker_info_text_esp, value: @marker_info_array[2].body %><br>
+  <%= f.label :marker_info_audio_esp %><br>
+  <%= f.file_field :marker_info_audio_esp %><br>
+  <%= @marker_info_array[2].marker_audio %><br>
+</div>
+</div>
+</div>
   <p>
   <%= f.label 'Afbeelding wijzigen/toevoegen' %><br>
+  <div class="upload">Afbeelding toevoegen
   <%= f.file_field :marker_images %>
-  </p>
-  <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  </div>
   </p>
   <p>
     <%= f.hidden_field :marker_lng %>
@@ -63,31 +105,53 @@ google.maps.event.addDomListener(window, 'load', initialize);
     <%= f.hidden_field :marker_lat %>
   </p>
 
-  <p>
-    <%= f.submit "Opslaan" %>
-  </p>
-
-<% end %>
-
-<%= link_to 'Delete marker', marker_path(@marker),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %><br>
-
-<% if @marker.marker_images.url.to_s!='' %>
-	<%= link_to "Delete image", :controller => :markers, :action => :deleteMarkerImage %><br>
-	<%= image_tag @marker.marker_images.url.to_s %>
-<% end %>
-<div id="googleMap"  style="width:800px;height:380px;">123</div>
-
-<h2>Marker info</h2>
-
-<table>
-  <tr>
-    <th>Tekst</th><th>Taal</th>
-  </tr>
-  <%= render @marker.marker_infos %>
-</table>
-<%= render 'marker_infos/form' %>
 
 
-<%= link_to 'Back', city_path(@marker.city_id) %>
+  <% end %>
+
+
+  <% if @marker.marker_images.url.to_s!='' %>
+  <br>
+  <% end %>
+
+</div>
+<div class="col xl3 l3 m3 s3">
+  <% if @marker.marker_images.url.to_s!='' %>
+    <%= link_to "Afbeelding verwijderen", :controller => :markers, :action => :deleteMarkerImage %>
+    <%= image_tag (@marker.marker_images.url.to_s),width: '100%' %>
+  <% end %>
+  <div id="googleMap"  style="width:100%;height:300px;"></div>
+</div>
+<div class="clear"></div>
+</div>
+
+<script type="text/javascript">
+  
+$('.tab-nld').click(function(){
+  $('.info-nld').css({'display':'block'});
+  $('.tab-nld').addClass( "active" );
+  $('.info-eng').css({'display':'none'});
+  $('.tab-eng').removeClass( "active" );
+  $('.info-esp').css({'display':'none'});
+  $('.tab-esp').removeClass( "active" );
+});
+
+$('.tab-eng').click(function(){
+  $('.info-eng').css({'display':'block'});
+  $('.tab-eng').addClass( "active" );
+  $('.info-nld').css({'display':'none'});
+  $('.tab-nld').removeClass( "active" );
+  $('.info-esp').css({'display':'none'});
+  $('.tab-esp').removeClass( "active" );
+});
+
+$('.tab-esp').click(function(){
+  $('.info-esp').css({'display':'block'});
+  $('.tab-esp').addClass( "active" );
+  $('.info-eng').css({'display':'none'});
+  $('.tab-eng').removeClass( "active" );
+  $('.info-nld').css({'display':'none'});
+  $('.tab-nld').removeClass( "active" );
+});
+
+</script>

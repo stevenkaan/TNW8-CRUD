@@ -28,7 +28,7 @@ SightGuide::Application.routes.draw do
   end
 
 
-  root 'pages#login'
+  root 'sessions#new'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
@@ -37,6 +37,8 @@ SightGuide::Application.routes.draw do
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
 
+  get '/api/getcities' => 'api#getCities'
+  get '/api/getmarkers/:id' => 'api#getMarkers'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

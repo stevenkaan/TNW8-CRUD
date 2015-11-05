@@ -1,5 +1,15 @@
+<div class="container content">
+<div class="col xl8 l8 m8 s8">
+
 <h2><%= @city.city_name %></h2>
+
+
 <%= form_for :city, url: city_path(@city), method: :patch do |f| %>
+  <p>
+    <%= f.submit "Opslaan"%>
+    <%= link_to 'Stad verwijderen', city_path(@city), method: :delete, data: { confirm: 'Weet je het zeker?' }, :class => 'deleteButton' %>
+
+  </p>
 <% if @city.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -13,41 +23,50 @@
       </ul>
     </div>
   <% end %>
+  <div class="tabs">
+  <p class='tab-nld active'>nld</p>
+  <p class='tab-eng'>eng</p>
+  <p class='tab-esp'>esp</p>
+  <div class='clear'></div>
+  <div class='tabs-content'>
+  <div class='info-nld' style='display:block;'>
+  <%= f.label :city_info_name_nld %><br>
+  <%= f.text_field :city_info_name_nld, value: @city_info_array[0].name %><br>
+  <%= f.label :city_info_text_nld %><br>
+  <%= f.text_area :city_info_text_nld, value: @city_info_array[0].body %><br>
+  <%= f.label :city_info_audio_nld %><br>
+  <%= f.file_field :city_info_audio_nld %><br>
+  <%= @city_info_array[0].city_audio %><br>
+</div>
+<div class='info-eng' style='display:none;'>
+  <%= f.label :city_info_name_eng %><br>
+  <%= f.text_field :city_info_name_eng, value: @city_info_array[1].name %><br>
+  <%= f.label :city_info_text_eng %><br>
+  <%= f.text_area :city_info_text_eng, value: @city_info_array[1].body %><br>
+  <%= f.label :city_info_audio_eng %><br>
+  <%= f.file_field :city_info_audio_eng %><br>
+  <%= @city_info_array[1].city_audio %><br>
+</div>
+<div class='info-esp' style='display:none;'>
+  <%= f.label :city_info_name_esp %><br>
+  <%= f.text_field :city_info_name_esp, value: @city_info_array[2].name %><br>
+  <%= f.label :city_info_text_esp %><br>
+  <%= f.text_area :city_info_text_esp, value: @city_info_array[2].body %><br>
+  <%= f.label :city_info_audio_esp %><br>
+  <%= f.file_field :city_info_audio_esp %><br>
+  <%= @city_info_array[2].city_audio %><br>
+</div>
+</div>
+</div>
 
     <p>
   <%= f.label 'afbeelding_wijzigen/toevoegen' %><br>
+  <div class="upload">Afbeelding toevoegen
   <%= f.file_field :city_images %>
+  </div>
   </p>
-  <p>
-    <%= f.label :naam_stad %><br>
-    <%= f.text_field :city_name %>
-  </p>
-
-  <p>
-    <%= f.submit "Opslaan"%>
-  </p>
-
 <% end %>
 
-<%= link_to 'Stad verwijderen', city_path(@city),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %><br>
-
-<% if @city.city_images.url.to_s!='' %>
-	<%= link_to "Afbeelding verwijderen", :controller => :cities, :action => :deleteCityImage %><br>
-	<%= image_tag @city.city_images.url.to_s %><br>
-<% end %>
-
-<h2>Stad info</h2>
-<table>
-<tr>
-	<th>Tekst</th>
-	<th>Taal</th>
-</tr>
-	<%= render @city.city_infos %>
-</table>
-
-<%= render 'city_infos/form' %>
 
 <h2>Markers</h2>
 <table>
@@ -58,6 +77,46 @@
 </table>
 
 <%= render 'markers/form' %>
+</div>
+<div class="col xl3 l3 m3 s3">
+<% if @city.city_images.url.to_s!='' %>
+  <%= link_to "Afbeelding verwijderen", :controller => :cities, :action => :deleteCityImage %><br>
+  <%= image_tag (@city.city_images.url.to_s),width: '100%' %><br>
+<% end %>
+<div class="clear"></div>
+</div>
 
+<div class="clear"></div>
 
-<%= link_to 'Back', country_path(@city.country_id) %>
+</div>
+
+<script type="text/javascript">
+  
+$('.tab-nld').click(function(){
+  $('.info-nld').css({'display':'block'});
+  $('.tab-nld').addClass( "active" );
+  $('.info-eng').css({'display':'none'});
+  $('.tab-eng').removeClass( "active" );
+  $('.info-esp').css({'display':'none'});
+  $('.tab-esp').removeClass( "active" );
+});
+
+$('.tab-eng').click(function(){
+  $('.info-eng').css({'display':'block'});
+  $('.tab-eng').addClass( "active" );
+  $('.info-nld').css({'display':'none'});
+  $('.tab-nld').removeClass( "active" );
+  $('.info-esp').css({'display':'none'});
+  $('.tab-esp').removeClass( "active" );
+});
+
+$('.tab-esp').click(function(){
+  $('.info-esp').css({'display':'block'});
+  $('.tab-esp').addClass( "active" );
+  $('.info-eng').css({'display':'none'});
+  $('.tab-eng').removeClass( "active" );
+  $('.info-nld').css({'display':'none'});
+  $('.tab-nld').removeClass( "active" );
+});
+
+</script>

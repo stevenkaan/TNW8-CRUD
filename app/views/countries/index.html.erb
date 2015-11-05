@@ -1,15 +1,21 @@
+<div class="container content">
+	<div class="col s12 n12 l12 xl12">
+		<h2>Landen overzicht</h2>
+		<table>
+		  <tr>
+		    <th>Land</th>
+		  </tr>
 
-<h2>Landen overzicht</h2>
-<table>
-  <tr>
-    <th>Land</th>
-  </tr>
+		  <% @countries.each do |country| %>
+		    <tr data-href='<%= country_path(country) %>'>
+		      <td><%= link_to country.country_name, country_path(country)%></td>
+		    </tr>
+		  <% end %>
+		</table>
+<br>
+		<%= render 'countries/form' %>
+<br>
 
-  <% @countries.each do |country| %>
-    <tr data-href='<%= country_path(country) %>'>
-      <td><%= link_to country.country_name, country_path(country)%></td>
-    </tr>
-  <% end %>
-</table>
-
-<%= render 'countries/form' %>
+	</div>
+	<div class="clear"></div>
+</div>

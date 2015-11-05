@@ -1,11 +1,16 @@
-<h1>Login</h1>
-
 <%= form_tag '/login' do %>
 
 <p>
-  Email: <%= text_field_tag :email %>
-  Password: <%= password_field_tag :password %>
-  <%= submit_tag "Submit" %>
+<form accept-charset="UTF-8" action="/login" method="post">
+	<p class="login"><br>
+	<%= image_tag("logo_darkbg.png", height: '250') %><br>
+		<input id="email" name="email" type="text" placeholder="email"><br>
+		<input id="password" name="password" type="password" placeholder="wachtwoord"><br>
+		<input class="commit" name="commit" type="submit" value="inloggen">
+	</p>
+
+</form>
 </p>
 
 <% end %>
+
