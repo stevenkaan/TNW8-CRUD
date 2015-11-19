@@ -16,6 +16,17 @@ class ApplicationController < ActionController::Base
     url = request.fullpath;
     elements = url.split('/')
     
+    if elements.index("routes")
+      @city = City.find(@route.city_id);
+      @country = Country.find(@city.country_id);
+
+      html = '<div class="breadcrumbs"><ul>';
+      html += '<a href="http://' + request.domain + ':3000/"><li>Landen overzicht</li></a>';
+      html += '<a href="http://' + request.domain + ':3000/countries/' + @country.id.to_s + '"><li>' + @country.country_name + '</li></a>';
+      html += '<a href="http://' + request.domain + ':3000/cities/' + @city.id.to_s + '"><li>' + @city.city_name + '</li></a>';
+      html += '<a href="http://' + request.domain + ':3000/routes/' + @route.id.to_s + '"><li class="active">' + @route.name_nld + '</li></a>';
+      html += '</ul></div>';
+    end
 
     if elements.index("markers") || elements.index("marker_infos") != nil
       html = '<div class="breadcrumbs"><ul>';

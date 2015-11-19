@@ -1,3 +1,9 @@
-<tr data-href='<%= marker_path(marker) %>'>
-	<td><%= link_to marker.name, marker_path(marker) %></td>
+<%
+
+items = ['Musea','Monument','Markt','Park','Dierentuin','Uitzichtpunt','Winkelstraat','Restaurant','Night life','Casino','Rondvaart','Bus tour','Ziekenhuis','Apotheken','Openbare toilet ','Pinautomaat','Parkeerplaats','Toeristeninformatie','Luchthaven','Trein station','Metro station','Tram halte','Bushalte','Veerboot','Openbaar vervoer']
+
+%>
+
+<tr >
+	<td data-href='<%= marker_path(marker) %>'><%= link_to marker.name, marker_path(marker) %></td><td data-href='<%= marker_path(marker) %>'><%= items[marker.marker_type] %></td>
 </tr>

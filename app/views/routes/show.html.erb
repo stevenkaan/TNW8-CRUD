@@ -1,0 +1,125 @@
+<div class="container content">
+<div class="col xl8 l8 m8 s8">
+  <h2><%= @route.name %><%= @route.name_nld %></h2>
+
+
+  <%= form_for :route, url: route_path(@route), method: :patch do |f| %>
+  <p>
+    <%= f.submit "Opslaan" %>
+    <%= link_to 'Route verwijderen', route_path(@route), method: :delete, data: { confirm: 'Weet je het zeker?' }, :class => 'deleteButton' %>
+  </p>
+  <% if @route.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@route.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @route.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.label :afstand, 'Afstand in meters' %><br>
+  <%= f.text_field :afstand %><br>
+ <%= f.label :multiple_starting_points, 'Verplicht starten bij eerste marker' %><br>
+  <%= f.check_box :multiple_starting_points %><br>
+  <div class="tabs">
+  <p class='tab-nld active'>Nederlands</p>
+  <p class='tab-eng'>Engels</p>
+  <p class='tab-esp'>Spaans</p>
+  <div class='clear'></div>
+  <div class='tabs-content'>
+  <div class='info-nld' style='display:block;'>
+    <%= f.label :name_nld, 'Titel route nederlands' %><br>
+    <%= f.text_field :name_nld %><br>
+    <%= f.label :info_nld, 'Informatie route nederlands' %><br>
+    <%= f.text_area :info_nld %><br>
+  </div>
+  <div class='info-eng' style='display:none;'>
+    <%= f.label :name_eng, 'Titel route engels' %><br>
+    <%= f.text_field :name_eng %><br>
+    <%= f.label :info_eng, 'Informatie route engels' %><br>
+    <%= f.text_area :info_eng %><br>
+  </div>
+  <div class='info-esp' style='display:none;'>
+    <%= f.label :name_esp, 'Titel route spaans' %><br>
+    <%= f.text_field :name_esp %><br>
+    <%= f.label :info_esp, 'Informatie route spaans' %><br>
+    <%= f.text_area :info_esp %><br>
+  </div>
+</div>
+</div>
+
+
+<h2>Markers toegevoegd aan de route</h2>
+<table>
+  <tr>
+    <th>Naam</th><th>Actie</th><th>Verplaats</th><th>Verplaats</th>
+  </tr>
+<% @markers_in_route.each do |o| %>
+<tr>
+  <td data-href='<%= marker_path(o) %>'><%= o.name %></td><td <td data-href='<%= route_path(:marker => o, :type => 'delete') %>'>verwijder</td><td data-href='<%= route_path(:marker => o, :type => 'up') %>'>omhoog</td><td data-href='<%= route_path(:marker => o, :type => 'down') %>'>omlaag</td>
+</tr>
+
+<% end %>
+
+</table>
+
+
+
+
+
+<% end %>
+
+<h2>Beschikbare markers</h2>
+<table>
+  <tr>
+    <th>Naam</th><th>Actie</th>
+  </tr>
+<% @markers_not_in_route.each do |i| %>
+<tr>
+  <td data-href='<%= marker_path(i) %>'><%= i.name %></td><td data-href='<%= route_path(:marker => i, :type => 'add') %>'>toevoegen</td>
+</tr>
+
+<% end %>
+
+</table>
+<br>
+</div>
+<div class="col xl3 l3 m3 s3">
+</div>
+<div class="clear"></div>
+</div>
+
+<script type="text/javascript">
+  
+$('.tab-nld').click(function(){
+  $('.info-nld').css({'display':'block'});
+  $('.tab-nld').addClass( "active" );
+  $('.info-eng').css({'display':'none'});
+  $('.tab-eng').removeClass( "active" );
+  $('.info-esp').css({'display':'none'});
+  $('.tab-esp').removeClass( "active" );
+});
+
+$('.tab-eng').click(function(){
+  $('.info-eng').css({'display':'block'});
+  $('.tab-eng').addClass( "active" );
+  $('.info-nld').css({'display':'none'});
+  $('.tab-nld').removeClass( "active" );
+  $('.info-esp').css({'display':'none'});
+  $('.tab-esp').removeClass( "active" );
+});
+
+$('.tab-esp').click(function(){
+  $('.info-esp').css({'display':'block'});
+  $('.tab-esp').addClass( "active" );
+  $('.info-eng').css({'display':'none'});
+  $('.tab-eng').removeClass( "active" );
+  $('.info-nld').css({'display':'none'});
+  $('.tab-nld').removeClass( "active" );
+});
+
+</script>

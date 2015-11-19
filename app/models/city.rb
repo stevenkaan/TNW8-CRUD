@@ -3,6 +3,7 @@ class City < ActiveRecord::Base
 	belongs_to :country
 	has_many :markers
 	has_many :city_infos
+	has_many :routes
 	mount_uploader :city_images, CityImageUploader
 
 	def GetCityLanguages()

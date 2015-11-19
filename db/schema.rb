@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026131636) do
+ActiveRecord::Schema.define(version: 20151118100909) do
 
 # Could not dump table "cities" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
@@ -29,6 +29,17 @@ ActiveRecord::Schema.define(version: 20151026131636) do
 #   undefined method `[]' for nil:NilClass
 
 # Could not dump table "markers" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
+
+  create_table "markers_routes", force: true do |t|
+    t.integer  "marker_id",  null: false
+    t.integer  "route_id",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "position"
+  end
+
+# Could not dump table "routes" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
 
   create_table "users", force: true do |t|

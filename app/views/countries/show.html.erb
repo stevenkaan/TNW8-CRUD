@@ -6,10 +6,9 @@
 
 
 <%= form_for :country, url: country_path(@country), method: :patch do |f| %>
-    <p>
+  <p>
     <%= f.submit "Opslaan" %>
     <%= link_to 'Land verwijderen', country_path(@country), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'deleteButton' %>
-
   </p>
   <% if @country.errors.any? %>
     <div id="error_explanation">

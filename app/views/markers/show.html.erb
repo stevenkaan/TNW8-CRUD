@@ -42,7 +42,7 @@ $(function() {
   </div>
   <%= form_for :marker, url: marker_path(@marker), method: :patch do |f| %>
   <p>
-    <%= f.submit "Opslaan" %><%= link_to 'Delete marker', marker_path(@marker), method: :delete, data: { confirm: 'Weet je het zeker?' }, :class => 'deleteButton' %>
+    <%= f.submit "Opslaan" %><%= link_to 'Marker verwijderen', marker_path(@marker), method: :delete, data: { confirm: 'Weet je het zeker?' }, :class => 'deleteButton' %>
   </p>
   <% if @marker.errors.any? %>
     <div id="error_explanation">
@@ -57,36 +57,39 @@ $(function() {
       </ul>
     </div>
   <% end %>
+    <p>marker type
+    <%= f.select(:marker_type, [['Musea','0'],['Monument','1'],['Markt','2'],['Park','3'],['Dierentuin','4'],['Uitzichtpunt','5'],['Winkelstraat','6'],['Restaurant','7'],['Night life','8'],['Casino','9'],['Rondvaart','10'],['Bus tour','11'],['Ziekenhuis','12'],['Apotheken','13'],['Openbare toilet ','14'],['Pinautomaat','15'],['Parkeerplaats','16'],['Toeristeninformatie','17'],['Luchthaven','18'],['Trein station','19'],['Metro station','20'],['Tram halte','21'],['Bushalte','22'],['Veerboot','23'],['Openbaar vervoer','24']], { :class => 'my_style_class' }) %>
+  </p>
   <div class="tabs">
-  <p class='tab-nld active'>nld</p>
-  <p class='tab-eng'>eng</p>
-  <p class='tab-esp'>esp</p>
+  <p class='tab-nld active'>Nederlands</p>
+  <p class='tab-eng'>Engels</p>
+  <p class='tab-esp'>Spaans</p>
   <div class='clear'></div>
   <div class='tabs-content'>
   <div class='info-nld' style='display:block;'>
-  <%= f.label :marker_info_name_nld %><br>
+  <%= f.label :marker_info_name_nld, 'Naam marker nederlands' %><br>
   <%= f.text_field :marker_info_name_nld, value: @marker_info_array[0].name %><br>
-  <%= f.label :marker_info_text_nld %><br>
+  <%= f.label :marker_info_text_nld, 'Informatie marker nederlands' %><br>
   <%= f.text_area :marker_info_text_nld, value: @marker_info_array[0].body %><br>
-  <%= f.label :marker_info_audio_nld %><br>
+  <%= f.label :marker_info_audio_nld, 'Audio fragment marker nederlands' %><br>
   <%= f.file_field :marker_info_audio_nld %><br>
   <%= @marker_info_array[0].marker_audio %><br>
 </div>
 <div class='info-eng' style='display:none;'>
-  <%= f.label :marker_info_name_eng %><br>
+  <%= f.label :marker_info_name_eng, 'Naam marker engels' %><br>
   <%= f.text_field :marker_info_name_eng, value: @marker_info_array[1].name %><br>
-  <%= f.label :marker_info_text_eng %><br>
+  <%= f.label :marker_info_text_eng, 'Informatie marker engels' %><br>
   <%= f.text_area :marker_info_text_eng, value: @marker_info_array[1].body %><br>
-  <%= f.label :marker_info_audio_eng %><br>
+  <%= f.label :marker_info_audio_eng, 'Audio fragment marker engels' %><br>
   <%= f.file_field :marker_info_audio_eng %><br>
   <%= @marker_info_array[1].marker_audio %><br>
 </div>
 <div class='info-esp' style='display:none;'>
-  <%= f.label :marker_info_name_esp %><br>
+  <%= f.label :marker_info_name_esp, 'Naam marker spaans' %><br>
   <%= f.text_field :marker_info_name_esp, value: @marker_info_array[2].name %><br>
-  <%= f.label :marker_info_text_esp %><br>
+  <%= f.label :marker_info_text_esp, 'Informatie marker spaans' %><br>
   <%= f.text_area :marker_info_text_esp, value: @marker_info_array[2].body %><br>
-  <%= f.label :marker_info_audio_esp %><br>
+  <%= f.label :marker_info_audio_esp, 'Audio fragment marker spaans' %><br>
   <%= f.file_field :marker_info_audio_esp %><br>
   <%= @marker_info_array[2].marker_audio %><br>
 </div>
@@ -98,6 +101,7 @@ $(function() {
   <%= f.file_field :marker_images %>
   </div>
   </p>
+
   <p>
     <%= f.hidden_field :marker_lng %>
   </p>
