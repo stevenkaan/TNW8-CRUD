@@ -13,7 +13,7 @@ class ApiController < ApplicationController
 	# 	end
 
 	# 	render :json => cities.to_json;
-	# end
+	# end 
 
 	def getCities
 
@@ -21,16 +21,22 @@ class ApiController < ApplicationController
 
 		jsonReturn = Array.new
 		test = Array.new
-		# cities => ['steenwijk' => []]
+		# languages.push();
+https://blog.codepath.com/2011/05/16/if-youre-using-to_json-youre-doing-it-wrong/
+		json_data = { "cities": {} }
+		json_data["cities"] = "John"
+		# json_data["cities"] = "Johan"
+		# test.push( ['cities' => []] )
+		# test["cities"] = "das";
 
 		returnData = {};
 
 		for city in @cities
 			test = city.GetCityLanguages
-			returnData[city.city_name] = {id:city.id,lang:test}
+			returnData[city.city_name] = {id:city.id,languages:test}
 		end
-
-		render :json => returnData.to_json
+render :json => json_data
+		# render :json => returnData.to_json
 
 		# return languages.to_json.gsub!(/\"/, '\'')
 

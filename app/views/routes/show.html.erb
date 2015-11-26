@@ -1,7 +1,6 @@
 <div class="container content">
 <div class="col xl8 l8 m8 s8">
-  <h2><%= @route.name %><%= @route.name_nld %></h2>
-
+  <h2><%= @route.name_nld %></h2>
 
   <%= form_for :route, url: route_path(@route), method: :patch do |f| %>
   <p>
@@ -54,7 +53,7 @@
 
 
 <h2>Markers toegevoegd aan de route</h2>
-<table>
+<table class="markers_in_route">
   <tr>
     <th>Naam</th><th>Actie</th><th>Verplaats</th><th>Verplaats</th>
   </tr>
@@ -88,13 +87,33 @@
 </table>
 <br>
 </div>
+
 <div class="col xl3 l3 m3 s3">
+<p style="visibility:hidden; position:absolute;" class='city_name'><%= @city.city_name %></p>
+<p class='view_in_maps'>bekijk route in maps</p>
 </div>
 <div class="clear"></div>
 </div>
 
 <script type="text/javascript">
-  
+
+$('.view_in_maps').click( function(){
+  var win = window.open(google_maps_link, '_blank');
+  win.focus();
+});
+
+var google_maps_link = 'https://www.google.nl/maps/dir/';
+var city_name = $('.city_name').html();
+$('.markers_in_route tr').each( function(){
+
+  var name = $(this).find('td:eq(0)').html();
+
+  if(name != undefined) {
+    google_maps_link += name+',+'+city_name+'/';
+  }
+
+});
+
 $('.tab-nld').click(function(){
   $('.info-nld').css({'display':'block'});
   $('.tab-nld').addClass( "active" );

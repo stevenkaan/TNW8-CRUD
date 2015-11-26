@@ -6,4 +6,8 @@ class Marker < ActiveRecord::Base
     :foreign_key => "marker_id",
     :association_foreign_key => "route_id")
   mount_uploader :marker_images, MarkerImageUploaderUploader
+  mount_uploader :marker_images_2, MarkerImageUploaderUploader
+  mount_uploader :marker_images_3, MarkerImageUploaderUploader
+  mount_uploader :marker_images_4, MarkerImageUploaderUploader
+
 end

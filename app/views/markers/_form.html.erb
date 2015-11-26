@@ -1,7 +1,19 @@
-<%= form_for([@city, @city.markers.build]) do |f| %>
-    <%= f.hidden_field :name, value: 'nieuwe marker' %>
-  </p>
-  <p>
-    <%= f.submit "Niewe marker" %>
-  </p>
-<% end %>
+<div class="black-background" action="new-marker" style="display: none">	
+</div>
+
+<div class="new-form" action="new-marker" style="display: none">
+
+	<h2>Marker aanmaken</h2>
+
+	<%= form_for([@city, @city.markers.build]) do |f| %>
+	    <%= f.text_field :name, placeholder: 'Marker naam' %>
+	    <%= f.hidden_field :marker_type, value: 0 %>
+	  </p>
+	  <p>
+	    <%= f.submit "Maak aan" %>
+	  </p>
+	<% end %>
+
+</div>
+
+<p class="new-btn button" action="new-marker">Marker toevoegen</p>

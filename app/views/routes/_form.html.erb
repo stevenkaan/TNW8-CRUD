@@ -1,8 +1,19 @@
-<%= form_for([@city, @city.routes.build]) do |f| %>
-    <%= f.hidden_field :name_nld, value: 'Nieuwe route' %>
-    <%= f.hidden_field :afstand, value: 0 %>
-  </p>
-  <p>
-    <%= f.submit "Niewe route" %>
-  </p>
-<% end %>
+<div class="black-background" action="new-route" style="display: none">	
+</div>
+
+<div class="new-form" action="new-route" style="display: none">
+
+	<h2>Route aanmaken</h2>
+	<p>
+		<%= form_for([@city, @city.routes.build]) do |f| %>
+	    <%= f.text_field :name_nld, placeholder: 'Route naam' %>
+	    <%= f.hidden_field :afstand, value: 0 %>
+	</p>
+	<p>
+		 <%= f.submit "Maak aan" %>
+	</p>
+	<% end %>
+
+</div>
+
+<p class="new-btn button" action="new-route">Route toevoegen</p>

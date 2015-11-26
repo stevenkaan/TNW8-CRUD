@@ -29,6 +29,39 @@ a {
 	text-decoration: none;
 }
 
+.file_input_style {
+    display: block;
+    width:200px;
+    height: 30px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    text-align: center;
+    line-height: 30px;
+    color: #fff !important;
+    background:#33bfbe;
+}
+
+.file_input {
+    display: block;
+    position: relative;
+    text-align: right;
+    background-color: red;
+    top:-25px;
+    width:300px;
+    height: 30px;
+    -moz-opacity:0 ;
+    filter:alpha(opacity: 0);
+    opacity: 0;
+    z-index: 999;
+    cursor: pointer;
+}
+
+.file_input:hover {
+    cursor: pointer;
+}
+
 a:hover {
 	color: #ebeced; 
 }
@@ -203,6 +236,35 @@ div.upload input {
     line-height: 30px;
     width:100%;
 }
+
+.black-background {
+    display: block;
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: .75;
+    z-index: 888;
+}
+
+.new-form {
+    display: block;
+    position:fixed;
+    left: 50%; top: 50%;
+    margin-left:-250px;
+    margin-top:-75px;
+    width: 500px;
+    height: 150px;
+    display: block;
+    background-color: white;
+    z-index: 888;
+    padding: 15px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
 /*input[type=file] {
 	position: relative;
 	content: 'asdasd';

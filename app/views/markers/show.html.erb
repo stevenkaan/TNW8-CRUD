@@ -40,7 +40,7 @@ $(function() {
   
 <div id="tabs">
   </div>
-  <%= form_for :marker, url: marker_path(@marker), method: :patch do |f| %>
+  <%= form_for :marker, :html => {:class => 'marker_info'}, url: marker_path(@marker), method: :patch do |f| %>
   <p>
     <%= f.submit "Opslaan" %><%= link_to 'Marker verwijderen', marker_path(@marker), method: :delete, data: { confirm: 'Weet je het zeker?' }, :class => 'deleteButton' %>
   </p>
@@ -71,36 +71,69 @@ $(function() {
   <%= f.text_field :marker_info_name_nld, value: @marker_info_array[0].name %><br>
   <%= f.label :marker_info_text_nld, 'Informatie marker nederlands' %><br>
   <%= f.text_area :marker_info_text_nld, value: @marker_info_array[0].body %><br>
-  <%= f.label :marker_info_audio_nld, 'Audio fragment marker nederlands' %><br>
-  <%= f.file_field :marker_info_audio_nld %><br>
-  <%= @marker_info_array[0].marker_audio %><br>
+  
+  <% if @marker_info_array[0].marker_audio.length > 0 %>
+    <audio controls="controls">
+      <source src="<%= @marker_info_array[0].marker_audio %>" type="audio/mpeg">
+    </audio>
+    <span class='file_input_style'>Audio fragment wijzigen
+      <%= f.file_field :marker_info_audio_nld, :class => 'file_input' %>
+    </span><br>
+
+      <%= link_to "Audio verwijderen", {:controller => :markers, :action => :deleteMarkerAudioNld}, :class => "file_input_style" %>
+
+  <% else %>
+  <span class='file_input_style'>Audio fragment toevoegen
+    <%= f.file_field :marker_info_audio_nld, :class => 'file_input' %>
+  </span>
+  <% end %>
 </div>
 <div class='info-eng' style='display:none;'>
   <%= f.label :marker_info_name_eng, 'Naam marker engels' %><br>
   <%= f.text_field :marker_info_name_eng, value: @marker_info_array[1].name %><br>
   <%= f.label :marker_info_text_eng, 'Informatie marker engels' %><br>
   <%= f.text_area :marker_info_text_eng, value: @marker_info_array[1].body %><br>
-  <%= f.label :marker_info_audio_eng, 'Audio fragment marker engels' %><br>
-  <%= f.file_field :marker_info_audio_eng %><br>
-  <%= @marker_info_array[1].marker_audio %><br>
+  <% if @marker_info_array[1].marker_audio.length > 0 %>
+    
+    <audio controls="controls">
+      <source src="<%= @marker_info_array[1].marker_audio %>" type="audio/mpeg">
+    </audio>
+    <span class='file_input_style'>Audio fragment wijzigen
+      <%= f.file_field :marker_info_audio_eng, :class => 'file_input' %>
+    </span><br>
+
+    <%= link_to "Audio verwijderen", {:controller => :markers, :action => :deleteMarkerAudioEng}, :class => "file_input_style" %>
+
+  <% else %>
+    <span class='file_input_style'>Audio fragment toevoegen
+      <%= f.file_field :marker_info_audio_eng, :class => 'file_input' %>
+    </span>
+  <% end %>
 </div>
 <div class='info-esp' style='display:none;'>
   <%= f.label :marker_info_name_esp, 'Naam marker spaans' %><br>
   <%= f.text_field :marker_info_name_esp, value: @marker_info_array[2].name %><br>
   <%= f.label :marker_info_text_esp, 'Informatie marker spaans' %><br>
   <%= f.text_area :marker_info_text_esp, value: @marker_info_array[2].body %><br>
-  <%= f.label :marker_info_audio_esp, 'Audio fragment marker spaans' %><br>
-  <%= f.file_field :marker_info_audio_esp %><br>
-  <%= @marker_info_array[2].marker_audio %><br>
+  <% if @marker_info_array[2].marker_audio.length > 0 %>
+    <audio controls="controls">
+      <source src="<%= @marker_info_array[2].marker_audio %>" type="audio/mpeg">
+    </audio>
+    <span class='file_input_style'>Audio fragment wijzigen
+      <%= f.file_field :marker_info_audio_esp, :class => 'file_input' %>
+    </span><br>
+
+    <%= link_to "Audio verwijderen", {:controller => :markers, :action => :deleteMarkerAudioEsp}, :class => "file_input_style" %>
+
+  <% else %>
+    <span class='file_input_style'>Audio fragment toevoegen
+      <%= f.file_field :marker_info_audio_esp, :class => 'file_input' %>
+    </span>
+  <% end %>
 </div>
 </div>
 </div>
-  <p>
-  <%= f.label 'Afbeelding wijzigen/toevoegen' %><br>
-  <div class="upload">Afbeelding toevoegen
-  <%= f.file_field :marker_images %>
-  </div>
-  </p>
+
 
   <p>
     <%= f.hidden_field :marker_lng %>
@@ -109,28 +142,99 @@ $(function() {
     <%= f.hidden_field :marker_lat %>
   </p>
 
-
-
-  <% end %>
-
-
-  <% if @marker.marker_images.url.to_s!='' %>
-  <br>
-  <% end %>
+<br>
 
 </div>
-<div class="col xl3 l3 m3 s3">
+  <div class="col xl3 l3 m3 s3">
+    <br>
+<div id="googleMap"  style="width:100%;height:300px;"></div>
+<br>
+
   <% if @marker.marker_images.url.to_s!='' %>
     <%= link_to "Afbeelding verwijderen", :controller => :markers, :action => :deleteMarkerImage %>
     <%= image_tag (@marker.marker_images.url.to_s),width: '100%' %>
+  <% else %>
+    <% if @marker.marker_images.url.to_s=='' %>
+      <p>
+        <div class="upload">Afbeelding toevoegen 1
+          <%= f.file_field :marker_images %>
+        </div>
+      </p>
+    <% end %>
   <% end %>
-  <div id="googleMap"  style="width:100%;height:300px;"></div>
+
+  <% if @marker.marker_images_2.url.to_s!='' %>
+    <%= link_to "Afbeelding verwijderen", :controller => :markers, :action => :deleteMarkerImage2 %>
+    <%= image_tag (@marker.marker_images_2.url.to_s),width: '100%' %>
+  <% else %>
+    <% if @marker.marker_images_2.url.to_s=='' %>
+      <p>
+        <div class="upload">Afbeelding toevoegen 2
+          <%= f.file_field :marker_images_2 %>
+        </div>
+      </p>
+    <% end %>
+  <% end %>
+
+  <% if @marker.marker_images_3.url.to_s!='' %>
+    <%= link_to "Afbeelding verwijderen", :controller => :markers, :action => :deleteMarkerImage3 %>
+    <%= image_tag (@marker.marker_images_3.url.to_s),width: '100%' %>
+  <% else %>
+    <% if @marker.marker_images_3.url.to_s=='' %>
+      <p>
+        <div class="upload">Afbeelding toevoegen 3
+          <%= f.file_field :marker_images_3 %>
+        </div>
+      </p>
+    <% end %>
+  <% end %>
+
+  <% if @marker.marker_images_4.url.to_s!='' %>
+    <%= link_to "Afbeelding verwijderen", :controller => :markers, :action => :deleteMarkerImage4 %>
+    <%= image_tag (@marker.marker_images_4.url.to_s),width: '100%' %>
+  <% else %>
+    <% if @marker.marker_images_4.url.to_s=='' %>
+      <p>
+        <div class="upload">Afbeelding toevoegen 4
+          <%= f.file_field :marker_images_4 %>
+        </div>
+      </p>
+    <% end %>
+  <% end %>
+
+<% end %>
+  
 </div>
 <div class="clear"></div>
 </div>
 
 <script type="text/javascript">
-  
+
+$(document).on('change','#marker_marker_info_audio_nld' , function(){ 
+  $( ".marker_info" ).submit();
+});
+
+$(document).on('change','#marker_marker_info_audio_eng' , function(){ 
+  $( ".marker_info" ).submit();
+});
+
+$(document).on('change','#marker_marker_info_audio_esp' , function(){ 
+  $( ".marker_info" ).submit();
+});
+
+$(document).on('change','#marker_marker_images' , function(){ 
+  $( ".marker_info" ).submit();
+});
+$(document).on('change','#marker_marker_images_2' , function(){ 
+  $( ".marker_info" ).submit();
+});
+$(document).on('change','#marker_marker_images_3' , function(){ 
+  $( ".marker_info" ).submit();
+});
+$(document).on('change','#marker_marker_images_4' , function(){ 
+  $( ".marker_info" ).submit();
+});
+
 $('.tab-nld').click(function(){
   $('.info-nld').css({'display':'block'});
   $('.tab-nld').addClass( "active" );

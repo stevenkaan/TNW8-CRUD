@@ -54,9 +54,30 @@ class CitiesController < ApplicationController
 		redirect_to @city
 	end
 
+	def deleteCityImage2
+		@city = City.find(params[:id])
+		@city.remove_city_images_2!
+		@city.save
+		redirect_to @city
+	end
+
+	def deleteCityImage3
+		@city = City.find(params[:id])
+		@city.remove_city_images_3!
+		@city.save
+		redirect_to @city
+	end
+
+	def deleteCityImage4
+		@city = City.find(params[:id])
+		@city.remove_city_images_4!
+		@city.save
+		redirect_to @city
+	end
+
 	private
 		def city_params
-			params.require(:city).permit(:city_name, :city_images)
+			params.require(:city).permit(:city_name, :city_images, :city_images_2, :city_images_3, :city_images_4)
 		end
 
 	private

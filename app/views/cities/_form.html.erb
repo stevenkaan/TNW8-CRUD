@@ -1,8 +1,18 @@
-<%= form_for([@country, @country.cities.build], :html => {:multipart => true}) do |f| %>
-  <p>
-    <%= f.hidden_field :city_name, value: 'nieuwe stad' %>
-  </p>
-  <p>
-    <%= f.submit "Nieuwe stad" %>
-  </p>
-<% end %>
+<div class="black-background" style="display: none">	
+</div>
+
+<div class="new-form" style="display: none">
+
+	<h2>Stad aanmaken</h2>
+
+	<%= form_for([@country, @country.cities.build], :html => {:multipart => true}) do |f| %>
+	  <p>
+	    <%= f.text_field :city_name, placeholder: 'nieuwe stad' %>
+	  </p>
+	  <p>
+	    <%= f.submit "Maak aan" %>
+	  </p>
+	<% end %>
+</div>
+
+<p class="new-btn button">Stad toevoegen</p>

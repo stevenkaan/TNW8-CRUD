@@ -4,10 +4,10 @@
 <h2><%= @city.city_name %></h2>
 
 
-<%= form_for :city, url: city_path(@city), method: :patch do |f| %>
+<%= form_for :city, :html => {:class => 'city_info'}, url: city_path(@city), method: :patch do |f| %>
   <p>
     <%= f.submit "Opslaan"%>
-    <%= link_to 'Stad verwijderen', city_path(@city), method: :delete, data: { confirm: 'Weet je het zeker?' }, :class => 'deleteButton' %>
+    <%= render 'delete_form' %>
 
   </p>
 <% if @city.errors.any? %>
@@ -59,21 +59,70 @@
 </div>
 </div>
 
+   
+
+
+
+</div>
+<div class="col xl3 l3 m3 s3">
+
+
+<% if @city.city_images.url.to_s!='' %>
+  <%= link_to "Afbeelding verwijderen", :controller => :cities, :action => :deleteCityImage %><br>
+  <%= image_tag (@city.city_images.url.to_s),width: '100%' %>
+<% else %>  
     <p>
-  <%= f.label 'afbeelding_wijzigen/toevoegen' %><br>
-  <div class="upload">Afbeelding toevoegen
-  <%= f.file_field :city_images %>
-  </div>
-  </p>
+     <div class="upload">Afbeelding toevoegen 1
+        <%= f.file_field :city_images %>
+      </div>
+    </p>
+
 <% end %>
 
+<% if @city.city_images_2.url.to_s!='' %>
+  <%= link_to "Afbeelding verwijderen", :controller => :cities, :action => :deleteCityImage2 %><br>
+  <%= image_tag (@city.city_images_2.url.to_s),width: '100%' %>
+<% else %>  
+    <p>
+     <div class="upload">Afbeelding toevoegen 2
+        <%= f.file_field :city_images_2 %>
+      </div>
+    </p>
+<% end %>
 
+<% if @city.city_images_3.url.to_s!='' %>
+  <%= link_to "Afbeelding verwijderen", :controller => :cities, :action => :deleteCityImage3 %><br>
+  <%= image_tag (@city.city_images_3.url.to_s),width: '100%' %>
+<% else %>
+    <p>
+     <div class="upload">Afbeelding toevoegen 3
+        <%= f.file_field :city_images_3 %>
+      </div>
+    </p>
+<% end %>
+
+<% if @city.city_images_4.url.to_s!='' %>
+  <%= link_to "Afbeelding verwijderen", :controller => :cities, :action => :deleteCityImage4 %><br>
+  <%= image_tag (@city.city_images_4.url.to_s),width: '100%' %>
+<% else %>
+    <p>
+     <div class="upload">Afbeelding toevoegen 4
+        <%= f.file_field :city_images_4 %>
+      </div>
+    </p>
+<% end %>
+
+<% end %>
+<div class="clear"></div>
+</div>
+
+<div class="col xl8 l8 m8 s8">
 <h2>Markers</h2>
 <table>
-	<tr>
-		<th>Naam</th><th>Type</th>
-	</tr>
-	<%= render @city.markers %>
+  <tr>
+    <th>Naam</th><th>Type</th>
+  </tr>
+  <%= render @city.markers %>
 </table>
 
 <%= render 'markers/form' %>
@@ -89,20 +138,26 @@
 <%= render 'routes/form' %>
 
 </div>
-<div class="col xl3 l3 m3 s3">
-<% if @city.city_images.url.to_s!='' %>
-  <%= link_to "Afbeelding verwijderen", :controller => :cities, :action => :deleteCityImage %><br>
-  <%= image_tag (@city.city_images.url.to_s),width: '100%' %><br>
-<% end %>
-<div class="clear"></div>
-</div>
-
 <div class="clear"></div>
 
 </div>
 
 <script type="text/javascript">
-  
+
+
+$(document).on('change','#city_city_images' , function(){ 
+  $( ".city_info" ).submit();
+});
+$(document).on('change','#city_city_images_2' , function(){ 
+  $( ".city_info" ).submit();
+});
+$(document).on('change','#city_city_images_3' , function(){ 
+  $( ".city_info" ).submit();
+});
+$(document).on('change','#city_city_images_4' , function(){ 
+  $( ".city_info" ).submit();
+});
+
 $('.tab-nld').click(function(){
   $('.info-nld').css({'display':'block'});
   $('.tab-nld').addClass( "active" );

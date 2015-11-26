@@ -29,7 +29,7 @@ class RoutesController < ApplicationController
 			if params[:type] == 'up'
 
 				@marker_route = MarkersRoutes.find_by marker_id: params[:marker], route_id: @route.id
-				@target_marker_route = MarkersRoutes.find_by position: (@marker_route.position + 1), route_id: @route.id
+				@target_marker_route = MarkersRoutes.find_by position: (@marker_route.position - 1), route_id: @route.id
 				temp = @marker_route.position
 
 				if @target_marker_route != nil
@@ -42,7 +42,7 @@ class RoutesController < ApplicationController
 			if params[:type] == 'down'
 
 				@marker_route = MarkersRoutes.find_by marker_id: params[:marker], route_id: @route.id
-				@target_marker_route = MarkersRoutes.find_by position: (@marker_route.position - 1), route_id: @route.id
+				@target_marker_route = MarkersRoutes.find_by position: (@marker_route.position + 1), route_id: @route.id
 				temp = @marker_route.position
 
 				if @target_marker_route != nil

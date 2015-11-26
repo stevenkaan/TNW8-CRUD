@@ -5,6 +5,9 @@ class City < ActiveRecord::Base
 	has_many :city_infos
 	has_many :routes
 	mount_uploader :city_images, CityImageUploader
+	mount_uploader :city_images_2, CityImageUploader
+	mount_uploader :city_images_3, CityImageUploader
+	mount_uploader :city_images_4, CityImageUploader
 
 	def GetCityLanguages()
 
@@ -21,12 +24,10 @@ class City < ActiveRecord::Base
 		end
 
 		if languages.length != 0
-			# return languages.to_json.gsub!(/\"/, '\'')
-			puts('LANFGNGNGNGGNGNnnn')
-			puts(languages.to_s)
-			return languages.to_s.gsub!(/\"/, '\'')
+			return languages.to_json.gsub!(/\"/, '\'')
 		end
 		return 'none'
 	end
 
 end
+ 

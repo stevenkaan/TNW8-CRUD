@@ -1,0 +1,11 @@
+<div class="black-background" action="delete" style="display: none">
+</div>
+
+<p class="new-btn button" action="delete">Stad verwijderen</p>
+
+<div class="new-form" action="delete" style="display: none">
+	<h2>Weet je het zeker?</h2>
+	<p>De bijbehorende routes en markers zullen ook verwijderd worden.</p>
+	<%= link_to 'Ja', city_path(@city), method: :delete, :class => 'testt' %>
+	<p class='cancel'>Nee</p>
+</div>

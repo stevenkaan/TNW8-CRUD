@@ -1,4 +1,14 @@
-<%= form_for :country, url: countries_path do |f| %>
-	<%= f.hidden_field :country_name, value: 'nieuw land' %>
-	<%= f.submit "Nieuw land" %>
-<% end %>
+<div class="black-background" style="display: none">	
+</div>
+
+<div class="new-form" style="display: none">
+	<h2>Land aanmaken</h2>
+	<%= form_for :country, url: countries_path do |f| %>
+
+		<%= f.text_field :country_name, placeholder: 'naam land' %>
+		<%= f.submit "Maak aan", :class => "new-btn" %>
+
+	<% end %>
+</div>
+
+<p class="new-btn button">Land toevoegen</p>

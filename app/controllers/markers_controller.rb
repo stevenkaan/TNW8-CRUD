@@ -50,6 +50,30 @@ class MarkersController < ApplicationController
 		redirect_to @city
 	end
 
+	def deleteMarkerAudioNld
+		@marker = Marker.find(params[:id])
+		@marker_info_array = MarkerInfo.where("marker_id = " + params[:id])
+		@marker_info_array[0].remove_marker_audio!
+		@marker_info_array[0].save
+		redirect_to @marker 
+	end
+
+	def deleteMarkerAudioEng
+		@marker = Marker.find(params[:id])
+		@marker_info_array = MarkerInfo.where("marker_id = " + params[:id])
+		@marker_info_array[1].remove_marker_audio!
+		@marker_info_array[1].save
+		redirect_to @marker 
+	end
+
+	def deleteMarkerAudioEsp
+		@marker = Marker.find(params[:id])
+		@marker_info_array = MarkerInfo.where("marker_id = " + params[:id])
+		@marker_info_array[2].remove_marker_audio!
+		@marker_info_array[2].save
+		redirect_to @marker 
+	end
+
 	def deleteMarkerImage
 		@marker = Marker.find(params[:id])
 		@marker.remove_marker_images!
@@ -57,9 +81,30 @@ class MarkersController < ApplicationController
 		redirect_to @marker
 	end
 
+	def deleteMarkerImage2
+		@marker = Marker.find(params[:id])
+		@marker.remove_marker_images_2!
+		@marker.save
+		redirect_to @marker
+	end
+
+	def deleteMarkerImage3
+		@marker = Marker.find(params[:id])
+		@marker.remove_marker_images_3!
+		@marker.save
+		redirect_to @marker
+	end
+
+	def deleteMarkerImage4
+		@marker = Marker.find(params[:id])
+		@marker.remove_marker_images_4!
+		@marker.save
+		redirect_to @marker
+	end
+
 	private
 		def marker_params
-			params.require(:marker).permit(:name, :marker_images, :marker_lng, :marker_lat, :marker_type)
+			params.require(:marker).permit(:name, :marker_images, :marker_images_2, :marker_images_3, :marker_images_4, :marker_lng, :marker_lat, :marker_type)
 		end
 	
 	private

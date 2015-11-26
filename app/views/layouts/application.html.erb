@@ -18,7 +18,26 @@ jQuery(document).ready(function($) {
         if($(this).data("href") != undefined) {
           window.document.location = $(this).data("href");
         }
-      
+    });
+
+    $('.new-btn').click(function() {
+      var attr = $(this).attr('action');
+      if (typeof attr !== typeof undefined && attr !== false) {
+        $('.black-background[action='+attr+']').css("display", "block");
+        $('.new-form[action='+attr+']').css("display", "block");
+      } else {
+        $('.black-background').css("display", "block");
+        $('.new-form').css("display", "block");
+      }
+    });
+
+    $('.black-background').click(function() {
+      $('.black-background').css("display", "none");
+      $('.new-form').css("display", "none");
+    });
+    $('.cancel').click(function() {
+      $('.black-background').css("display", "none");
+      $('.new-form').css("display", "none");
     });
     
 });
