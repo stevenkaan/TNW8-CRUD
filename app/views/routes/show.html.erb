@@ -1,100 +1,113 @@
-<div class="container content">
-<div class="col xl8 l8 m8 s8">
-  <h2><%= @route.name_nld %></h2>
+<div class="container">
+  <div class="col-50">
 
-  <%= form_for :route, url: route_path(@route), method: :patch do |f| %>
-  <p>
-    <%= f.submit "Opslaan" %>
-    <%= link_to 'Route verwijderen', route_path(@route), method: :delete, data: { confirm: 'Weet je het zeker?' }, :class => 'deleteButton' %>
-  </p>
-  <% if @route.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@route.errors.count, "error") %> prohibited
-        this article from being saved:
-      </h2>
-      <ul>
-        <% @route.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+    <%= form_for :route, url: route_path(@route), method: :patch do |f| %>
+
+    <% if @route.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@route.errors.count, "error") %> Route kan niet worden opgeslagen
+        </h2>
+        <ul>
+          <% @route.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="tabbed">
+      <div id="tab_nl" class="tab active" onclick="changeTab(1)">Nederlands</div>
+      <div id="tab_en" class="tab" onclick="changeTab(2)">Engels</div>
+      <div id="tab_es" class="tab" onclick="changeTab(3)">Spaans</div>
+      <div class="add-form">
+        <span id="nl">
+          <%= f.text_field :name_nld %>
+          <%= f.text_area :info_nld %>
+        </span>
+        <span id="en">
+          <%= f.text_field :name_eng %>
+          <%= f.text_area :info_eng %>
+        </span>
+        <span id="es">
+          <%= f.text_field :name_esp %>
+          <%= f.text_area :info_esp %>
+        </span>
+
+        <%= f.check_box :multiple_starting_points, :class => "starting-point" %>
+        Verplicht startpunt<br/>
+        <%= f.text_field :afstand, :placeholder => "Aantal KM", :value => "", :class => "distance-input" %>
+        <p style="visibility:hidden; position:absolute;" class='city_name'><%= @city.city_name %></p>
+        <div class='view_in_maps'>?</div>
+        <div class="btn-holder min-47">
+          <%= f.submit "Opslaan" , :class => "btn btn-primary float-right"%>
+        </div>
+
+        <div class="delete-combo top-10">
+          <%= link_to 'Route verwijderen', route_path(@route), method: :delete, data: { confirm: 'Weet je het zeker?' }, :class => 'btn delete-item' %>
+          <div class="delete-icon-white"></div>
+        </div>
+
+
+      </div>
+
+
+</div></div>
+<div class="col-50">
+  <br/>
+  <div class="page-header">
+      Huidige route
+  </div>
+  <div  class="marker-table">
+    <table class="markers_in_route add-marker">
+    <% @markers_in_route.each do |o| %>
+    <tr>
+      <td class="order"></td>
+      <td data-href='<%= marker_path(o) %>'>
+        <span class="marker-name"><%= o.name %></span>
+      </td>
+      <td>
+        <div data-href='<%= route_path(:marker => o, :type => 'up') %>' class="arrow-up arrow"></div>
+        <div data-href='<%= route_path(:marker => o, :type => 'down') %>' class="arrow-down arrow"></div>
+      </td>
+
+      <td data-href='<%= route_path(:marker => o, :type => 'delete') %>'>
+        <div class="delete-icon"></div>
+      </td>
+    </tr>
+
+    <% end %>
+
+    </table>
+  </div>
+
+
+
+
+
   <% end %>
-  <%= f.label :afstand, 'Afstand in meters' %><br>
-  <%= f.text_field :afstand %><br>
- <%= f.label :multiple_starting_points, 'Verplicht starten bij eerste marker' %><br>
-  <%= f.check_box :multiple_starting_points %><br>
-  <div class="tabs">
-  <p class='tab-nld active'>Nederlands</p>
-  <p class='tab-eng'>Engels</p>
-  <p class='tab-esp'>Spaans</p>
-  <div class='clear'></div>
-  <div class='tabs-content'>
-  <div class='info-nld' style='display:block;'>
-    <%= f.label :name_nld, 'Titel route nederlands' %><br>
-    <%= f.text_field :name_nld %><br>
-    <%= f.label :info_nld, 'Informatie route nederlands' %><br>
-    <%= f.text_area :info_nld %><br>
+  <br/>
+  <div class="page-header">
+      Beschikbare bezienswaardigheden
   </div>
-  <div class='info-eng' style='display:none;'>
-    <%= f.label :name_eng, 'Titel route engels' %><br>
-    <%= f.text_field :name_eng %><br>
-    <%= f.label :info_eng, 'Informatie route engels' %><br>
-    <%= f.text_area :info_eng %><br>
+  <div  class="marker-table">
+    <table class="add-marker">
+      <% @markers_not_in_route.each do |i| %>
+      <tr>
+        <td data-href='<%= marker_path(i) %>'>
+          <%= i.name %>
+        </td>
+        <td data-href='<%= route_path(:marker => i, :type => 'add') %>'>
+          <div class="add-circle">+</div>
+        </td>
+      </tr>
+
+    <% end %>
+
+    </table>
   </div>
-  <div class='info-esp' style='display:none;'>
-    <%= f.label :name_esp, 'Titel route spaans' %><br>
-    <%= f.text_field :name_esp %><br>
-    <%= f.label :info_esp, 'Informatie route spaans' %><br>
-    <%= f.text_area :info_esp %><br>
+  <br>
   </div>
-</div>
-</div>
-
-
-<h2>Markers toegevoegd aan de route</h2>
-<table class="markers_in_route">
-  <tr>
-    <th>Naam</th><th>Actie</th><th>Verplaats</th><th>Verplaats</th>
-  </tr>
-<% @markers_in_route.each do |o| %>
-<tr>
-  <td data-href='<%= marker_path(o) %>'><%= o.name %></td><td <td data-href='<%= route_path(:marker => o, :type => 'delete') %>'>verwijder</td><td data-href='<%= route_path(:marker => o, :type => 'up') %>'>omhoog</td><td data-href='<%= route_path(:marker => o, :type => 'down') %>'>omlaag</td>
-</tr>
-
-<% end %>
-
-</table>
-
-
-
-
-
-<% end %>
-
-<h2>Beschikbare markers</h2>
-<table>
-  <tr>
-    <th>Naam</th><th>Actie</th>
-  </tr>
-<% @markers_not_in_route.each do |i| %>
-<tr>
-  <td data-href='<%= marker_path(i) %>'><%= i.name %></td><td data-href='<%= route_path(:marker => i, :type => 'add') %>'>toevoegen</td>
-</tr>
-
-<% end %>
-
-</table>
-<br>
-</div>
-
-<div class="col xl3 l3 m3 s3">
-<p style="visibility:hidden; position:absolute;" class='city_name'><%= @city.city_name %></p>
-<p class='view_in_maps'>bekijk route in maps</p>
-</div>
-<div class="clear"></div>
-</div>
-
+  </div>
 <script type="text/javascript">
 
 $('.view_in_maps').click( function(){
@@ -104,9 +117,9 @@ $('.view_in_maps').click( function(){
 
 var google_maps_link = 'https://www.google.nl/maps/dir/';
 var city_name = $('.city_name').html();
-$('.markers_in_route tr').each( function(){
+$('.marker-name').each( function(){
 
-  var name = $(this).find('td:eq(0)').html();
+  var name = $(this).text();
 
   if(name != undefined) {
     google_maps_link += name+',+'+city_name+'/';
@@ -114,31 +127,5 @@ $('.markers_in_route tr').each( function(){
 
 });
 
-$('.tab-nld').click(function(){
-  $('.info-nld').css({'display':'block'});
-  $('.tab-nld').addClass( "active" );
-  $('.info-eng').css({'display':'none'});
-  $('.tab-eng').removeClass( "active" );
-  $('.info-esp').css({'display':'none'});
-  $('.tab-esp').removeClass( "active" );
-});
-
-$('.tab-eng').click(function(){
-  $('.info-eng').css({'display':'block'});
-  $('.tab-eng').addClass( "active" );
-  $('.info-nld').css({'display':'none'});
-  $('.tab-nld').removeClass( "active" );
-  $('.info-esp').css({'display':'none'});
-  $('.tab-esp').removeClass( "active" );
-});
-
-$('.tab-esp').click(function(){
-  $('.info-esp').css({'display':'block'});
-  $('.tab-esp').addClass( "active" );
-  $('.info-eng').css({'display':'none'});
-  $('.tab-eng').removeClass( "active" );
-  $('.info-nld').css({'display':'none'});
-  $('.tab-nld').removeClass( "active" );
-});
 
 </script>

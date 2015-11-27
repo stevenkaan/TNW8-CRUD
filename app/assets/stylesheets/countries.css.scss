@@ -1,3 +1,82 @@
-// Place all the styles related to the countries controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.page-header {
+  font-size: 20px;
+  color: #595959;
+  text-align: center;
+  margin: 25px 0;
+  letter-spacing: 0;
+}
+.page-header >  span{
+  font-size: 12px;
+  line-height: 17px;
+  display:block;
+}
+.country-table {
+  width: 580px;
+  margin: 0 auto;
+  border-top: 1px solid #EAEAEA;
+}
+.country-table tr {
+  height: 54px;
+  line-height: 53px;
+  border: 1px solid #EAEAEA;
+  border-top: none;
+  cursor: pointer;
+}
+.country-table td {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+
+}
+.country-table tr:hover a {
+  color: #E96745;
+}
+.country-table tr:nth-child(even){
+  background: #EAEAEA;
+}
+.add-country{
+  background: #33bfbe;
+  color:#FFF;
+  border-radius: 100%;
+  height: 30px;
+  width: 30px;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+  float: right;
+  margin-top: 15px;
+  margin-right: 10px;
+}
+.delete-country {
+  background: #33bfbe;
+
+}
+.tabbed{
+  width: 580px;
+  margin: 20px auto;
+}
+.tabbed .tab {
+  width: 33.333%;
+  height: 55px;
+  line-height: 55px;
+  color:#FFF;
+  float: left;
+  background: #33bfbe;
+  text-align: center;
+  border-right: 1px solid #FFF;
+  cursor: pointer;
+}
+.tabbed .tab:nth-child(3){
+  border-right: none;
+}
+.tabbed .active{
+  cursor: default;
+  background: #2ca2a2;
+}
+.add-form{
+  background: #EAEAEA;
+  padding: 80px 20px 20px;
+  margin-bottom: 60px;
+}

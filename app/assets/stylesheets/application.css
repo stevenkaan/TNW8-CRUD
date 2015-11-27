@@ -8,20 +8,24 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *
  *= require_self
  *= require_tree .
  */
 
 html,body {
-	background-color: #ebeced; 
+	background-color: #FFF;
 	font-family: 'Roboto', sans-serif;
 	font-size: 12px;
 	margin: 0;
 	line-height: 24px;
+	color: #595959;
+	padding-bottom: 70px;
 }
 
 * {
 	font-family: 'Roboto', sans-serif;
+	box-sizing: border-box;
 }
 
 a {
@@ -32,15 +36,18 @@ a {
 .file_input_style {
     display: block;
     width:200px;
-    height: 30px;
+    height: 35px;
+		float:left;
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
     text-align: center;
-    line-height: 30px;
+    line-height: 35px;
+		font-size: 12px;
     color: #fff !important;
     background:#33bfbe;
+		margin-top:12px;
 }
 
 .file_input {
@@ -48,9 +55,9 @@ a {
     position: relative;
     text-align: right;
     background-color: red;
-    top:-25px;
-    width:300px;
-    height: 30px;
+    top:-35px;
+    width:100%;
+    height: 100%;
     -moz-opacity:0 ;
     filter:alpha(opacity: 0);
     opacity: 0;
@@ -63,56 +70,9 @@ a {
 }
 
 a:hover {
-	color: #ebeced; 
+	color: #ebeced;
 }
 
-.content {
-    background-color: #fff;
-}
-
-.content a {
-    color:#000;
-}
-
-.content a:hover {
-    color:#333;
-}
-
-.top-bar {
-	display: block;
-	width: 100%;
-	height: 25px;
-	color: #fff;
-	background-color: none;
-}
-
-.breadcrumbs {
-	position: relative;
-	height: 45px;
-	color: #fff;
-	background-color: #E96745;
-	clear:both;
-}
-
-.breadcrumbs ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-.breadcrumbs ul li {
-	display: block;
-	height: 20px;
-	padding: 10px 10px 10px 10px;
-	float: left;
-}
-
-.breadcrumbs ul li.active {
-	border-bottom: 5px solid #33bfbe;
-}
-.top-bar p {
-	margin: 0 0 0 12px;
-}
 
 table {
 	width: 100%;
@@ -122,37 +82,21 @@ table {
 tr a, tr a:hover {
     color:#000;
 }
-
+tr {
+	max-height: 54px;
+	overflow: hidden;
+}
 td,th {
     padding-left: 5px;
 }
-
-tr {
-    color:#000;
-	border-top:1px solid #fff;
-}
-tr:nth-child(even) {background: #e9e9e9}
-tr:nth-child(odd) {background: #DDD}
-tr:hover {
-    cursor: pointer;
-background-color: #BBB;
-}
-tr:hover a {
-	color:#333;
-
-}
-
-table tr td {
-	border: 0px;
-}
-
-th {
-	text-align:left;
-    cursor: initial;
-}
-
-.clear {
-	clear:both;
+.country-table td:nth-child(2){
+		color: #BBB;
+		font-size: 0.8em !important;
+		position: absolute;
+		width: 580px !important;
+		margin-left: -580px;
+		line-height: 85px;
+		height: 54px;
 }
 
 .tabs p:hover {
@@ -190,28 +134,7 @@ th {
     height: 150px;
 }
 
-input[type=submit],div.upload,.button,.deleteButton {
-	padding:10px 15px; 
-	background:#33bfbe; 
-	font-size: 12px;
-	color:#ffffff;
-	border:0 none;
-	cursor:pointer;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
-	width:170px;
-	cursor: pointer;
-}
 
-.deleteButton {
-    color: #ffffff !important;
-    text-align: center;
-    float: right;
-}
-
-input[type=submit]:hover,input[type=file]:hover,.button:hover {
-	color: #ebeced; 
-}
 
 .logout {
     display: block;
@@ -220,16 +143,66 @@ input[type=submit]:hover,input[type=file]:hover,.button:hover {
     height: 10px;
 
 }
-
+.upload-form{
+	width:360px;
+	height: 360px;
+	background: #EAEAEA;
+	margin: 20px;
+}
+.upload {
+	width: 180px;
+	height: 180px;
+	float: left;
+	border: 2px solid #FFF;
+	color: transparent;
+	font-size: 60px;
+	text-align: center;
+	line-height: 180px;
+	background: url('add-plus.png');
+	position: relative;
+}
+.upload:hover{
+	background: #DDD url('add-plus.png');
+	background-position: -180px 0;
+}
 div.upload input {
     display: block !important;
-    width: 157px !important;
-    height: 40px !important;
+    width: 100% !important;
+    height: 100% !important;
     opacity: 0 !important;
     overflow: hidden !important;
     cursor: pointer;
 }
-
+.upload a{
+	position: absolute;
+	top:15px;
+	right: 15px;
+	width:16px;
+	height:20px;
+	background: url('delete.png');
+	opacity: 0;
+}
+.upload:hover a{
+	opacity: 1;
+}
+.upload img {
+	background: #FFF;
+	width: 180px;
+	height: 180px;
+}
+audio {
+	float: left;
+	margin-top:12px;
+}
+.delete-audio {
+	display: inline-block;
+	width:16px;
+	height:20px;
+	background: url('delete.png');
+	float: left;
+	margin-top:16px;
+	margin-left: 16px;
+}
 .top-bar {
     background-color: #000000;
     height: 30px;
@@ -247,128 +220,284 @@ div.upload input {
     background-color: black;
     opacity: .75;
     z-index: 888;
+		cursor: pointer;
 }
 
 .new-form {
     display: block;
     position:fixed;
-    left: 50%; top: 50%;
+    left: 50%;
+		top: 10%;
     margin-left:-250px;
-    margin-top:-75px;
     width: 500px;
-    height: 150px;
+
     display: block;
     background-color: white;
     z-index: 888;
     padding: 15px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
-
-/*input[type=file] {
-	position: relative;
-	content: 'asdasd';
-	width: 100px;
-	padding-left:-100px;
-	background:#33bfbe; 
-	-webkit-user-select: none;
-	 text-align: left;
+.new-form > h2 {
+	font-size: 20px;
+	margin: 0;
+	padding: 0;
+	margin-bottom: 10px;
 }
+*/
 
-input[type=file]::-webkit-file-upload-button {
-	visibility: hidden;
-}*/
-/* FrameWork */
+/** Real Deal **/
+* {
+	box-sizing: border-box;
+}
 .container {
-	margin:0 auto;
+		width: 1200px;
+		margin:0 auto;
+		position: relative;
+}
+header {
+	height: 65px;
+	width: 100%;
+	background: radial-gradient(#e96745, #f05152);
+	line-height: 49px;
+	color: #FFF;
+	padding-top: 8px;
+}
+.logo {
+	width: 49px;
+	height: 49px;
+	border-radius: 100%;
+	background: url('sightguide_logo.png');
+	display: inline-block;
+	float: left;
+	margin-left: 10px;
+}
+.username {
+	display: inline-block;
+	width: 500px;
+	margin-left: 290px;
+	text-align: center;
+	font-size: 14px;
+	text-transform: uppercase;
+}
+.logout {
+	width: 125px;
+	height: 35px;
+	background: #33bfbe;
+	color:#FFF;
+	border-radius: 5px;
+	margin-top: 7px;
+	line-height: 36px;
+	float: right;
+}
+.logout:hover{
+	background: #2ca2a2;
+	color:#FFF;
+}
+.crumbs {
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	background: #EAEAEA;
+
+}
+.crumbs a {
+	color: #595959;
+}
+.crumbs a:hover li {
+	text-decoration: underline;
+}
+.crumb-divider{
+	padding: 0 12px;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+li {
+	display: inline-block;
+}
+.icon-td {
+	max-width: 45px;
+	padding: 0 15px;
+}
+.delete-icon {
+	width:16px;
+	height:20px;
+	background: url('delete.png');
+	opacity: 0;
+}
+tr:hover  .delete-icon{
+	opacity: 1;
 }
 
-@media (min-width: 768px) {
-    .container {
-        width: 750px;
-    }
+.add-btn {
+	cursor: pointer;
 }
-@media (min-width: 1100px) {
-    .container {
-        width: 1000px;
-    }
+/* Buttons */
+.btn {
+	color: #FFF !important;
+	padding: 0 20px;
+	height: 35px;
+	line-height: 35px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	width: auto;
+	outline: none;
+	border: none;
+	text-align: center;
+	font-size: 12px;
+	margin-top: 12px;
+	box-shadow: none !important;
 }
-@media (min-width: 1281px) {
-    .container {
-        width: 1200px;
-    }
+.btn-primary , .button,.deleteButton {
+	background:#33bfbe;
+}
+.btn-primary:hover ,  .deleteButton:hover {
+	background: #2ca2a2;
 }
 
-.col {
-    float:left;
+.deleteButton {
+    color: #ffffff !important;
+    text-align: center;
+    float: right;
+}
+.delete-combo{
+	position: absolute;
+  right: 0;
+  top: -10px;
+}
+.delete-item {
+	padding-right: 50px;
+	display: inline-block;
+	background: #e96745;
+}
+.delete-item:hover {
+	background: #f05152;
+}
+.delete-icon-white {
+	margin-left: -30px;
+	display: inline-block;
+	vertical-align: middle;
+	width:15px;
+	height:20px;
+	background: url('delete-white.png');
+
+}
+input[type=submit]:hover,input[type=file]:hover,.button:hover {
+	color: #ebeced;
+}
+/* Form elements */
+input, textarea{
+	width: 100%;
+	height: 35px;
+	border: 1px solid #979797;
+	-webkit-box-shadow:inset 0 1px 3px 0 #858585;
+	box-shadow:inset 0 1px 3px 0 #858585;
+	border-radius: 5px;
+	padding: 0 10px;
+	outline: none;
+}
+textarea {
+	min-height: 200px;
+	resize: vertical;
+	margin-top:20px;
+	padding: 10px;
+}
+.col-50{
+	width: 50%;
+	float:left;
+}
+.btn-holder{
+	height: 50px;
+}
+.float-right{
+	float: right;
+}
+#en, #es {
+  display: none;
+}
+.spacer{
+	width: 100%;
+	height: 50px;
+}
+.image {
+	width: 50%;
+	float: left;
+	border: 1px solid #FFF;
+}
+.w360{
+	width: 360px;
+}
+#googleMap {
+	width: 358px;
+	height: 358px;
+	margin-left:24px;
+}
+.table-icon{
+	position: absolute;
+  left: 555px;
+  margin-top: -35px;
+  margin-right: 15px;
+}
+.marker-table td a{
+	width: 100%;
+	display: block;
+}
+select{
+	margin-left: 24px;
+	width:356px;
+	border: none;
+	border-radius: 0 !important;
+	color: #FFF;
+	padding: 0 20px;
+	margin-top: 20px;
+	cursor: pointer;
+	background: #33bfbe;
+	height: 55px;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-o-appearance: none;
+	-ms-appearance: none;
+	font-size: 12px;
+	outline: none;
+}
+select:hover{
+	background: #2ca2a2;
+}
+.caret{
+	background: url('caret.png');
+    width: 17px;
+    height: 17px;
+    margin-left: 340px;
+    margin-top: -35px;
+    margin-bottom: 35px;
+    pointer-events: none;
     position: relative;
-    min-height: 1px;
-    padding-right: 12px;
-    padding-left: 12px;
+    z-index: 999;
 }
-
-.row {
-    margin:0 -12px;
+.breadcrumbs .active {
+	color: #000;
+	font-weight: 800;
 }
-
-.row:after{
-    content:"";
-    display:table;
-    clear:both;
+.breadcrumbs .active:hover {
+	text-decoration: none;
+	cursor: default;
 }
-/* 12 column grid */
-.s1 {width:8.33%; }
-.s2 {width:16.66%;}
-.s3 {width:25%;   }
-.s4 {width:33.33%;}
-.s5 {width:41.66%;}
-.s6 {width:50%;   }
-.s7 {width:58.33%;}
-.s8 {width:66.66%;}
-.s9 {width:75%;   }
-.s10{width:83.33%;}
-.s11{width:91.66%;}
-.s12{width:100%;  }
-
-@media (min-width: 768px) {
-    .m1 {width:8.33%; }
-    .m2 {width:16.66%;}
-    .m3 {width:25%;   }
-    .m4 {width:33.33%;}
-    .m5 {width:41.66%;}
-    .m6 {width:50%;   }
-    .m7 {width:58.33%;}
-    .m8 {width:66.66%;}
-    .m9 {width:75%;   }
-    .m10{width:83.33%;}
-    .m11{width:91.66%;}
-    .m12{width:100%;  }
+.breadcrumbs{
+	padding-left: 10px;
 }
-@media (min-width: 1100px) {
-    .l1 {width:8.33%; }
-    .l2 {width:16.66%;}
-    .l3 {width:25%;   }
-    .l4 {width:33.33%;}
-    .l5 {width:41.66%;}
-    .l6 {width:50%;   }
-    .l7 {width:58.33%;}
-    .l8 {width:66.66%;}
-    .l9 {width:75%;   }
-    .l10{width:83.33%;}
-    .l11{width:91.66%;}
-    .l12{width:100%;  }
+.weird-table{
+	position: relative;
 }
-@media (min-width: 1281px) {
-    .xl1 {width:8.33%; }
-    .xl2 {width:16.66%;}
-    .xl3 {width:25%;   }
-    .xl4 {width:33.33%;}
-    .xl5 {width:41.66%;}
-    .xl6 {width:50%;   }
-    .xl7 {width:58.33%;}
-    .xl8 {width:66.66%;}
-    .xl9 {width:75%;   }
-    .xl10{width:83.33%;}
-    .xl11{width:91.66%;}
-    .xl12{width:100%;  }
+.weird-table .table-icon{
+	position: absolute;
+  left: 545px;
+  margin-top: -35px;
+  margin-right: 15px;
+}
+.top-10{
+	top: 10px;
 }

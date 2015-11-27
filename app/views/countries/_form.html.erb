@@ -1,14 +1,14 @@
-<div class="black-background" style="display: none">	
+<div class="black-background" style="display: none">
 </div>
 
 <div class="new-form" style="display: none">
 	<h2>Land aanmaken</h2>
 	<%= form_for :country, url: countries_path do |f| %>
 
-		<%= f.text_field :country_name, placeholder: 'naam land' %>
-		<%= f.submit "Maak aan", :class => "new-btn" %>
+		<%= f.text_field :country_name, placeholder: 'Naam land (Nederlands)' , required: 'required'%>
+		<%= f.submit "Aanmaken", :class => "btn btn-primary" %>
 
 	<% end %>
 </div>
 
-<p class="new-btn button">Land toevoegen</p>
+<p class="add-country add-btn">+</p>

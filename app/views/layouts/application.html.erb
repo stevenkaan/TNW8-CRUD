@@ -1,78 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SightGuide</title>
+  <title>Sight Guide</title>
   <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-
+  <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => false  %>
   <!-- Google Maps API -->
-  <%= javascript_include_tag "jquery.js", "data-no-turbolink" => true %> 
-  <%= javascript_include_tag "jquery_ujs.js", "data-no-turbolink" => true %> 
+  <%= javascript_include_tag "jquery.js", "data-no-turbolink" => true %>
+  <%= javascript_include_tag "jquery_ujs.js", "data-no-turbolink" => true %>
   <%= javascript_include_tag "http://maps.googleapis.com/maps/api/js?v=3&sensor=false", "data-no-turbolink" => true %>
-<script>
-
-jQuery(document).ready(function($) {
-
-    $('td').click(function() {
-        if($(this).data("href") != undefined) {
-          window.document.location = $(this).data("href");
-        }
-    });
-
-    $('.new-btn').click(function() {
-      var attr = $(this).attr('action');
-      if (typeof attr !== typeof undefined && attr !== false) {
-        $('.black-background[action='+attr+']').css("display", "block");
-        $('.new-form[action='+attr+']').css("display", "block");
-      } else {
-        $('.black-background').css("display", "block");
-        $('.new-form').css("display", "block");
-      }
-    });
-
-    $('.black-background').click(function() {
-      $('.black-background').css("display", "none");
-      $('.new-form').css("display", "none");
-    });
-    $('.cancel').click(function() {
-      $('.black-background').css("display", "none");
-      $('.new-form').css("display", "none");
-    });
-    
-});
-</script>
 </head>
 <body>
-  <div class="container">
+  <header>
+      <div class="container">
+          <div class="logo"></div>
 
-    <% if current_user %>
-    <div class="s12 m12 l12 xl12 top-bar">
-      <p>Ingelogd als <%= current_user.name %> | <%= link_to "Log uit", '/logout' %>
+          <div class="username">
+          <% if current_user %>
+            <%= current_user.name %>
+          <% end %>
+          </div>
+          <%= link_to "Log uit", '/logout', :class => "logout" %>
 
-
-      <%= link_to '/logout' do %>
-
-<% end %>
-
-</p>
-      
-<p><%= GetBreadcrumbs() %></p>
-
-
-      <% else %>
-
-      <% end %>
-
+      </div>
+  </header>
+  <div class="crumbs">
+    <div class="container">
+      <%= GetBreadcrumbs() %>
     </div>
   </div>
 
-  <div class="clear"></div>
+  <%= yield %>
 
 
-    <%= yield %>
 
-
-  
 </body>
 </html>

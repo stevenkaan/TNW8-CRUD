@@ -1,188 +1,146 @@
-<div class="container content">
-<div class="col xl8 l8 m8 s8">
+<div class="container">
+  <div class="col-50">
+    <%= form_for :city, :html => {:class => 'city_info'}, url: city_path(@city), method: :patch do |f| %>
 
-<h2><%= @city.city_name %></h2>
+    <% if @city.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@city.errors.count, "error") %> prohibited
+          Deze stad kan niet worden opgeslagen
+        </h2>
+        <ul>
+          <% @city.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="tabbed">
+      <div id="tab_nl" class="tab active" onclick="changeTab(1)">Nederlands</div>
+      <div id="tab_en" class="tab" onclick="changeTab(2)">Engels</div>
+      <div id="tab_es" class="tab" onclick="changeTab(3)">Spaans</div>
+      <div class="add-form">
+        <span id="nl">
+          <%= f.text_field :city_info_name_nld, value: @city_info_array[0].name %>
+          <%= f.text_area :city_info_text_nld, value: @city_info_array[0].body %>
+          <%= @city_info_array[0].city_audio %><br>
+        </span>
+        <span id="en">
+          <%= f.text_field :city_info_name_eng, value: @city_info_array[1].name %>
+          <%= f.text_area :city_info_text_eng, value: @city_info_array[1].body %>
+        </span>
+        <span id="es">
+          <%= f.text_field :city_info_name_esp, value: @city_info_array[2].name %>
+          <%= f.text_area :city_info_text_esp, value: @city_info_array[2].body %>
+        </span>
+        <div class="btn-holder">
+          <%= f.submit "Opslaan" , :class => "btn btn-primary float-right"%>
+        </div>
 
 
-<%= form_for :city, :html => {:class => 'city_info'}, url: city_path(@city), method: :patch do |f| %>
-  <p>
-    <%= f.submit "Opslaan"%>
-    <%= render 'delete_form' %>
-
-  </p>
-<% if @city.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@city.errors.count, "error") %> prohibited
-        this article from being saved:
-      </h2>
-      <ul>
-        <% @city.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+      </div>
     </div>
-  <% end %>
-  <div class="tabs">
-  <p class='tab-nld active'>Nederland</p>
-  <p class='tab-eng'>Engels</p>
-  <p class='tab-esp'>Spaans</p>
-  <div class='clear'></div>
-  <div class='tabs-content'>
-  <div class='info-nld' style='display:block;'>
-  <%= f.label :city_info_name_nld, 'Naam stad nederlands' %><br>
-  <%= f.text_field :city_info_name_nld, value: @city_info_array[0].name %><br>
-  <%= f.label :city_info_text_nld, 'Informatie stad nederlands' %><br>
-  <%= f.text_area :city_info_text_nld, value: @city_info_array[0].body %><br>
-  <%= f.label :city_info_audio_nld, 'Audio fragment stad nederlands' %><br>
-  <%= f.file_field :city_info_audio_nld %><br>
-  <%= @city_info_array[0].city_audio %><br>
-</div>
-<div class='info-eng' style='display:none;'>
-  <%= f.label :city_info_name_eng, 'Naam stad engels' %><br>
-  <%= f.text_field :city_info_name_eng, value: @city_info_array[1].name %><br>
-  <%= f.label :city_info_text_eng, 'Informatie stad engels' %><br>
-  <%= f.text_area :city_info_text_eng, value: @city_info_array[1].body %><br>
-  <%= f.label :city_info_audio_eng, 'Audio fragment stad engels' %><br>
-  <%= f.file_field :city_info_audio_eng %><br>
-  <%= @city_info_array[1].city_audio %><br>
-</div>
-<div class='info-esp' style='display:none;'>
-  <%= f.label :city_info_name_esp, 'Naam stad spaans' %><br>
-  <%= f.text_field :city_info_name_esp, value: @city_info_array[2].name %><br>
-  <%= f.label :city_info_text_esp, 'Informatie stad spaans' %><br>
-  <%= f.text_area :city_info_text_esp, value: @city_info_array[2].body %><br>
-  <%= f.label :city_info_audio_esp, 'Audio fragment stad spaans' %><br>
-  <%= f.file_field :city_info_audio_esp %><br>
-  <%= @city_info_array[2].city_audio %><br>
-</div>
-</div>
-</div>
+  </div>
+  <div class="col-50">
+    <div class="page-header w360">
+        Afbeeldingen van
+        <%= @city_info_array[0].name %>
+    </div>
+    <div class="upload-form">
+      <% if @city.city_images.url.to_s!='' %>
+        <div class="upload">
+          <%= link_to "",  :controller => :cities, :action => :deleteCityImage %>
+          <%= image_tag (@city.city_images.url.to_s), :class => "image" %>
+        </div>
+      <% else %>
+        <div class="upload">
+          <%= f.file_field :city_images, :class => "image" , :accept => ".jpg, .jpeg, .gif, .png" %>
+        </div>
+      <% end %>
 
-   
+      <% if @city.city_images_2.url.to_s!='' %>
+        <div class="upload">
+          <%= link_to " ",  :controller => :cities, :action => :deleteCityImage2 %>
+          <%= image_tag (@city.city_images_2.url.to_s), :class => "image"  %>
+        </div>
+      <% else %>
+        <div class="upload">
+          <%= f.file_field :city_images_2, :class => "image"  , :accept => ".jpg, .jpeg, .gif, .png"  %>
+        </div>
+      <% end %>
 
+      <% if @city.city_images_3.url.to_s!='' %>
+        <div class="upload">
+          <%= link_to "", :controller => :cities, :action => :deleteCityImage3 %>
+          <%= image_tag (@city.city_images_3.url.to_s), :class => "image" %>
+        </div>
+      <% else %>
+        <div class="upload">
+          <%= f.file_field :city_images_3, :class => "image"  , :accept => ".jpg, .jpeg, .gif, .png"  %>
+        </div>
+      <% end %>
 
+      <% if @city.city_images_4.url.to_s!='' %>
+        <div class="upload">
+          <%= link_to "",  :controller => :cities, :action => :deleteCityImage4 %>
+          <%= image_tag (@city.city_images_4.url.to_s), :class => "image" %>
+        </div>
+      <% else %>
+        <div class="upload">
+          <%= f.file_field :city_images_4, :class => "image"  , :accept => ".jpg, .jpeg, .gif, .png"  %>
+        </div>
+      <% end %>
 
-</div>
-<div class="col xl3 l3 m3 s3">
-
-
-<% if @city.city_images.url.to_s!='' %>
-  <%= link_to "Afbeelding verwijderen", :controller => :cities, :action => :deleteCityImage %><br>
-  <%= image_tag (@city.city_images.url.to_s),width: '100%' %>
-<% else %>  
-    <p>
-     <div class="upload">Afbeelding toevoegen 1
-        <%= f.file_field :city_images %>
-      </div>
-    </p>
-
-<% end %>
-
-<% if @city.city_images_2.url.to_s!='' %>
-  <%= link_to "Afbeelding verwijderen", :controller => :cities, :action => :deleteCityImage2 %><br>
-  <%= image_tag (@city.city_images_2.url.to_s),width: '100%' %>
-<% else %>  
-    <p>
-     <div class="upload">Afbeelding toevoegen 2
-        <%= f.file_field :city_images_2 %>
-      </div>
-    </p>
-<% end %>
-
-<% if @city.city_images_3.url.to_s!='' %>
-  <%= link_to "Afbeelding verwijderen", :controller => :cities, :action => :deleteCityImage3 %><br>
-  <%= image_tag (@city.city_images_3.url.to_s),width: '100%' %>
-<% else %>
-    <p>
-     <div class="upload">Afbeelding toevoegen 3
-        <%= f.file_field :city_images_3 %>
-      </div>
-    </p>
-<% end %>
-
-<% if @city.city_images_4.url.to_s!='' %>
-  <%= link_to "Afbeelding verwijderen", :controller => :cities, :action => :deleteCityImage4 %><br>
-  <%= image_tag (@city.city_images_4.url.to_s),width: '100%' %>
-<% else %>
-    <p>
-     <div class="upload">Afbeelding toevoegen 4
-        <%= f.file_field :city_images_4 %>
-      </div>
-    </p>
-<% end %>
-
-<% end %>
-<div class="clear"></div>
-</div>
-
-<div class="col xl8 l8 m8 s8">
-<h2>Markers</h2>
-<table>
-  <tr>
-    <th>Naam</th><th>Type</th>
-  </tr>
-  <%= render @city.markers %>
-</table>
-
-<%= render 'markers/form' %>
-
-<h2>Routes</h2>
-<table>
-  <tr>
-    <th>Naam</th>
-  </tr>
-  <%= render @city.routes %>
-</table>
-
-<%= render 'routes/form' %>
+      <% end %>
+    </div>
+    <div class="spacer"></div>
+  </div>
+  <div class="col-50">
+    <div class="page-header">
+      Bezienswaardigheden in
+      <%= @city_info_array[0].name %>
+    </div>
+    <div  class="country-table">
+      <table>
+        <tbody>
+            <%= render @city.markers %>
+        </tbody>
+      </table>
+      <%= render 'markers/form' %>
+    </div>
+    <div class="spacer"></div>
+    <div class="page-header">
+      Wandelroutes in
+      <%= @city_info_array[0].name %>
+    </div>
+    <div  class="country-table">
+      <table>
+        <tbody>
+            <%= render @city.routes %>
+        </tbody>
+      </table>
+      <%= render 'routes/form' %>
+    </div>
 
 </div>
-<div class="clear"></div>
+</div></div>
+  </div>
 
-</div>
+
+
+
 
 <script type="text/javascript">
-
-
-$(document).on('change','#city_city_images' , function(){ 
-  $( ".city_info" ).submit();
-});
-$(document).on('change','#city_city_images_2' , function(){ 
-  $( ".city_info" ).submit();
-});
-$(document).on('change','#city_city_images_3' , function(){ 
-  $( ".city_info" ).submit();
-});
-$(document).on('change','#city_city_images_4' , function(){ 
-  $( ".city_info" ).submit();
-});
-
-$('.tab-nld').click(function(){
-  $('.info-nld').css({'display':'block'});
-  $('.tab-nld').addClass( "active" );
-  $('.info-eng').css({'display':'none'});
-  $('.tab-eng').removeClass( "active" );
-  $('.info-esp').css({'display':'none'});
-  $('.tab-esp').removeClass( "active" );
-});
-
-$('.tab-eng').click(function(){
-  $('.info-eng').css({'display':'block'});
-  $('.tab-eng').addClass( "active" );
-  $('.info-nld').css({'display':'none'});
-  $('.tab-nld').removeClass( "active" );
-  $('.info-esp').css({'display':'none'});
-  $('.tab-esp').removeClass( "active" );
-});
-
-$('.tab-esp').click(function(){
-  $('.info-esp').css({'display':'block'});
-  $('.tab-esp').addClass( "active" );
-  $('.info-eng').css({'display':'none'});
-  $('.tab-eng').removeClass( "active" );
-  $('.info-nld').css({'display':'none'});
-  $('.tab-nld').removeClass( "active" );
-});
-
+  $(document).on('change','#city_city_images' , function(){
+    $( ".city_info" ).submit();
+  });
+  $(document).on('change','#city_city_images_2' , function(){
+    $( ".city_info" ).submit();
+  });
+  $(document).on('change','#city_city_images_3' , function(){
+    $( ".city_info" ).submit();
+  });
+  $(document).on('change','#city_city_images_4' , function(){
+    $( ".city_info" ).submit();
+  });
 </script>

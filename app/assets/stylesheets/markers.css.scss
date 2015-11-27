@@ -1,3 +1,108 @@
 // Place all the styles related to the markers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.distance-input {
+  width: 170px;
+  margin-top:15px;
+}
+.starting-point{
+  width: auto;
+  height: auto;
+  margin-top:10px;
+}
+.min-47{
+  margin-top: -47px;
+}
+marker-table {
+
+}
+.marker-table {
+  width: 580px;
+  margin: 0 auto;
+  border-top: 1px solid #EAEAEA;
+}
+.marker-table tr {
+  height: 54px;
+  line-height: 53px;
+  border: 1px solid #EAEAEA;
+  border-top: none;
+  cursor: pointer;
+}
+.marker-table td {
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+.marker-table tr:hover a {
+  color: #E96745;
+}
+.marker-table tr:nth-child(even){
+  background: #EAEAEA;
+}
+.add-marker td:last-child{
+  width: 50px;
+  padding: 0 10px;
+}
+.add-marker td:nth-child(3){
+  width: 10px;
+  padding: 0 10px;
+}
+tr:hover .add-circle{
+  opacity: 1;
+}
+.add-circle{
+  width:30px;
+  height: 30px;
+  border-radius: 100%;
+  color:#FFF;
+  line-height: 26px;
+  font-size: 15px;
+  text-align: center;
+  background: #33bfbe;
+  cursor: pointer;
+  border: 2px solid #FFF;
+  opacity: 0;
+}
+.add-circle:hover {
+  background: #2ca2a2;
+}
+.arrow-up{
+  width: 12px;
+  height: 10px;
+  margin-top:-2px;
+  margin-bottom: 12px;
+  background: url('blue-arrow-up.png');
+  opacity: 0;
+}
+.arrow-down{
+  width: 12px;
+  height: 10px;
+  background: url('blue-arrow.png');
+  opacity: 0;
+}
+tr:hover .arrow-up,tr:hover .arrow-down {
+  opacity: 1;
+}
+.order{
+  width: 55px;
+  height: 55px;
+  line-height: 55px;
+  color: #FFF;
+  background: #33bfbe;
+}
+.view_in_maps{
+  height: 35px;
+  width: 35px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 35px;
+  color:#FFF;
+  background: #33bfbe;
+  cursor: pointer;
+}
+.view_in_maps:hover{
+  background: #2ca2a2;
+}

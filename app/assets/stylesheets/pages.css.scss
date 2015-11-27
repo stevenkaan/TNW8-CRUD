@@ -1,15 +1,15 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-body {
+/* body {
 	background:none;
 }
 html {
 	height: 100%;
-  background: radial-gradient(rgba(233,103,69,1), rgba(240,81,82,1)); /*Standard*/
-}
+  background: radial-gradient(rgba(233,103,69,1), rgba(240,81,82,1)); Standard
+} */
 
-input[type=text],input[type=password] {
+.user-input {
 	height: 30px;
 	width: 245px;
 	padding-left:5px;
@@ -19,9 +19,8 @@ input[type=text],input[type=password] {
 
 }
 
-input[type=submit] {
+.user-submit{
 	width: 255px;
-
 }
 
 .login {
@@ -34,4 +33,3 @@ input[type=submit] {
 .commit {
 	margin: auto 0;
 }
-

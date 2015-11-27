@@ -1,50 +1,64 @@
-<div class="container content">
-<div class="col xl8 l8 m8 s8">
+<div class="container">
+  <div class="tabbed">
+    <div id="tab_nl" class="tab active" onclick="changeTab(1)">Nederlands</div>
+    <div id="tab_en" class="tab" onclick="changeTab(2)">Engels</div>
+    <div id="tab_es" class="tab" onclick="changeTab(3)">Spaans</div>
+    <div class="add-form">
+      <%= form_for :country, url: country_path(@country), method: :patch do |f| %>
 
-
-<h2><%= @country.country_name %></h2>
-
-
-<%= form_for :country, url: country_path(@country), method: :patch do |f| %>
-  <p>
-    <%= f.submit "Opslaan" %>
-    <%= link_to 'Land verwijderen', country_path(@country), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'deleteButton' %>
-  </p>
-  <% if @country.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@country.errors.count, "error") %> prohibited
-        this article from being saved:
-      </h2>
-      <ul>
-        <% @country.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+        <% if @country.errors.any? %>
+          <div id="error_explanation">
+            <h2>
+              <%= pluralize(@country.errors.count, "error") %> Land kan niet opgeslagen worden
+            </h2>
+            <ul>
+              <% @country.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
+        <span id="nl">
+          <%= f.text_field :country_name, :placeholder => "Naam land (Nederlands)" %>
+        </span>
+        <span id="en">
+          <%= f.text_field :country_name, :placeholder => "Naam land (Engels)" %>
+        </span>
+        <span id="es">
+          <%= f.text_field :country_name, :placeholder => "Naam land (Spaans)" %>
+        </span>
+        <div class="btn-holder">
+          <%= f.submit "Opslaan" , :class => "btn btn-primary float-right"%>
+        </div>
+
+        <div class="delete-combo">
+          <%= link_to 'Land verwijderen', country_path(@country), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn delete-item' %>
+          <div class="delete-icon-white"></div>
+        </div>
+
+
+      <% end %>
     </div>
-  <% end %>
+  </div>
+  <div class="page-header">
+    Kies de stad
+    <span>
+    Waarin u bewerkingingen in wilt voeren,<br/>of voeg een stad toe.
+    </span>
+  </div>
+  <div  class="country-table weird-table">
+    <table>
+      <tbody>
+          <%= render @country.cities %>
+      </tbody>
+    </table>
+    <%= render 'cities/form' %>
+  </div>
 
-  <p>
-    <%= f.label :Naam_land %><br>
-    <%= f.text_field :country_name %>
-  </p>
-
-<% end %>
-
-
-<!-- sssss -->
 
 
 
-<table>
-	<tr>
-		<th>
-			Steden
-		</th>
-	</tr>
-	<%= render @country.cities %>
-</table>
-<%= render 'cities/form' %>
-</div>
-<div class="clear"></div>
+
+
+
 </div>

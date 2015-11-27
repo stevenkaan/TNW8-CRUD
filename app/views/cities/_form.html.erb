@@ -1,4 +1,4 @@
-<div class="black-background" style="display: none">	
+<div class="black-background" style="display: none">
 </div>
 
 <div class="new-form" style="display: none">
@@ -7,12 +7,12 @@
 
 	<%= form_for([@country, @country.cities.build], :html => {:multipart => true}) do |f| %>
 	  <p>
-	    <%= f.text_field :city_name, placeholder: 'nieuwe stad' %>
+	    <%= f.text_field :city_name, placeholder: 'Nieuwe stad (Nederlands)', required: 'required' %>
 	  </p>
 	  <p>
-	    <%= f.submit "Maak aan" %>
+	    <%= f.submit "Aanmaken", :class => "btn btn-primary" %>
 	  </p>
 	<% end %>
 </div>
 
-<p class="new-btn button">Stad toevoegen</p>
+<p class="add-country add-btn">+</p>

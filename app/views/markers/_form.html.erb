@@ -1,4 +1,4 @@
-<div class="black-background" action="new-marker" style="display: none">	
+<div class="black-background" action="new-marker" style="display: none">
 </div>
 
 <div class="new-form" action="new-marker" style="display: none">
@@ -6,14 +6,14 @@
 	<h2>Marker aanmaken</h2>
 
 	<%= form_for([@city, @city.markers.build]) do |f| %>
-	    <%= f.text_field :name, placeholder: 'Marker naam' %>
+	    <%= f.text_field :name, placeholder: 'Marker naam (Nederlands)' %>
 	    <%= f.hidden_field :marker_type, value: 0 %>
 	  </p>
 	  <p>
-	    <%= f.submit "Maak aan" %>
+	    <%= f.submit "Aanmaken", :class => "btn btn-primary" %>
 	  </p>
 	<% end %>
 
 </div>
 
-<p class="new-btn button" action="new-marker">Marker toevoegen</p>
+<p class="add-country add-btn" action="new-marker">+</p>
