@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  
+
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -83,12 +83,12 @@ class ApplicationController < ActionController::Base
 
       countriesId = elements.index("countries") + 1;
       if elements[countriesId] != nil
-        html += '<a href="http://' + request.domain + ':3000/"><li>Landen overzicht</li></a>';
+        html += '<a href="http://' + request.domain + ':3000/countries"><li>Landen overzicht</li></a>';
         html += '<span class="crumb-divider"> > </span>';
         @countries = Country.find(elements[countriesId]);
         html += '<a href="http://' + request.domain + ':3000/countries/' + @country.id.to_s + '"><li class="active">' + @country.country_name + '</li></a>';
       else
-        html += '<a href="http://' + request.domain + ':3000/"><li class="active">Landen overzicht</li></a>';
+        html += '<a href="http://' + request.domain.to_s + ':3000/countries"><li class="active">Landen overzicht</li></a>';
       end
       html += '</ul></div>';
     end
