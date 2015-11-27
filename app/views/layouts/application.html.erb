@@ -2,11 +2,12 @@
 <html>
 <head>
   <title>Sight Guide</title>
+  <%= favicon_link_tag 'favicon.ico' %>
   <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= favicon_link_tag 'favicon.ico' %>
+
   <%= csrf_meta_tags %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => false  %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true  %>
   <!-- Google Maps API -->
   <%= javascript_include_tag "jquery.js", "data-no-turbolink" => true %>
   <%= javascript_include_tag "jquery_ujs.js", "data-no-turbolink" => true %>
@@ -28,7 +29,9 @@
   </header>
   <div class="crumbs">
     <div class="container">
-      <%= GetBreadcrumbs() %>
+      <% if current_user %>
+        <%= GetBreadcrumbs() %>
+      <% end %>
     </div>
   </div>
 

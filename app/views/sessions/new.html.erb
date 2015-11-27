@@ -1,16 +1,19 @@
+<div class="pre-auth-bg">
 <%= form_tag '/login' do %>
 
-<p>
+
 <form accept-charset="UTF-8" action="/login" method="post">
 	<p class="login"><br>
 	<%= image_tag("logo_darkbg.png", height: '250') %><br>
-		<input id="email" name="email" type="text" placeholder="email"><br>
-		<input id="password" name="password" type="password" placeholder="wachtwoord"><br>
-		<input class="commit" name="commit" type="submit" value="inloggen">
+		<input id="email" name="email" type="text" placeholder="email" class="pre-auth-input"><br>
+		<input id="password" name="password" type="password" placeholder="wachtwoord" class="pre-auth-input"><br>
+		<input class="commit btn-primary btn" name="commit" type="submit" value="inloggen">
 	</p>
+	<div class="add-new-user">
+			<%= link_to "Nieuwe gebruiker toevoegen", "/signup" %>
+	</div>
 
 </form>
-</p>
 
 <% end %>
-
+</div>

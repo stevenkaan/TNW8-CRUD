@@ -28,7 +28,7 @@ SightGuide::Application.routes.draw do
   resources :marker_infos
   resources :city_infos
 
-  resources :routes do 
+  resources :routes do
     resources :markers
   end
 
@@ -47,11 +47,13 @@ SightGuide::Application.routes.draw do
   end
 
 
-  root 'sessions#new'
+  root 'sessions#download'
 
+  get '/' => 'sessions#download'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
+
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'

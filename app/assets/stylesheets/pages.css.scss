@@ -30,6 +30,29 @@ html {
 	width: 100%;
 }
 
+
+.pre-auth-bg {
+  background: radial-gradient(#e96745, #f05152);;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top:0;
+	left:0;
+	z-index: 99999;
+}
+.pre-auth-input{
+	width:230px;
+	margin-top: 15px;
+}
 .commit {
-	margin: auto 0;
+	margin-top: 30px;
+	width:230px;
+}
+.add-new-user{
+	color:#FFF;
+	width: 100%;
+	text-align: center;
+}
+.add-new-user:hover{
+	text-decoration: underline;
 }

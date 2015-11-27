@@ -1,16 +1,22 @@
+<div class="pre-auth-bg">
 <%= form_for :user, url: '/users' do |f| %>
+
 
 <form accept-charset="UTF-8" action="/users" method="post">
 
 <p class="login"><br>
-	<%= image_tag("logo_darkbg.png", height: '250') %><br>
-<input id="user_name" name="user[name]" type="text" class="user-input" placeholder="gebruikersnaam"><br>
-<input id="user_email" name="user[email]" type="text" class="user-input" placeholder="email"><br>
-<input id="user_password" name="user[password]" class="user-input" type="password" placeholder="wachtwoord"><br>
-<input id="user_password_confirmation" name="user[password_confirmation]" class="user-input" type="password" placeholder="herhaal wachtwoord"><br>
-<input name="commit" type="submit" value="Registreer" class="user-submit">
+<%= image_tag("logo_darkbg.png", height: '250') %><br>
+<input id="user_name" name="user[name]" type="text"  placeholder="gebruikersnaam" class="pre-auth-input"><br>
+<input id="user_email" name="user[email]" type="text" placeholder="email" class="pre-auth-input"><br>
+<input id="user_password" name="user[password]"  type="password" placeholder="wachtwoord" class="pre-auth-input"><br>
+<input id="user_password_confirmation" name="user[password_confirmation]"  class="pre-auth-input" type="password" placeholder="herhaal wachtwoord"><br>
+<input name="commit" type="submit" value="Registreer" class="user-submit commit  btn-primary btn">
 </p>
+<div class="add-new-user">
+		<%= link_to "Terug naar login", "/login" %>
+</div>
 
 </form>
 
 <% end %>
+</div>

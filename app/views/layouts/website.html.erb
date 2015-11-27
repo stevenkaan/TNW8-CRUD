@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Download Sight Guide</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <%= favicon_link_tag 'favicon.ico' %>
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag  "website", media: "all", "data-turbolinks-track" => true %>
+
+  <%= javascript_include_tag "jquery.js", "data-no-turbolink" => true %>
+  <%= javascript_include_tag "website", "data-turbolinks-track" => true  %>
+  <script>
+    var download = function() {
+      var password = prompt("Wachtwoord:");
+      if (password === "albatros") {
+        window.location.href = "/app-debug.apk";
+      }else{
+        alert("Verkeerd wachtwoord!")
+      }
+    }
+  </script>
+</head>
+<body>
+    <div class="scrollable">
+      <div class="logo"></div>
+      <div class="slogan"></div>
+      <div class="download-btn" onclick="download()">Download</div>
+      <div class="only-for-android">For Android only</div>
+
+    </div>
+    <div class="background-img"></div>
+    <footer>
+      <a href="/login">Login</a>
+    </footer>
+<body>
+</html>

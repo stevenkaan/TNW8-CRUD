@@ -26,4 +26,9 @@ class SessionsController < ApplicationController
     redirect_to '/login'
   end
 
+  def download
+    render layout: 'website.html.erb'
+  end
+
+
 end
