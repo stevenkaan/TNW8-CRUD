@@ -55,11 +55,13 @@ SightGuide::Application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
 
-  get '/signup' => 'users#new'
+  get '/signup' => 'users#new2'
   post '/users' => 'users#create'
 
-  get '/api/getcities' => 'api#getCities'
+  get '/api/getcities/:id' => 'api#getCities'
+  get '/api/getcity/:id' => 'api#getCity'
   get '/api/getmarkers/:id' => 'api#getMarkers'
+  get '/api/getroutes/:id' => 'api#getRoutes'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

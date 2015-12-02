@@ -35,7 +35,7 @@
 
         <%= f.check_box :multiple_starting_points, :class => "starting-point" %>
         Verplicht startpunt<br/>
-        <%= f.text_field :afstand, :placeholder => "Aantal KM", :value => "", :class => "distance-input" %>
+        Aantal KM <%= f.text_field :afstand, :placeholder => "Aantal KM", :class => "distance-input" %>
         <p style="visibility:hidden; position:absolute;" class='city_name'><%= @city.city_name %></p>
         <div class='view_in_maps'>?</div>
         <div class="btn-holder min-47">
