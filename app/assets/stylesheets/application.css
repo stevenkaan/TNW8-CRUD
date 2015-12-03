@@ -135,13 +135,53 @@ td,th {
 }
 
 
+.hamburger{
+	width:22px;
+	height: 22px;
+	background: url('hamburger.png');
+	background-size: cover;
+	float: right;
+	margin-top: 14px;
+	cursor: pointer;
+}
+.hb-menu{
+	display: none;
+	width: 160px;
+	border: 1px solid #ee5252;
+	background: #FFF;
+	color: #ee5252 !important;
+	margin-top: 42px;
+	margin-left: -130px;
+	position: relative;
+	z-index: 999;
 
-.logout {
-    display: block;
-    float: right;
-    text-align: center;
-    height: 10px;
-
+}
+.hb-caret{
+	width: 10px;
+  height: 10px;
+  position: absolute;
+  background: #FFF;
+  right: 14px;
+  top: -5px;
+  z-index: -1;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.hb-menu a {
+	display: block;
+	padding: 0 10px;
+	line-height: 40px;
+	border-bottom: 1px solid #DDD;
+	text-align: center;
+	color: #ee5252;
+	cursor: pointer;
+}
+.hb-menu a:hover{
+	color: #FFF;
+	background: #e53637;
 }
 .upload-form{
 	width:360px;
@@ -380,8 +420,8 @@ tr:hover  .delete-icon{
 	margin-left: -30px;
 	display: inline-block;
 	vertical-align: middle;
-	width:15px;
-	height:20px;
+	width:14px;
+	height:16px;
 	background: url('delete-white.png');
 
 }
@@ -499,5 +539,8 @@ select:hover{
   margin-right: 15px;
 }
 .top-10{
-	top: 10px;
+	top: 10px !important
+}
+.no-center{
+	text-align: left;
 }

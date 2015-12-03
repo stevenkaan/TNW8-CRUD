@@ -23,7 +23,14 @@
             <%= current_user.name %>
           <% end %>
           </div>
-          <%= link_to "Log uit", '/logout', :class => "logout" %>
+          <div class="hamburger">
+              <div class="hb-menu">
+                  <div class="hb-caret"></div>
+                  <%= link_to "Beheerder toevoegen", '/signup' %>
+                  <%= link_to "Uitloggen", '/logout' %>
+              </div>
+          </div>
+
 
       </div>
   </header>

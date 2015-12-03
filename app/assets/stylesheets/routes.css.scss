@@ -1,3 +1,24 @@
 // Place all the styles related to the Routes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.view_in_maps{
+  height: 35px;
+  width: 35px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 35px;
+  padding:5px;
+  color:#FFF;
+  background: #33bfbe url('measure.png');
+  cursor: pointer;
+  background-size: cover;
+border: 4px solid #33bfbe;
+}
+.view_in_maps:hover{
+  background: #2ca2a2  url('measure.png');
+  background-size: cover;
+border: 4px solid #2ca2a2;
+}

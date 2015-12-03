@@ -1,7 +1,7 @@
 <div class="container">
   <div class="col-50">
 
-    <%= form_for :route, url: route_path(@route), method: :patch do |f| %>
+    <%= form_for :route, url: route_path(@route), :class=>"no-center", method: :patch do |f| %>
 
     <% if @route.errors.any? %>
       <div id="error_explanation">
@@ -37,7 +37,7 @@
         Verplicht startpunt<br/>
         <%= f.text_field :afstand, :placeholder => "Aantal KM", :value => "", :class => "distance-input" %>
         <p style="visibility:hidden; position:absolute;" class='city_name'><%= @city.city_name %></p>
-        <div class='view_in_maps'>?</div>
+        <div class='view_in_maps'></div>
         <div class="btn-holder min-47">
           <%= f.submit "Opslaan" , :class => "btn btn-primary float-right"%>
         </div>

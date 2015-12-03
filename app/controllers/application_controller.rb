@@ -17,6 +17,9 @@ class ApplicationController < ActionController::Base
   def GetBreadcrumbs()
     url = request.fullpath;
     elements = url.split('/')
+    if elements.index("")
+      html = '';
+    end
 
     if elements.index("routes")
       @city = City.find(@route.city_id);

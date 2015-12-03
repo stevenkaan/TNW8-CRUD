@@ -17,6 +17,13 @@
 
 
 $(function()  {
+    $(document).on("click", ".hamburger", function() {
+      if( $('.hb-menu').css('display') === 'none'){
+        $('.hb-menu').show();
+      }else{
+        $('.hb-menu').hide();
+      }
+    });
     if( $('.order')){
       var i = 0;
       $( ".order" ).each(function( index ) {
