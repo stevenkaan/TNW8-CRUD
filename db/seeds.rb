@@ -10,7 +10,7 @@
 # rake db:drop db:create db:migrate db:setup
 
 user = User.create([{name: 'Admin', email: 'admin@admin.com', password: 'adminlogin', password_confirmation: 'adminlogin'}])
-country = Country.create([{country_name: 'Nederland'}])
+country = Country.create([{country_name_nld: 'Nederland'}])
 city = City.create([{city_name: 'Groningen', country_id: 1}])
 marker = Marker.create([{name: 'Peerd van ome Loeks', city_id: 1}])
 marker = Marker.create([{name: 'Martinitoren', city_id: 1}])

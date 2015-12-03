@@ -7,5 +7,7 @@ class AddInfoToRoutes < ActiveRecord::Migration
   	add_column :routes, :info_eng, :text
   	add_column :routes, :name_esp, :string
   	add_column :routes, :info_esp, :text
+  	add_column :countries, :country_name_eng, :string
+  	add_column :countries, :country_name_esp, :string
   end
 end
