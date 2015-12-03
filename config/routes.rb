@@ -55,7 +55,7 @@ SightGuide::Application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
 
-  get '/signup' => 'users#new2'
+  get '/signup' => 'users#signup'
   post '/users' => 'users#create'
 
   get '/api/getcities/:id' => 'api#getCities'

@@ -3,13 +3,8 @@ class UsersController < ApplicationController
     def new
     end
 
-    def new2
-      if current_user
-
-        
-      else 
+    def signup
       redirect_to '/countries'
-      end
     end
 
     def create
