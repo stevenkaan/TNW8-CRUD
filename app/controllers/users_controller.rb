@@ -3,6 +3,15 @@ class UsersController < ApplicationController
     def new
     end
 
+    def new2
+      if current_user
+
+        
+      else 
+      redirect_to '/countries'
+      end
+    end
+
     def create
       user = User.new(user_params)
       if user.save

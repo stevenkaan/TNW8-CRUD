@@ -1,87 +1,98 @@
 class ApiController < ApplicationController
 
-	# def getCities
-
-	# 	@cities = City.all();
-	# 	cities = {cities:{}};
-	# 	temp = {}
-		
-	# 	for item in @cities
-	# 		@city = City.find(item.id)
-	# 		temp["languages"] = @city.GetCityLanguages.to_s
-	# 		# cities.push(temp);
-	# 	end
-
-	# 	render :json => cities.to_json;
-	# end 
-
+	respond_to :json, :xml
 	def getCities
 
-		@cities = City.all();
+	@cities = City.all();
 
-		jsonReturn = Array.new
-		test = Array.new
-		# languages.push();
-https://blog.codepath.com/2011/05/16/if-youre-using-to_json-youre-doing-it-wrong/
-		json_data = { "cities": {} }
-		json_data["cities"] = "John"
-		# json_data["cities"] = "Johan"
-		# test.push( ['cities' => []] )
-		# test["cities"] = "das";
-
-		returnData = {};
-
-		for city in @cities
-			test = city.GetCityLanguages
-			returnData[city.city_name] = {id:city.id,languages:test}
-		end
-render :json => json_data
-		# render :json => returnData.to_json
-
-		# return languages.to_json.gsub!(/\"/, '\'')
+	render :json => @cities.to_json(:only => [ :id, :country_id, :city_name ],
+		:methods => :get_languages
+	)
 
 	end
 
-	# def getCities
+	def getCity
+	result = Array.new
+	
+	# result['city'] = 'hi'
+	language = params[:lang];
+	@city = City.where(id: params[:id]);
+	@markers = Marker.where(city_id: params[:id]);
+	@routes = Route.where(city_id: params[:id]);
 
-	# 	@cities = City.all();
-	# 	event = {cities:{}};
-	# 	city = {languages:{}};
-	# 	i = 0;
+	# result.city.push()
+	a = Array.new
+	b = Array.new
+	test = '';
+	c = Array.new
 
-	# 	temp_storage = '';
+	if language == 'nld' 
+		a = @city.to_json(:only => [ :id, :country_id, :city_name, :city_images, :city_images_2, :city_images_3, :city_images_4 ]);
+		b = @markers.to_json(
+			:only => [ :id, :marker_type, :name, :marker_images, :marker_images_2, :marker_images_3, :marker_images_4, :marker_lng, :marker_lat ],
+				:methods => :marker_info_nld
+		)
+		b = b.gsub! '_nld', ''
+		c = @routes.to_json(:only => [ :afstand, :multiple_starting_points, :name_nld, :info_nld ],
+			:methods => :return_markers
+		)
+		c = c.gsub! '_nld', ''
+	end
 
-	# 	puts('FOR START!!!!!!!!!!!!!!!')
-	# 	for item in @cities
+	if language == 'eng' 
+		a = @city.to_json(:only => [ :id, :country_id, :city_name, :city_images, :city_images_2, :city_images_3, :city_images_4 ]);
+		b = @markers.to_json(
+			:only => [ :id, :marker_type, :name, :marker_images, :marker_images_2, :marker_images_3, :marker_images_4, :marker_lng, :marker_lat ],
+				:methods => :marker_info_eng
+		)
+		b = b.gsub! '_eng', ''
+		c = @routes.to_json(:only => [ :afstand, :multiple_starting_points, :name_eng, :info_eng ],
+			:methods => :return_markers
+		)
+		c = c.gsub! '_eng', ''
+	end
 
-	# 		@city = City.find(item.id)
+	if language == 'esp'
+		a = @city.to_json(:only => [ :id, :country_id, :city_name, :city_images, :city_images_2, :city_images_3, :city_images_4 ]);
+		b = @markers.to_json(
+			:only => [ :id, :marker_type, :name, :marker_images, :marker_images_2, :marker_images_3, :marker_images_4, :marker_lng, :marker_lat ],
+				:methods => :marker_info_esp
+		)
+		b = b.gsub! '_esp', ''
+		c = @routes.to_json(:only => [ :afstand, :multiple_starting_points, :name_esp, :info_esp ],
+			:methods => :return_markers
+		)
+		c = c.gsub! '_esp', ''
+	end
 
+	result = [city: a, markers: b, routes: c];
 
+	render :json => result
 
-	# 		event['cities'][item.city_name] = {"id": item.id};
-	# 		# temp_storage += item.city_name + '":["id":' + item.id.to_json + ',"lang":' + @city.GetCityLanguages.to_json + ']' ;
-	# 		# # city.push(@city.GetCityLanguages.to_json)
-	# 		# i = i + 1
-	# 		# if i != @cities.length
-	# 		# 	temp_storage += ',';
-	# 		# end
-	# 		# temp_storage += city.to_json
-	# 	end
-	# 	# temp_storage += ']';
+	end
 
-	# 	# event['cities'] = temp_storage;
-
-	# 	render :json => event.to_json;
-	# end
-
+	respond_to :json, :xml
 	def getMarkers
-		
-		@cities = City.find(params[:id]);
-		# @country = Country.find(@cities.county_id);
 
-		json = {"id": @cities.id, "city_name": @cities.city_name, "country": @cities.country.country_name, "markers": @cities.markers};
+	@markers = Marker.where(city_id: params[:id]);
 
-		render :json => json;
+	render :json => @markers.to_json(
+		:only => [ :id, :city_id, :marker_images ],
+			:include => { :marker_infos => { :only => [:language, :id, :name, :body, :marker_audio] } }
+	)
+
+	end
+
+	respond_to :json, :xml
+	def getRoutes
+
+	@routes = Route.where(city_id: params[:id]);
+
+	render :json => @routes.to_json(:only => [ :id, :afstand, :multiple_starting_points, :name_nld, :name_eng, :name_esp ],
+		# :include =>  {:markers_routes => { :only => [:marker_id] } }
+		:methods => :return_markers
+	 )
+
 	end
 
 end

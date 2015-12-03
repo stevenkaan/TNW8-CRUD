@@ -9,7 +9,7 @@ class City < ActiveRecord::Base
 	mount_uploader :city_images_3, CityImageUploader
 	mount_uploader :city_images_4, CityImageUploader
 
-	def GetCityLanguages()
+	def get_languages
 
 		city_info = CityInfo.where(city_id: id);
 
@@ -18,7 +18,11 @@ class City < ActiveRecord::Base
 		for item in city_info
 			
 			if languages.index(item.language) == nil
-				languages.push(item.language);
+				if item.name.to_s.length > 0
+					if item.body.to_s.length > 0
+						languages.push(item.language);
+					end
+				end
 			end
 
 		end
