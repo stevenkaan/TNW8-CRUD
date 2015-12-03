@@ -10,4 +10,4 @@
 # rake db:drop db:create db:migrate db:setup
 
 user = User.create([{name: 'Nico van den Helm', email: 'nico@sightguide.nl', password: '@-loginpwd', password_confirmation: '@-loginpwd'}])
-country = Country.create([{country_name_nld: 'Nederland', country_name_eng: 'The netherlands'}, country_name_esp: 'Holanda'}])
+country = Country.create([{country_name_nld: 'Nederland', country_name_eng: 'The netherlands', country_name_esp: 'Holanda'}])
