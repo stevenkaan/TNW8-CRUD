@@ -20,9 +20,11 @@ ActiveRecord::Schema.define(version: 20151118100909) do
 #   undefined method `[]' for nil:NilClass
 
   create_table "countries", force: true do |t|
-    t.string   "country_name"
+    t.string   "country_name_nld"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "country_name_eng"
+    t.string   "country_name_esp"
   end
 
 # Could not dump table "marker_infos" because of following NoMethodError
