@@ -30,6 +30,7 @@ class City < ActiveRecord::Base
 		if languages.length != 0
 			return languages.to_json.gsub!(/\"/, '\'')
 		end
+
 		return 'none'
 	end
 

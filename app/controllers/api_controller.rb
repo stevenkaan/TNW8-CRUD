@@ -4,10 +4,21 @@ class ApiController < ApplicationController
 	def getCities
 
 	@cities = City.all();
+	# @counties = Country.all();
 
-	render :json => @cities.to_json(:only => [ :id, :country_id, :city_name ],
-		:methods => :get_languages
-	)
+	#render :json => @cities.to_json(:only => [ :id, :city_name ])
+
+	result = [];
+
+	for city in @cities
+		country = Country.where(id: city.country_id)
+		if city.get_languages != 'none'
+			result.push({id: city.id, name: city.city_name, country: country[0].country_name_eng, languages: city.get_languages});
+		end
+	end
+
+	render :json => result.to_json
+
 
 	end
 

@@ -18,8 +18,8 @@ class CitiesController < ApplicationController
 		@county = Country.find(params[:country_id])
 		@city = @county.cities.create(city_params)
 		@city.city_infos.create(:name => city_params['city_name'],:body => '', :language => 'nld', :city_audio => '')
-	    @city.city_infos.create(:name => '',:body => '', :language => 'eng', :city_audio => '')
-	    @city.city_infos.create(:name => '',:body => '', :language => 'esp', :city_audio => '')
+	    @city.city_infos.create(:name => city_params['city_name'],:body => '', :language => 'eng', :city_audio => '')
+	    @city.city_infos.create(:name => city_params['city_name'],:body => '', :language => 'esp', :city_audio => '')
 		redirect_to @city
 	end
 

@@ -59,6 +59,7 @@ SightGuide::Application.routes.draw do
   post '/users' => 'users#create'
 
   get '/api/getcities/:id' => 'api#getCities'
+  get '/api/getcities' => 'api#getCities'
   get '/api/getcity/:id' => 'api#getCity'
   get '/api/getmarkers/:id' => 'api#getMarkers'
   get '/api/getroutes/:id' => 'api#getRoutes'
