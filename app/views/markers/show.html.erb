@@ -88,7 +88,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
             <audio height="35" controls="controls">
               <source src="<%= @marker_info_array[1].marker_audio %>" type="audio/mpeg">
             </audio>
-            <%= link_to "", {:controller => :markers, :action => :deleteMarkerAudioEnd}, :class => "delete-audio" %>
+            <%= link_to "", {:controller => :markers, :action => :deleteMarkerAudioEng}, :class => "delete-audio" %>
           <% else %>
             <span class='file_input_style'>Audio toevoegen
               <%= f.file_field :marker_info_audio_eng, :class => 'file_input' %>
