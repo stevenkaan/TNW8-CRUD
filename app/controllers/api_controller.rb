@@ -12,9 +12,11 @@ class ApiController < ApplicationController
 
 	for city in @cities
 		country = Country.where(id: city.country_id)
+		# country: country[0].country_name_eng,
 		if city.get_languages != 'none'
 			result.push({id: city.id, name: city.city_name, country: country[0].country_name_eng, languages: city.get_languages});
 		end
+		# result.push({city: city})
 	end
 
 	render :json => result.to_json

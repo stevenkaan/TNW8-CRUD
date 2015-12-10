@@ -43,6 +43,15 @@ class CitiesController < ApplicationController
 	def destroy
 	    @city = City.find(params[:id])
 	    @country = Country.find(@city.country_id)
+
+	    for marker in @city.markers
+	    	marker.delete()
+	    end
+
+	    for route in @city.routes
+	    	route.delete()
+	    end
+
 	    @city.destroy
 		redirect_to @country
 	end

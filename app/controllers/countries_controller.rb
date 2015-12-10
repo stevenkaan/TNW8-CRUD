@@ -36,6 +36,11 @@ class CountriesController < ApplicationController
 
 	def destroy
 	    @country = Country.find(params[:id])
+	    
+	    for city in @country.cities
+	    	city.delete()
+	    end
+	    
 	    @country.destroy
 		redirect_to countries_path
 	end

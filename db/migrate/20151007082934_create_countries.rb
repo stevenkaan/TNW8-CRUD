@@ -8,4 +8,4 @@ class CreateCountries < ActiveRecord::Migration
   end
 end
 
-#rake db:drop db:create db:migrate
+#rake db:drop db:create db:migrate db:seed

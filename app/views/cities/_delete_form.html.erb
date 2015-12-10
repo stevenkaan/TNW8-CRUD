@@ -3,13 +3,13 @@
 
 
 <div class="delete-combo top-10">
-	<div class="new-btn btn delete-item" action="delete">Stad verwijderen</div>
-	<div class="delete-icon-white"></div>
+	<%= link_to 'Stad verwijderen', city_path(@city), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn delete-item' %>
 </div>
 
 <div class="new-form" action="delete" style="display: none">
 	<h2>Weet je het zeker?</h2>
 	<p>De bijbehorende routes en markers zullen ook verwijderd worden.</p>
-	<%= link_to 'Ja', city_path(@city), method: :delete, :class => 'testt' %>
-	<p class='cancel'>Nee</p>
+	<%= link_to 'Verwijder', city_path(@city), method: :delete, :class => 'testt' %>
+	<p class='cancel'>Annuleer</p>
 </div>
+
