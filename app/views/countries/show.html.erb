@@ -1,7 +1,11 @@
 <div class="container">
+
   <div class="tabbed">
-    <div id="tab_nl" class="tab active" onclick="changeTab(1)">Nederlands</div>
-    <div id="tab_en" class="tab" onclick="changeTab(2)">Engels</div>
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+       <% end %> 
+    <div id="tab_nl" class="tab" onclick="changeTab(1)">Nederlands</div>
+    <div id="tab_en" class="tab active" onclick="changeTab(2)">Engels</div>
     <div id="tab_es" class="tab" onclick="changeTab(3)">Spaans</div>
     <div class="add-form">
       <%= form_for :country, url: country_path(@country), method: :patch do |f| %>
@@ -18,13 +22,14 @@
             </ul>
           </div>
         <% end %>
-        <span id="nl">
-          <%= f.text_field :country_name_nld, :placeholder => "Naam land (Nederlands)" %>
-        </span>
-        <span id="en">
+        <span id="en" style="display: inline;">
           <%= f.text_field :country_name_eng, :placeholder => "Naam land (Engels)" %>
         </span>
-        <span id="es">
+        <span id="nl" style="display: none;">
+          <%= f.text_field :country_name_nld, :placeholder => "Naam land (Nederlands)" %>
+        </span>
+        
+        <span id="es" style="display: none;">
           <%= f.text_field :country_name_esp, :placeholder => "Naam land (Spaans)" %>
         </span>
         <div class="btn-holder">

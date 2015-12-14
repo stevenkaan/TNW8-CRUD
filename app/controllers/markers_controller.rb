@@ -19,10 +19,10 @@ class MarkersController < ApplicationController
 	    @city = City.find(params[:city_id])
 	    @marker = @city.markers.create(marker_params)
 
-	    @marker.marker_infos.create(:name => marker_params['name'],:body => '', :language => 'nld', :marker_audio => '')
-	    @marker.marker_infos.create(:name => '',:body => '', :language => 'eng', :marker_audio => '')
+	    @marker.marker_infos.create(:name => '',:body => '', :language => 'nld', :marker_audio => '')
+	    @marker.marker_infos.create(:name => marker_params['name'],:body => '', :language => 'eng', :marker_audio => '')
 	    @marker.marker_infos.create(:name => '',:body => '', :language => 'esp', :marker_audio => '')
-
+	    flash[:success] = "Bezienswaardigheid succesvol aangemaakt!"
 	    redirect_to @marker
 	end
 
@@ -32,12 +32,15 @@ class MarkersController < ApplicationController
 
 		if @marker.update(marker_params)
 
-			@marker.update_attributes(:name => marker_info_nld_params['marker_info_name_nld'])
-			@marker_info_array[0].update_attributes(:name => marker_info_nld_params['marker_info_name_nld'], :body => marker_info_nld_params['marker_info_text_nld'], :marker_audio => marker_info_nld_params['marker_info_audio_nld'])
-			@marker_info_array[1].update_attributes(:name => marker_info_eng_params['marker_info_name_eng'], :body => marker_info_eng_params['marker_info_text_eng'], :marker_audio => marker_info_eng_params['marker_info_audio_eng'])
-			@marker_info_array[2].update_attributes(:name => marker_info_esp_params['marker_info_name_esp'], :body => marker_info_esp_params['marker_info_text_esp'], :marker_audio => marker_info_esp_params['marker_info_audio_esp'])
+			if(marker_info_eng_params['marker_info_name_eng'].length != 0)
 
+				@marker.update_attributes(:name => marker_info_eng_params['marker_info_name_eng'])
+				@marker_info_array[0].update_attributes(:name => marker_info_nld_params['marker_info_name_nld'], :body => marker_info_nld_params['marker_info_text_nld'], :marker_audio => marker_info_nld_params['marker_info_audio_nld'])
+				@marker_info_array[1].update_attributes(:name => marker_info_eng_params['marker_info_name_eng'], :body => marker_info_eng_params['marker_info_text_eng'], :marker_audio => marker_info_eng_params['marker_info_audio_eng'])
+				@marker_info_array[2].update_attributes(:name => marker_info_esp_params['marker_info_name_esp'], :body => marker_info_esp_params['marker_info_text_esp'], :marker_audio => marker_info_esp_params['marker_info_audio_esp'])
+			end
 			redirect_to @marker
+
 		else
 			render 'edit'
 		end

@@ -5,11 +5,11 @@
 	<h2>Land aanmaken</h2>
 	<%= form_for :country, url: countries_path do |f| %>
 
-		<%= f.text_field :country_name_nld, placeholder: 'Naam land (Nederlands)' , required: 'required' %>
-		<%= f.hidden_field :country_name_eng, value: '' %>
+		<%= f.text_field :country_name_eng, placeholder: 'Naam land (Engels)' , required: 'required' %>
+		<%= f.hidden_field :country_name_nld, value: '' %>
 		<%= f.hidden_field :country_name_esp, value: '' %>
 		<%= f.submit "Aanmaken", :class => "btn btn-primary" %>
-
+		<button class="btn btn-primary cancel">Annuleren</button>
 	<% end %>
 </div>
 

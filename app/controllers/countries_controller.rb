@@ -21,6 +21,7 @@ class CountriesController < ApplicationController
 		@country = Country.new(country_params)
 
  		@country.save
+ 		flash[:success] = "Land succesvol aangemaakt!"
 		redirect_to @country
 	end
 

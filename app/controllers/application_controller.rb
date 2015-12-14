@@ -33,11 +33,11 @@ class ApplicationController < ActionController::Base
       html = '<div class="breadcrumbs"><ul>';
       html += '<a href="' + request.base_url.to_s + '/"><li>Landen overzicht</li></a>';
       html += '<span class="crumb-divider"> > </span>';
-      html += '<a href="' + request.base_url.to_s + '/countries/' + @country.id.to_s + '"><li>' + @country.country_name_nld + '</li></a>';
+      html += '<a href="' + request.base_url.to_s + '/countries/' + @country.id.to_s + '"><li>' + @country.country_name_eng + '</li></a>';
       html += '<span class="crumb-divider"> > </span>';
       html += '<a href="' + request.base_url.to_s + '/cities/' + @city.id.to_s + '"><li>' + @city.city_name + '</li></a>';
       html += '<span class="crumb-divider"> > </span>';
-      html += '<a href="' + request.base_url.to_s + '/routes/' + @route.id.to_s + '"><li class="active">' + @route.name_nld + '</li></a>';
+      html += '<a href="' + request.base_url.to_s + '/routes/' + @route.id.to_s + '"><li class="active">' + @route.name_eng + '</li></a>';
       html += '</ul></div>';
     end
 
@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
       @city = City.find(@marker.city_id);
       @country = Country.find(@city.country_id);
 
-      html += '<a href="' + request.base_url.to_s + '/countries/' + @country.id.to_s + '"><li>' + @country.country_name_nld + '</li></a>';
+      html += '<a href="' + request.base_url.to_s + '/countries/' + @country.id.to_s + '"><li>' + @country.country_name_eng + '</li></a>';
       html += '<span class="crumb-divider"> > </span>';
       html += '<a href="' + request.base_url.to_s + '/cities/' + @city.id.to_s + '"><li>' + @city.city_name + '</li></a>';
       html += '<span class="crumb-divider"> > </span>';
@@ -80,7 +80,7 @@ class ApplicationController < ActionController::Base
         @city = City.find(@city_infos.city_id);
       end
       @country = Country.find(@city.country_id);
-      html += '<a href="' + request.base_url.to_s + '/countries/' + @country.id.to_s + '"><li>' + @country.country_name_nld + '</li></a>';
+      html += '<a href="' + request.base_url.to_s + '/countries/' + @country.id.to_s + '"><li>' + @country.country_name_eng + '</li></a>';
       html += '<span class="crumb-divider"> > </span>';
       html += '<a href="' + request.base_url.to_s + '/cities/' + @city.id.to_s + '"><li class="active">' + @city.city_name + '</li></a>';
       html += '</ul></div>';
@@ -94,7 +94,7 @@ class ApplicationController < ActionController::Base
         html += '<a href="' + request.base_url.to_s + '/countries"><li>Landen overzicht</li></a>';
         html += '<span class="crumb-divider"> > </span>';
         @countries = Country.find(elements[countriesId]);
-        html += '<a href="' + request.base_url.to_s + '/countries/' + @country.id.to_s + '"><li class="active">' + @country.country_name_nld + '</li></a>';
+        html += '<a href="' + request.base_url.to_s + '/countries/' + @country.id.to_s + '"><li class="active">' + @country.country_name_eng + '</li></a>';
       else
         html += '<a href="' + request.base_url.to_s + '/countries"><li class="active">Landen overzicht</li></a>';
       end

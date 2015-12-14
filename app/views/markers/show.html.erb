@@ -46,6 +46,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 <div class="container">
   <div class="col-50">
+   <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+       <% end %> 
     <%= form_for :marker, :html => {:class => 'marker_info'}, url: marker_path(@marker), method: :patch do |f| %>
     <% if @marker.errors.any? %>
       <div id="error_explanation">
@@ -61,13 +64,13 @@ google.maps.event.addDomListener(window, 'load', initialize);
       </div>
     <% end %>
     <div class="tabbed">
-      <div id="tab_nl" class="tab active" onclick="changeTab(1)">Nederlands</div>
-      <div id="tab_en" class="tab" onclick="changeTab(2)">Engels</div>
+      <div id="tab_nl" class="tab" onclick="changeTab(1)">Nederlands</div>
+      <div id="tab_en" class="tab active" onclick="changeTab(2)">Engels</div>
       <div id="tab_es" class="tab" onclick="changeTab(3)">Spaans</div>
       <div class="add-form">
-        <span id="nl">
-          <%= f.text_field :marker_info_name_nld, value: @marker_info_array[0].name %>
-          <%= f.text_area :marker_info_text_nld, value: @marker_info_array[0].body %>
+        <span id="nl" style="display: none;">
+          <%= f.text_field :marker_info_name_nld, :placeholder => "Bezienswaardigheid Naam (Nederlands)", value: @marker_info_array[0].name %>
+          <%= f.text_area :marker_info_text_nld, :placeholder => "Bezienswaardigheid Informatie (Nederlands)", value: @marker_info_array[0].body %>
 
           <% if @marker_info_array[0].marker_audio.length > 0 %>
             <audio height="35" controls="controls">
@@ -80,9 +83,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
           </span>
           <% end %>
         </span>
-        <span id="en">
-          <%= f.text_field :marker_info_name_eng, value: @marker_info_array[1].name %>
-          <%= f.text_area :marker_info_text_eng, value: @marker_info_array[1].body %>
+        <span id="en" style="display: inline;">
+          <%= f.text_field :marker_info_name_eng, :placeholder => "Bezienswaardigheid Naam (Engels)", value: @marker_info_array[1].name %>
+          <%= f.text_area :marker_info_text_eng, :placeholder => "Bezienswaardigheid Informatie (Engels)", value: @marker_info_array[1].body %>
           <% if @marker_info_array[1].marker_audio.length > 0 %>
 
             <audio height="35" controls="controls">
@@ -95,9 +98,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
             </span>
           <% end %>
         </span>
-        <span id="es">
-          <%= f.text_field :marker_info_name_esp, value: @marker_info_array[2].name %>
-          <%= f.text_area :marker_info_text_esp, value: @marker_info_array[2].body %>
+        <span id="es" style="display: none;">
+          <%= f.text_field :marker_info_name_esp, :placeholder => "Bezienswaardigheid Naam (Spaans)", value: @marker_info_array[2].name %>
+          <%= f.text_area :marker_info_text_esp, :placeholder => "Bezienswaardigheid Informatie (Spaans)", value: @marker_info_array[2].body %>
           <% if @marker_info_array[2].marker_audio.length > 0 %>
             <audio height="35" controls="controls">
               <source src="<%= @marker_info_array[2].marker_audio %>" type="audio/mpeg">
@@ -121,8 +124,12 @@ google.maps.event.addDomListener(window, 'load', initialize);
     </div>
   </div>
   <div class="col-50">
-  <%= link_to 'Marker verwijderen', marker_path(@marker), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn delete-item' %><br>
-    <%= f.select(:marker_type, [['Kies een type',''],['Musea','0'],['Monument','1'],['Markt','2'],['Park','3'],['Dierentuin','4'],['Uitzichtpunt','5'],['Winkelstraat','6'],['Restaurant','7'],['Night life','8'],['Casino','9'],['Rondvaart','10'],['Bus tour','11'],['Ziekenhuis','12'],['Apotheken','13'],['Openbare toilet ','14'],['Pinautomaat','15'],['Parkeerplaats','16'],['Toeristeninformatie','17'],['Luchthaven','18'],['Trein station','19'],['Metro station','20'],['Tram halte','21'],['Bushalte','22'],['Veerboot','23'],['Openbaar vervoer','24']],  :class => 'select-type' ) %>
+  <div class="col-50">
+  
+  <p style="margin-left:24px; margin-bottom:-20px;"><%= link_to 'Marker verwijderen', marker_path(@marker), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn delete-item' %><br><br>
+  <b>Type aanpassen:</b></p>
+  </div>
+    <%= f.select(:marker_type, [['Kies een type', ''],['Apotheken', '0'],['Bus tour', '1'],['Bushalte', '2'],['Casino', '3'],['Dierentuin', '4'],['Haven', '5'],['Luchthaven', '6'],['Markt', '7'],['Metro station', '8'],['Monument', '9'],['Musea', '10'],['Night life', '11'],['Openbaar vervoer', '12'],['Openbare toilet', '13'],['Park', '14'],['Parkeerplaats', '15'],['Pinautomaat', '16'],['Restaurant', '17'],['Rondvaart', '18'],['Toeristeninformatie', '19'],['Tram halte', '20'],['Trein station', '21'],['Uitzichtpunt', '22'],['Veerboot', '23'],['Winkelstraat', '24'],['Ziekenhuis', '25']],  :class => 'select-type' ) %>
     <div class="caret"></div>
     <div class="upload-form">
       <% if @marker.marker_images.url.to_s!='' %>
@@ -179,21 +186,26 @@ google.maps.event.addDomListener(window, 'load', initialize);
   </div>
 
 
-
+<div class="uploadscreen" style="display:none;">
+  <div class="uploadicon">Bezig met uploaden.<br>een ogenblik a.u.b.</div>
+</div>
 
 
 <script type="text/javascript">
 
   $(document).on('change','#marker_marker_info_audio_nld' , function(){
     $( ".marker_info" ).submit();
+    uploadScreen ();
   });
 
   $(document).on('change','#marker_marker_info_audio_eng' , function(){
     $( ".marker_info" ).submit();
+    uploadScreen ();
   });
 
   $(document).on('change','#marker_marker_info_audio_esp' , function(){
     $( ".marker_info" ).submit();
+    uploadScreen ();
   });
   $(document).on('change','#marker_marker_images' , function(){
     $( ".marker_info" ).submit();
@@ -207,5 +219,10 @@ google.maps.event.addDomListener(window, 'load', initialize);
   $(document).on('change','#marker_marker_images_4' , function(){
     $( ".marker_info" ).submit();
   });
+
+  function uploadScreen (){
+    alert("uploading");
+    $( ".uploadscreen" ).css("display","block");
+  }
 
 </script>

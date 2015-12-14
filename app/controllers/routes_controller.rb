@@ -61,16 +61,20 @@ class RoutesController < ApplicationController
 	def create
 	    @city = City.find(params[:city_id])
 	    @route = @city.routes.create(route_params)
+	    flash[:success] = "Route succesvol aangemaakt!"
 	    redirect_to @route
 	end
 
 	def update
 		@route = Route.find(params[:id])
-
-		if @route.update(route_params)
-			redirect_to @route
+		if(route_params['name_eng'].length != 0)
+			if @route.update(route_params)
+				redirect_to @route
+			else
+				render 'edit'
+			end
 		else
-			render 'edit'
+			redirect_to @route
 		end
 	end
 

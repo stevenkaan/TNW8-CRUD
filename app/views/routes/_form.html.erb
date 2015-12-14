@@ -6,11 +6,12 @@
 	<h2>Route aanmaken</h2>
 	<p>
 		<%= form_for([@city, @city.routes.build]) do |f| %>
-	    <%= f.text_field :name_nld, placeholder: 'Route naam' %>
+	    <%= f.text_field :name_eng, placeholder: 'Route naam (Engels)' %>
 	    <%= f.hidden_field :afstand, value: 0 %>
 	</p>
 	<p>
 		 <%= f.submit "Aanmaken", :class => "btn btn-primary" %>
+		 <button class="btn btn-primary cancel">Annuleren</button>
 	</p>
 	<% end %>
 

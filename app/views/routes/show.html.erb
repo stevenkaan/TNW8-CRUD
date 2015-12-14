@@ -1,6 +1,8 @@
 <div class="container">
   <div class="col-50">
-
+ <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+       <% end %> 
     <%= form_for :route, url: route_path(@route), :class=>"no-center", method: :patch do |f| %>
 
     <% if @route.errors.any? %>
@@ -16,21 +18,21 @@
       </div>
     <% end %>
     <div class="tabbed">
-      <div id="tab_nl" class="tab active" onclick="changeTab(1)">Nederlands</div>
-      <div id="tab_en" class="tab" onclick="changeTab(2)">Engels</div>
+      <div id="tab_nl" class="tab" onclick="changeTab(1)">Nederlands</div>
+      <div id="tab_en" class="tab active" onclick="changeTab(2)">Engels</div>
       <div id="tab_es" class="tab" onclick="changeTab(3)">Spaans</div>
       <div class="add-form">
-        <span id="nl">
-          <%= f.text_field :name_nld %>
-          <%= f.text_area :info_nld %>
+        <span id="nl" style="display: none;">
+          <%= f.text_field :name_nld, :placeholder => "Route Naam (Nederlands)" %>
+          <%= f.text_area :info_nld, :placeholder => "Route Informatie (Nederlands)" %>
         </span>
-        <span id="en">
-          <%= f.text_field :name_eng %>
-          <%= f.text_area :info_eng %>
+        <span id="en" style="display: inline;">
+          <%= f.text_field :name_eng, :placeholder => "Route Naam (Engels)" %>
+          <%= f.text_area :info_eng, :placeholder => "Route Informatie (Engels)" %>
         </span>
-        <span id="es">
-          <%= f.text_field :name_esp %>
-          <%= f.text_area :info_esp %>
+        <span id="es" style="display: none;">
+          <%= f.text_field :name_esp, :placeholder => "Route Naam (Spaans)" %>
+          <%= f.text_area :info_esp, :placeholder => "Route Informatie (Spaans)" %>
         </span>
 
         <%= f.check_box :multiple_starting_points, :class => "starting-point" %>

@@ -6,11 +6,12 @@
 	<h2>Marker aanmaken</h2>
 
 	<%= form_for([@city, @city.markers.build]) do |f| %>
-	    <%= f.text_field :name, placeholder: 'Marker naam (Nederlands)' %>
+	    <%= f.text_field :name, placeholder: 'Marker naam (Engels)' %>
 	    <%= f.hidden_field :marker_type, value: 0 %>
 	  </p>
 	  <p>
 	    <%= f.submit "Aanmaken", :class => "btn btn-primary" %>
+	    <button class="btn btn-primary cancel">Annuleren</button>
 	  </p>
 	<% end %>
 

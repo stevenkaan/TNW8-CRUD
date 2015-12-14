@@ -7,11 +7,13 @@
 
 	<%= form_for([@country, @country.cities.build], :html => {:multipart => true}) do |f| %>
 	  <p>
-	    <%= f.text_field :city_name, placeholder: 'Nieuwe stad (Nederlands)', required: 'required' %>
+	    <%= f.text_field :city_name, placeholder: 'Nieuwe stad (Engels)', required: 'required' %>
 	  </p>
 	  <p>
 	    <%= f.submit "Aanmaken", :class => "btn btn-primary" %>
+	    <button class="btn btn-primary cancel">Annuleren</button>
 	  </p>
+	  
 	<% end %>
 </div>
 

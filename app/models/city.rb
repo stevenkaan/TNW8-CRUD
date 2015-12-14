@@ -17,7 +17,9 @@ class City < ActiveRecord::Base
 
 		for item in city_info
 			
-			if languages.index(item.language) == nil
+			if item.language == 'eng'
+				languages.push(item.language);	
+			else
 				if item.name.to_s.length > 0
 					if item.body.to_s.length > 0
 						languages.push(item.language);
@@ -26,12 +28,13 @@ class City < ActiveRecord::Base
 			end
 
 		end
+		
+		return languages
+		# if languages.length != 0
+		# 	return languages
+		# end
 
-		if languages.length != 0
-			return languages
-		end
-
-		return 'none'
+		# return 'none'
 	end
 
 end
