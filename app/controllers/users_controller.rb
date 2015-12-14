@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
 
+    before_filter :authorize
+
     def new
     end
 
     def signup
-      redirect_to '/countries'
+      render 'new'
     end
 
     def create
