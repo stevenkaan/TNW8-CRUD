@@ -31,10 +31,13 @@ $(function()  {
         $(this).html(i);
       });
     }
-    $(document).on("click", "td", function() {
+    $(document).on("click", ".link", function() {
         if($(this).data("href") !== undefined) {
           window.document.location = $(this).data("href");
         }
+    });
+    $(document).on("click", ".close-alert", function() {
+        $('.alert').fadeOut();
     });
     $(document).on("click", ".arrow", function() {
         if($(this).data("href") !== undefined) {
@@ -53,7 +56,6 @@ $(function()  {
         $('.new-form').css("display", "block");
       }
     });
-
     $(document).on("click", ".black-background", function() {
       $('.black-background').css("display", "none");
       $('.new-form').css("display", "none");

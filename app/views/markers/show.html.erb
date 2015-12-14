@@ -47,8 +47,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <div class="container">
   <div class="col-50">
    <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-       <% end %> 
+        <div class="alert alert-<%= key %>"><%= value %><span class="close-alert"></span></div>
+       <% end %>
     <%= form_for :marker, :html => {:class => 'marker_info'}, url: marker_path(@marker), method: :patch do |f| %>
     <% if @marker.errors.any? %>
       <div id="error_explanation">
@@ -64,8 +64,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
       </div>
     <% end %>
     <div class="tabbed">
-      <div id="tab_nl" class="tab" onclick="changeTab(1)">Nederlands</div>
+
       <div id="tab_en" class="tab active" onclick="changeTab(2)">Engels</div>
+      <div id="tab_nl" class="tab" onclick="changeTab(1)">Nederlands</div>
       <div id="tab_es" class="tab" onclick="changeTab(3)">Spaans</div>
       <div class="add-form">
         <span id="nl" style="display: none;">
@@ -125,9 +126,12 @@ google.maps.event.addDomListener(window, 'load', initialize);
   </div>
   <div class="col-50">
   <div class="col-50">
-  
-  <p style="margin-left:24px; margin-bottom:-20px;"><%= link_to 'Marker verwijderen', marker_path(@marker), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn delete-item' %><br><br>
-  <b>Type aanpassen:</b></p>
+
+
+  <div class="delete-combo top-10">
+    <%= link_to 'Marker verwijderen', marker_path(@marker), method: :delete, data: { confirm: 'Weet je het zeker?' }, :class => 'btn delete-item' %>
+    <div class="delete-icon-white"></div>
+  </div>
   </div>
     <%= f.select(:marker_type, [['Kies een type', ''],['Apotheken', '0'],['Bus tour', '1'],['Bushalte', '2'],['Casino', '3'],['Dierentuin', '4'],['Haven', '5'],['Luchthaven', '6'],['Markt', '7'],['Metro station', '8'],['Monument', '9'],['Musea', '10'],['Night life', '11'],['Openbaar vervoer', '12'],['Openbare toilet', '13'],['Park', '14'],['Parkeerplaats', '15'],['Pinautomaat', '16'],['Restaurant', '17'],['Rondvaart', '18'],['Toeristeninformatie', '19'],['Tram halte', '20'],['Trein station', '21'],['Uitzichtpunt', '22'],['Veerboot', '23'],['Winkelstraat', '24'],['Ziekenhuis', '25']],  :class => 'select-type' ) %>
     <div class="caret"></div>

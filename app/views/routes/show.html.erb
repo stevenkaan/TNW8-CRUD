@@ -1,8 +1,8 @@
 <div class="container">
   <div class="col-50">
  <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-       <% end %> 
+        <div class="alert alert-<%= key %>"><%= value %><span class="close-alert"></span></div>
+       <% end %>
     <%= form_for :route, url: route_path(@route), :class=>"no-center", method: :patch do |f| %>
 
     <% if @route.errors.any? %>
@@ -18,8 +18,8 @@
       </div>
     <% end %>
     <div class="tabbed">
-      <div id="tab_nl" class="tab" onclick="changeTab(1)">Nederlands</div>
       <div id="tab_en" class="tab active" onclick="changeTab(2)">Engels</div>
+      <div id="tab_nl" class="tab" onclick="changeTab(1)">Nederlands</div>
       <div id="tab_es" class="tab" onclick="changeTab(3)">Spaans</div>
       <div class="add-form">
         <span id="nl" style="display: none;">
@@ -39,7 +39,7 @@
         Verplicht startpunt<br/>
         Aantal KM <%= f.text_field :afstand, :placeholder => "Aantal KM", :class => "distance-input" %>
         <p style="visibility:hidden; position:absolute;" class='city_name'><%= @city.city_name %></p>
-        <div class='view_in_maps'></div>
+        <div class='view_in_maps'>Bereken afstand</div>
         <div class="btn-holder min-47">
           <%= f.submit "Opslaan" , :class => "btn btn-primary float-right"%>
         </div>
@@ -72,7 +72,7 @@
         <div data-href='<%= route_path(:marker => o, :type => 'down') %>' class="arrow-down arrow"></div>
       </td>
 
-      <td data-href='<%= route_path(:marker => o, :type => 'delete') %>'>
+      <td class="link" data-href='<%= route_path(:marker => o, :type => 'delete') %>'>
         <div class="delete-icon"></div>
       </td>
     </tr>
@@ -98,7 +98,7 @@
         <td data-href='<%= marker_path(i) %>'>
           <%= i.name %>
         </td>
-        <td data-href='<%= route_path(:marker => i, :type => 'add') %>'>
+        <td class="link" data-href='<%= route_path(:marker => i, :type => 'add') %>'>
           <div class="add-circle">+</div>
         </td>
       </tr>

@@ -10,8 +10,8 @@
 				<tbody>
 				  <% @countries.each do |country| %>
 				    <tr>
-				      <td data-href='<%= country_path(country) %>'><%= link_to country.country_name_eng, country_path(country)%>
-								<div class="delete-icon table-icon"></div>
+				      <td class="link" data-href='<%= country_path(country) %>'><%= link_to country.country_name_eng, country_path(country)%>
+
 							</td>
 				    </tr>
 				  <% end %>

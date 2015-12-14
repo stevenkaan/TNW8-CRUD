@@ -34,23 +34,39 @@ a {
 }
 
 .alert {
-	position: relative;
-	display: block;
-	text-align: center;
-	margin-left: 0 auto;
-	font-weight: bold;
-	border: 2px solid;
-	width:575px;
-	border-radius: 3px;
-	margin: 10px 0;
-
+    position: fixed;
+    z-index: 9999;
+    padding: 10px 40px 10px 20px;
+    text-align: center;
+    margin-left: 0 auto;
+    bottom: 30px;
+    right: 30px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .alert-success {
-	background-color: #d3f0ac;
-	color: green;
+	background:#111;
+	color: #EEE;
 }
-
+.close-alert{
+	display: block;
+    width: 15px;
+    height: 15px;
+    background: #000;
+    float: right;
+    margin-top: -1px;
+    font-size: 1.5em;
+    font-weight: 200;
+    color: #EEE;
+    margin-right: -25px;
+    cursor: pointer;
+}
+.close-alert:hover {
+	font-weight: 500;
+}
+.close-alert:after {
+	content: "x";
+}
 .file_input_style {
     display: block;
     width:200px;
@@ -238,6 +254,7 @@ td,th {
 	line-height: 180px;
 	background: url('add-plus.png');
 	position: relative;
+	overflow: hidden;
 }
 .upload:hover{
 	background: #DDD url('add-plus.png');
@@ -413,7 +430,7 @@ tr:hover  .delete-icon{
 	opacity: 1;
 }
 
-.add-btn {
+.add-btn, .close-btn {
 	cursor: pointer;
 }
 /* Buttons */

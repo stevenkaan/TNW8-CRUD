@@ -37,6 +37,7 @@ class CitiesController < ApplicationController
 				@city_info_array[2].update_attributes(:name => city_info_esp_params['city_info_name_esp'], :body => city_info_esp_params['city_info_text_esp'], :city_audio => city_info_esp_params['city_info_audio_esp'])
   			end
     		redirect_to @city
+
   		else
     		render 'edit'
   		end

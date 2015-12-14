@@ -1,8 +1,8 @@
 <div class="container">
   <div class="col-50">
    <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-       <% end %> 
+        <div class="alert alert-<%= key %>"><%= value %><span class="close-alert"></span></div>
+       <% end %>
     <%= form_for :city, :html => {:class => 'city_info'}, url: city_path(@city), method: :patch do |f| %>
 
     <% if @city.errors.any? %>
@@ -19,8 +19,8 @@
       </div>
     <% end %>
     <div class="tabbed">
-      <div id="tab_nl" class="tab" onclick="changeTab(1)">Nederlands</div>
       <div id="tab_en" class="tab active" onclick="changeTab(2)">Engels</div>
+      <div id="tab_nl" class="tab" onclick="changeTab(1)">Nederlands</div>
       <div id="tab_es" class="tab" onclick="changeTab(3)">Spaans</div>
       <div class="add-form">
         <span id="nl" style="display: none;">
