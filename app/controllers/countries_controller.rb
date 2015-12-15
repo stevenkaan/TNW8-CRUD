@@ -29,6 +29,7 @@ class CountriesController < ApplicationController
   		@country = Country.find(params[:id])
 
   		if @country.update(country_params)
+  			flash[:success] = "Land succesvol opgeslagen!"
     		redirect_to @country
   		else
     		render 'edit'
@@ -41,8 +42,8 @@ class CountriesController < ApplicationController
 	    for city in @country.cities
 	    	city.delete()
 	    end
-	    
 	    @country.destroy
+	    flash[:success] = "Land succesvol verwijderd!"
 		redirect_to countries_path
 	end
 

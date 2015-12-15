@@ -38,6 +38,8 @@ class MarkersController < ApplicationController
 				@marker_info_array[0].update_attributes(:name => marker_info_nld_params['marker_info_name_nld'], :body => marker_info_nld_params['marker_info_text_nld'], :marker_audio => marker_info_nld_params['marker_info_audio_nld'])
 				@marker_info_array[1].update_attributes(:name => marker_info_eng_params['marker_info_name_eng'], :body => marker_info_eng_params['marker_info_text_eng'], :marker_audio => marker_info_eng_params['marker_info_audio_eng'])
 				@marker_info_array[2].update_attributes(:name => marker_info_esp_params['marker_info_name_esp'], :body => marker_info_esp_params['marker_info_text_esp'], :marker_audio => marker_info_esp_params['marker_info_audio_esp'])
+			
+				flash[:success] = "Bezienswaardigheid succesvol opgeslagen!"
 			end
 			redirect_to @marker
 
@@ -50,6 +52,8 @@ class MarkersController < ApplicationController
 		@marker = Marker.find(params[:id])
 		@city = City.find(@marker.city_id)
 		@marker.destroy
+
+		flash[:success] = "Bezienswaardigheid succesvol verwijderd!"
 		redirect_to @city
 	end
 

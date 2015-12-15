@@ -35,7 +35,10 @@ class CitiesController < ApplicationController
 				@city_info_array[0].update_attributes(:name => city_info_nld_params['city_info_name_nld'], :body => city_info_nld_params['city_info_text_nld'], :city_audio => city_info_nld_params['city_info_audio_nld'])
 				@city_info_array[1].update_attributes(:name => city_info_eng_params['city_info_name_eng'], :body => city_info_eng_params['city_info_text_eng'], :city_audio => city_info_eng_params['city_info_audio_eng'])
 				@city_info_array[2].update_attributes(:name => city_info_esp_params['city_info_name_esp'], :body => city_info_esp_params['city_info_text_esp'], :city_audio => city_info_esp_params['city_info_audio_esp'])
+  			
+				flash[:success] = "Stad succesvol opgeslagen!"
   			end
+
     		redirect_to @city
 
   		else
