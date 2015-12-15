@@ -66,6 +66,13 @@ $(function()  {
     });
 
 });
+
+$(document).on("click", ".delete-item", function() {
+  var attr = $(this).attr('action');
+  $('.black-background[action='+attr+']').css("display", "block");
+  $('.new-form[action='+attr+']').css("display", "block");
+});
+
 /// Change tabs ///
 var changeTab = function(tab){
   if(tab == 1) {

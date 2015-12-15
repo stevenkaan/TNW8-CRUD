@@ -4,14 +4,14 @@
 
 <div class="delete-combo top-10">
 
-	<button action="delete" class="btn delete-item">Stad verwijderen</button>
+	<button type="button" action="delete" class="btn delete-item">Land verwijderen</button>
 	<div class="delete-icon-white"></div>
 </div>
 
 <div class="new-form" action="delete" style="display: none">
 	<h2>Weet je het zeker?</h2>
-	<p>De bijbehorende routes en markers zullen ook verwijderd worden.</p>
-	<%= link_to 'Verwijder', city_path(@city), method: :delete, :class => 'btn delete-item' %>
+	<p>De bijbehorende steden zullen ook verwijderd worden.</p>
+	<%= link_to 'Verwijder', country_path(@country), method: :delete, :class => 'btn delete-item' %>
 	<div class="delete-icon-white"></div>
 	<button type="button" class="btn btn-primary cancel"  style="margin-left:35px;">Annuleer</button>
 </div>
