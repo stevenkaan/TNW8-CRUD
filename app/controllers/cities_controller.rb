@@ -59,6 +59,7 @@ class CitiesController < ApplicationController
 	    end
 
 	    @city.destroy
+	    flash[:success] = "Stad succesvol verwijderd!"
 		redirect_to @country
 	end
 

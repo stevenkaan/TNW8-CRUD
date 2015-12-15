@@ -84,6 +84,13 @@ class RoutesController < ApplicationController
 	def destroy
 		@route = Route.find(params[:id])
 		@city = City.find(@route.city_id)
+
+		@markersRoutes = MarkersRoutes.where(route_id: params[:id]);
+		
+		for marker in @markersRoutes
+	    	marker.delete()
+	    end
+
 		@route.destroy
 		flash[:success] = "Route succesvol verwijdered!"
 		redirect_to @city

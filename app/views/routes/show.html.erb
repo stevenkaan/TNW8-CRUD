@@ -44,10 +44,7 @@
           <%= f.submit "Opslaan" , :class => "btn btn-primary float-right"%>
         </div>
 
-        <div class="delete-combo top-10">
-          <%= link_to 'Route verwijderen', route_path(@route), method: :delete, data: { confirm: 'Weet je het zeker?' }, :class => 'btn delete-item' %>
-          <div class="delete-icon-white"></div>
-        </div>
+        <%= render 'routes/delete_form' %>
 
 
       </div>

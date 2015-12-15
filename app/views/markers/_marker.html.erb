@@ -8,5 +8,11 @@ items = ['Apotheken','Bus tour','Bushalte','Casino','Dierentuin','Haven','Luchth
 	<td class="link" data-href='<%= marker_path(marker) %>'>
 		<%= link_to marker.name, marker_path(marker) %>
 	</td>
-	<td class="link" data-href='<%= marker_path(marker) %>'><%= items[marker.marker_type] %></td>
+	<td class="link" data-href='<%= marker_path(marker) %>'>
+	<%= if marker.marker_type != nil
+			items[marker.marker_type]
+		else
+			"geen"
+		end %>
+	</td>
 </tr>

@@ -1,14 +1,17 @@
 <div class="black-background" action="delete" style="display: none">
 </div>
+
+
 <div class="delete-combo top-10">
-	<button type="button" action="delete" class="btn delete-item">Land verwijderen</button>
+
+	<button type="button" action="delete" class="btn delete-item">Route verwijderen</button>
 	<div class="delete-icon-white"></div>
 </div>
 
 <div class="new-form" action="delete" style="display: none">
 	<h2>Weet je het zeker?</h2>
-	<p>De bijbehorende steden zullen ook verwijderd worden.</p>
-	<%= link_to 'Verwijder', country_path(@country), method: :delete, :class => 'btn delete-item' %>
+	<p>Het verwijderen kan niet meer ongedaan gemaakt worden.</p>
+	<%= link_to 'Verwijder', route_path(@route), method: :delete, :class => 'btn delete-item' %>
 	<div class="delete-icon-white"></div>
 	<button type="button" class="btn btn-primary cancel"  style="margin-left:35px;">Annuleer</button>
 </div>
