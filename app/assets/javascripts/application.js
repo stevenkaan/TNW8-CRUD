@@ -17,6 +17,16 @@
 
 
 $(function()  {
+  
+    $("#route_afstand").keyup(function(e){
+      var key = e.which ? e.which : event.keyCode;
+      if(key == 110 || key == 188){
+        e.preventDefault();
+        var value = $(this).val();       
+        $(this).val(value.replace(",","."));
+      }   
+    });
+
     $(document).on("click", ".hamburger", function() {
       if( $('.hb-menu').css('display') === 'none'){
         $('.hb-menu').show();

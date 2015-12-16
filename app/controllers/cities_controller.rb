@@ -42,7 +42,9 @@ class CitiesController < ApplicationController
     		redirect_to @city
 
   		else
-    		render 'edit'
+
+  			flash[:success] = "Fout bij het opslaan van de stad!"
+    		redirect_to @city
   		end
 	end
 

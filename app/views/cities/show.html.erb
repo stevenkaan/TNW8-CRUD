@@ -26,7 +26,6 @@
         <span id="nl" style="display: none;">
           <%= f.text_field :city_info_name_nld, :placeholder => "Naam Stad (Nederlands)", value: @city_info_array[0].name %>
           <%= f.text_area :city_info_text_nld, :placeholder => "Informatie Stad (Nederlands)", value: @city_info_array[0].body %>
-          <%= @city_info_array[0].city_audio %><br>
         </span>
         <span id="en" style="display: inline;">
           <%= f.text_field :city_info_name_eng, :placeholder => "Naam Stad (Engels)", value: @city_info_array[1].name %>

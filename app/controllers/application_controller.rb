@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
       @country = Country.find(@city.country_id);
 
       html = '<div class="breadcrumbs"><ul>';
-      html += '<a href="' + request.base_url.to_s + '/"><li>Landen overzicht</li></a>';
+      html += '<a href="' + request.base_url.to_s + '/countries"><li>Landen overzicht</li></a>';
       html += '<span class="crumb-divider"> > </span>';
       html += '<a href="' + request.base_url.to_s + '/countries/' + @country.id.to_s + '"><li>' + @country.country_name_eng + '</li></a>';
       html += '<span class="crumb-divider"> > </span>';
@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
 
     if elements.index("markers") || elements.index("marker_infos") != nil
       html = '<div class="breadcrumbs"><ul>';
-      html += '<a href="' + request.base_url.to_s + '/"><li>Landen overzicht</li></a>';
+      html += '<a href="' + request.base_url.to_s + '/countries"><li>Landen overzicht</li></a>';
       html += '<span class="crumb-divider"> > </span>';
       if elements.index("markers") != nil
         markerId = elements.index("markers") + 1;
@@ -70,7 +70,7 @@ class ApplicationController < ActionController::Base
 
     if elements.index("cities") || elements.index("city_infos") != nil
       html = '<div class="breadcrumbs"><ul>';
-      html += '<a href="' + request.base_url.to_s + '/"><li>Landen overzicht</li></a>';
+      html += '<a href="' + request.base_url.to_s + '/countries"><li>Landen overzicht</li></a>';
       html += '<span class="crumb-divider"> > </span>';
       if elements.index("cities") != nil
         cityId = elements.index("cities") + 1;

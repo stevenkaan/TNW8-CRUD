@@ -132,7 +132,12 @@ google.maps.event.addDomListener(window, 'load', initialize);
   </div>
     <%= f.select(:marker_type, [['Kies een type', ''],['Apotheken', '0'],['Bus tour', '1'],['Bushalte', '2'],['Casino', '3'],['Dierentuin', '4'],['Haven', '5'],['Luchthaven', '6'],['Markt', '7'],['Metro station', '8'],['Monument', '9'],['Musea', '10'],['Night life', '11'],['Openbaar vervoer', '12'],['Openbare toilet', '13'],['Park', '14'],['Parkeerplaats', '15'],['Pinautomaat', '16'],['Restaurant', '17'],['Rondvaart', '18'],['Toeristeninformatie', '19'],['Tram halte', '20'],['Trein station', '21'],['Uitzichtpunt', '22'],['Veerboot', '23'],['Winkelstraat', '24'],['Ziekenhuis', '25']],  :class => 'select-type' ) %>
     <div class="caret"></div>
+    <div class="checkbox-marker">
+      <%= f.check_box :icon_only, :class => "starting-point" %>
+      Alleen icoon weergeven
+    </div>
     <div class="upload-form">
+
       <% if @marker.marker_images.url.to_s!='' %>
         <div class="upload">
           <%= link_to "",  :controller => :markers, :action => :deleteMarkerImage %>

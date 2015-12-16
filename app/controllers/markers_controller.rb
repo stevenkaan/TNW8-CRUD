@@ -44,7 +44,8 @@ class MarkersController < ApplicationController
 			redirect_to @marker
 
 		else
-			render 'edit'
+			flash[:success] = "Fout bij het opslaan van de bezienswaardigheid!"
+			redirect_to @marker
 		end
 	end
 
@@ -111,7 +112,7 @@ class MarkersController < ApplicationController
 
 	private
 		def marker_params
-			params.require(:marker).permit(:name, :marker_images, :marker_images_2, :marker_images_3, :marker_images_4, :marker_lng, :marker_lat, :marker_type)
+			params.require(:marker).permit(:name, :icon_only, :marker_images, :marker_images_2, :marker_images_3, :marker_images_4, :marker_lng, :marker_lat, :marker_type)
 		end
 
 	private
