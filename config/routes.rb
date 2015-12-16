@@ -25,8 +25,6 @@ SightGuide::Application.routes.draw do
 
   # resources :cities
   # resources :markers
-  resources :marker_infos
-  resources :city_infos
 
   resources :routes do
     resources :markers
@@ -37,14 +35,11 @@ SightGuide::Application.routes.draw do
   end
 
   resources :cities do
-    resources :city_infos
     resources :markers
     resources :routes
   end
 
-  resources :markers do
-    resources :marker_infos
-  end
+  resources :markers
 
 
   root 'sessions#download'
