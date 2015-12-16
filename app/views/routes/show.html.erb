@@ -109,22 +109,43 @@
   </div>
 <script type="text/javascript">
 
-$('.view_in_maps').click( function(){
-  var win = window.open(google_maps_link, '_blank');
-  win.focus();
-});
+$(function()  {
 
-var google_maps_link = 'https://www.google.nl/maps/dir/';
-var city_name = $('.city_name').html();
-$('.marker-name').each( function(){
+  $('.view_in_maps').click( function(){
+    var win = window.open(google_maps_link, '_blank');
+    win.focus();
+  });
 
-  var name = $(this).text();
+  var google_maps_link = 'https://www.google.nl/maps/dir/';
+  var city_name = $('.city_name').html();
 
-  if(name != undefined) {
-    google_maps_link += name+',+'+city_name+'/';
+  $('.marker-name').each( function(){
+
+    var name = $(this).text();
+
+    if(name != undefined) {
+      google_maps_link += name+',+'+city_name+'/';
+    }
+
+  });
+
+  if( $('.order')){
+    var i = 0;
+    $( ".order" ).each(function( index ) {
+      i++;
+      $(this).html(i);
+    });
   }
 
+  $("#route_afstand").keyup(function(e){
+    var key = e.which ? e.which : event.keyCode;
+    if(key == 110 || key == 188) {
+      e.preventDefault();
+      var value = $(this).val();       
+      $(this).val(value.replace(",","."));
+    }   
+  });
+  
 });
-
 
 </script>

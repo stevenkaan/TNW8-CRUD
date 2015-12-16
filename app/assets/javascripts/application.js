@@ -18,15 +18,6 @@
 
 $(function()  {
   
-    $("#route_afstand").keyup(function(e){
-      var key = e.which ? e.which : event.keyCode;
-      if(key == 110 || key == 188){
-        e.preventDefault();
-        var value = $(this).val();       
-        $(this).val(value.replace(",","."));
-      }   
-    });
-
     $(document).on("click", ".hamburger", function() {
       if( $('.hb-menu').css('display') === 'none'){
         $('.hb-menu').show();
@@ -34,13 +25,9 @@ $(function()  {
         $('.hb-menu').hide();
       }
     });
-    if( $('.order')){
-      var i = 0;
-      $( ".order" ).each(function( index ) {
-        i++;
-        $(this).html(i);
-      });
-    }
+
+
+
     $(document).on("click", ".link", function() {
         if($(this).data("href") !== undefined) {
           window.document.location = $(this).data("href");
