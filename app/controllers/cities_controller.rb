@@ -6,8 +6,13 @@ class CitiesController < ApplicationController
 	end
 
 	def show
-		@city = City.find(params[:id])
-		@city_info_array = CityInfo.where("city_id = " + params[:id])
+		begin
+			@city = City.find(params[:id])
+			@city_info_array = CityInfo.where("city_id = " + params[:id])
+		rescue ActiveRecord::RecordNotFound => e
+			render :json => '404'
+			return
+		end
 	end
 
 	def edit

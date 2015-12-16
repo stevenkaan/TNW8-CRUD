@@ -7,7 +7,12 @@ class CountriesController < ApplicationController
 	end
 
 	def show
-		@country = Country.find(params[:id])
+		begin
+			@country = Country.find(params[:id])
+		rescue ActiveRecord::RecordNotFound => e
+			render :json => '404'
+			return
+		end
 	end
 
 	def new

@@ -27,12 +27,18 @@ class ApiController < ApplicationController
 		language = params[:lang];
 
 		@city = City.where(id: params[:id]);
+		
+		if @city.length == 0
+			render :json => '404'
+			return
+		end
+
 		@markers = Marker.where(city_id: params[:id]);
 		@routes = Route.where(city_id: params[:id]);
 
 		country = Country.where(id: @city[0].country_id)
 		city_info = CityInfo.where(city_id: @city[0].id, language: language);
-		
+
 		if language == 'eng' or language == 'nld' or language == 'esp' 	
 
 			for marker in @markers
@@ -71,7 +77,12 @@ class ApiController < ApplicationController
 			
 		end
 
-		render :json => {city: result}
+		if @city[0].get_languages.include?(language)
+			render :json => {city: result}
+		else
+		
+			render :json => '404'
+		end
 
 	end
 

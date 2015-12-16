@@ -6,9 +6,13 @@ class MarkersController < ApplicationController
 	end
 
 	def show
-
-		@marker = Marker.find(params[:id])
-		@marker_info_array = MarkerInfo.where("marker_id = " + params[:id])
+		begin
+			@marker = Marker.find(params[:id])
+			@marker_info_array = MarkerInfo.where("marker_id = " + params[:id])
+		rescue ActiveRecord::RecordNotFound => e
+			render :json => '404'
+			return
+		end
 	end
 
 	def edit

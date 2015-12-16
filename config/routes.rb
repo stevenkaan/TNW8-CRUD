@@ -56,6 +56,7 @@ SightGuide::Application.routes.draw do
   # get '/api/getcities/:id' => 'api#getCities'
   get '/api/getcities' => 'api#getCities'
   get '/api/getcity/:id/:lang' => 'api#getCity'
+
   # get '/api/getmarkers/:id' => 'api#getMarkers'
   # get '/api/getroutes/:id' => 'api#getRoutes'
 
@@ -107,4 +108,6 @@ SightGuide::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  get '*unmatched_route', :to => 'pages#pageNotFound'
+
 end

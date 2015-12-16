@@ -4,7 +4,14 @@ class RoutesController < ApplicationController
 	end
 
 	def show
-		@route = Route.find(params[:id])
+
+		begin
+			@route = Route.find(params[:id])
+		rescue ActiveRecord::RecordNotFound => e
+			render :json => '404'
+			return
+		end
+
 		@city = City.find(@route.city_id)
 
 		@markers_not_in_route = unique
