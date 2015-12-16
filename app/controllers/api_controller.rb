@@ -38,7 +38,7 @@ class ApiController < ApplicationController
 			for marker in @markers
 				marker_info = MarkerInfo.where(marker_id: marker.id, language: language);
 				if(marker.marker_lat != nil && marker.marker_lng != nil) 
-					markers_array.push( id: marker.id, name: marker_info[0].name, info: marker_info[0].body,type: marker.marker_type, latitude: marker.marker_lat, longitude: marker.marker_lng, audio: marker_info[0].marker_audio.url, image_1: marker.marker_images.url, image_2: marker.marker_images_2.url, image_3: marker.marker_images_3.url, image_4: marker.marker_images_4.url );
+					markers_array.push( id: marker.id, name: marker_info[0].name, info: marker_info[0].body, type: marker.marker_type, icon_only: marker.icon_only, latitude: marker.marker_lat, longitude: marker.marker_lng, audio: marker_info[0].marker_audio.url, image_1: marker.marker_images.url, image_2: marker.marker_images_2.url, image_3: marker.marker_images_3.url, image_4: marker.marker_images_4.url );
 				end
 			end
 			
