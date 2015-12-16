@@ -52,6 +52,11 @@ class MarkersController < ApplicationController
 	def destroy
 		@marker = Marker.find(params[:id])
 		@city = City.find(@marker.city_id)
+
+		for markerinfo in @marker.marker_infos
+	    	markerinfo.delete()
+	    end
+
 		@marker.destroy
 
 		flash[:success] = "Bezienswaardigheid succesvol verwijderd!"
