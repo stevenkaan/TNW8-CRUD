@@ -10,7 +10,7 @@ body {
 	color: #595959;
 }
 .background-img{
-  background: url('sight_guide_bg.jpg') no-repeat center center fixed;
+  background: url('Landingpage_01.png') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -19,6 +19,24 @@ body {
   height: 100%;
   position: fixed;
   z-index: 0;
+}
+section {
+  width: 100vw;
+  height: 100vh;
+  padding: 30px 90px;
+}
+h1 {
+  color: #E8684C;
+  font-weight: 200;
+  font-size: 4em;
+  text-transform: uppercase;
+}
+h1 span {
+  font-weight: 800;
+}
+h2 {
+  color: #FFF;
+  font-size: 2em;
 }
 .scrollable{
   width: 100vw;
