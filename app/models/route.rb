@@ -20,6 +20,4 @@ class Route < ActiveRecord::Base
     	result
 	end
 
-
-
 end
