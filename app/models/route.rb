@@ -8,8 +8,16 @@ class Route < ActiveRecord::Base
     :association_foreign_key => "marker_id")
 
     def return_markers ()
-    	markers_in_route = MarkersRoutes.select(:id).where( route_id: id).order(position: :asc);
+ 
+    	markers_in_route = MarkersRoutes.select(:marker_id).where( route_id: id).order(position: :asc);
     	# markers_in_route.to_json(:only => [ :marker_id ] );
+    	result = [];
+
+    	for marker in markers_in_route
+    		result.push(marker.marker_id);
+    	end
+
+    	result
 	end
 
 
