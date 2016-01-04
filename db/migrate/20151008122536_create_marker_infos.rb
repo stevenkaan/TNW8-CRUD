@@ -3,7 +3,7 @@ class CreateMarkerInfos < ActiveRecord::Migration
     create_table :marker_infos do |t|
       t.text :body
       t.string :language
-      t.references :marker, index: true
+      t.references :marker, index: true, foreign_key: true
 
       t.timestamps
     end
