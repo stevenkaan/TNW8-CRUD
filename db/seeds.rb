@@ -9,10 +9,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 # rake db:drop db:create db:migrate db:setup
 
-user = User.create([{name: 'Admin', email: 'admin@admin.com', password: 'adminlogin', password_confirmation: 'adminlogin'}])
-# country = Country.create([{country_name_nld: 'Nederland'}])
-# city = City.create([{city_name: 'Groningen', country_id: 1}])
-# marker = Marker.create([{name: 'Peerd van ome Loeks', city_id: 1}])
-# marker = Marker.create([{name: 'Martinitoren', city_id: 1}])
-# marker = Marker.create([{name: 'Vismarkt', city_id: 1}])
-
+user = User.create([{name: 'Nico van den Helm', email: 'nico@sightguide.nl', password: '@-loginpwd', password_confirmation: '@-loginpwd'}])
+country = Country.create([{country_name_nld: 'Nederland', country_name_eng: 'The netherlands', country_name_esp: 'Holanda'}])
