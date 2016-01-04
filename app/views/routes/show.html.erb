@@ -1,3 +1,80 @@
+<script>
+var allWaypoints;
+var start;
+function setWaypoints() {
+  allWaypoints = [];
+  $( ".lat-lng" ).each(function( index ) {
+
+    var lat =  $(this).data('lat');
+    var lng = $(this).data('lng');
+    var latLng = new google.maps.LatLng(lat,lng);
+    var add = {location: latLng,stopover:false};
+    allWaypoints.push(add);
+    if(index === 0){
+      start = new google.maps.LatLng(lat,lng);
+    }
+
+  });
+
+
+}
+
+function calculateRoute() {
+        var myOptions = {
+          zoom: 10,
+          center: new google.maps.LatLng(53.0, 9.0),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        // Draw the map
+        var mapObject = new google.maps.Map(document.getElementById("map"), myOptions);
+        console.log(allWaypoints);
+        var directionsService = new google.maps.DirectionsService();
+        var directionsRequest = {
+          origin: start,
+          destination: start,
+          waypoints: allWaypoints,
+          optimizeWaypoints: false,
+          travelMode: google.maps.DirectionsTravelMode.WALKING,
+          unitSystem: google.maps.UnitSystem.METRIC
+        };
+        directionsService.route(
+          directionsRequest,
+          function(response, status)
+          {
+            if (status == google.maps.DirectionsStatus.OK)
+            {
+              new google.maps.DirectionsRenderer({
+                map: mapObject,
+                directions: response
+              });
+              showSteps(response);
+            }
+            else
+              $("#error").append("Unable to retrieve your route<br />");
+          }
+        );
+      }
+      var route = [];
+      function showSteps(directionResult) {
+      var myRoute = directionResult.routes[0].legs[0];
+      for (var i = 0; i < myRoute.steps.length; i++) {
+            var lati = myRoute.steps[i].start_point.lat();
+            var longi = myRoute.steps[i].start_point.lng();
+
+          route.push("["+lati,longi+"]");
+      }
+      console.log(directionResult.routes[0].legs[0].distance.value);
+      $("#path").val(route);
+      var distance = (directionResult.routes[0].legs[0].distance.value) / 1000;
+      $("#route_afstand").val( distance.toFixed(1) );
+    }
+
+
+      $(document).ready(function() {
+        setWaypoints();
+        calculateRoute();
+      });
+</script>
 <div class="container">
   <div class="col-50">
  <% flash.each do |key, value| %>
@@ -39,7 +116,7 @@
         Verplicht startpunt<br/>
         Aantal KM <%= f.text_field :afstand, :placeholder => "Aantal KM", :class => "distance-input" %>
         <p style="visibility:hidden; position:absolute;" class='city_name'><%= @city.city_name %></p>
-        <div class='view_in_maps'>Bereken afstand</div>
+        <%= f.text_field :path, :id => "path", :type => "hidden" %>
         <div class="btn-holder min-47">
           <%= f.submit "Opslaan" , :class => "btn btn-primary float-right"%>
         </div>
@@ -50,7 +127,10 @@
       </div>
 
 
-</div></div>
+  </div>
+  <div id="map"></div>
+</div>
+
 <div class="col-50">
   <br/>
   <div class="page-header">
@@ -62,7 +142,7 @@
     <tr>
       <td class="order"></td>
       <td data-href='<%= marker_path(o) %>'>
-        <span class="marker-name"><%= o.name %></span>
+        <span data-lat='<%= o.marker_lat %>' data-lng='<%= o.marker_lng %>' class="marker-name lat-lng"><%= o.name %></span>
       </td>
       <td>
         <div data-href='<%= route_path(:marker => o, :type => 'up') %>' class="arrow-up arrow"></div>
@@ -141,11 +221,11 @@ $(function()  {
     var key = e.which ? e.which : event.keyCode;
     if(key == 110 || key == 188) {
       e.preventDefault();
-      var value = $(this).val();       
+      var value = $(this).val();
       $(this).val(value.replace(",","."));
-    }   
+    }
   });
-  
+
 });
 
 </script>

@@ -1,5 +1,5 @@
 class RoutesController < ApplicationController
-	
+
 	def index
 	end
 
@@ -16,7 +16,7 @@ class RoutesController < ApplicationController
 
 		@markers_not_in_route = unique
 		@markers_in_route =  @route.markers.order("position ASC")
-		
+
 		if(params[:marker] and params[:type])
 
 			if params[:type] == 'delete'
@@ -32,7 +32,7 @@ class RoutesController < ApplicationController
 				MarkersRoutes.create(:marker_id => params[:marker], :route_id => @route.id, :position => max_position+1)
 				redirect_to @route
 			end
-			
+
 			if params[:type] == 'up'
 
 				@marker_route = MarkersRoutes.find_by marker_id: params[:marker], route_id: @route.id
@@ -93,7 +93,7 @@ class RoutesController < ApplicationController
 		@city = City.find(@route.city_id)
 
 		@markersRoutes = MarkersRoutes.where(route_id: params[:id]);
-		
+
 		for marker in @markersRoutes
 	    	marker.delete()
 	    end
@@ -107,7 +107,7 @@ class RoutesController < ApplicationController
 		def unique
 			@route = Route.find(params[:id])
 			@city = City.find(@route.city_id)
-			
+
 			@markers_in_route = []
 
 			for item in @city.markers
@@ -117,8 +117,8 @@ class RoutesController < ApplicationController
 					@marker = Marker.find(item)
 					@markers_in_route.push(@marker)
 				end
-				
-				
+
+
 			end
 
 			@markers_in_route
@@ -132,6 +132,6 @@ class RoutesController < ApplicationController
 
 	private
 		def route_params
-			params.require(:route).permit(:afstand, :multiple_starting_points, :name_nld, :info_nld, :name_eng, :info_eng, :name_esp, :info_esp)
+			params.require(:route).permit(:afstand, :path, :multiple_starting_points, :name_nld, :info_nld, :name_eng, :info_eng, :name_esp, :info_esp)
 		end
 end

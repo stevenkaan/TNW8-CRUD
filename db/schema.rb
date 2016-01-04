@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20151216102436) do
 
   create_table "routes", force: true do |t|
     t.decimal  "afstand"
+    t.text     "path"
     t.integer  "city_id"
     t.datetime "created_at"
     t.datetime "updated_at"
