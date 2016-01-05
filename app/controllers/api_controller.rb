@@ -50,8 +50,11 @@ class ApiController < ApplicationController
 
 			if language == 'nld'
 				for route in @routes
-					routes_array.push( id: route.id, name: route.name_nld, info: route.info_nld, distance: route.afstand, multiple_startingpoints: route.multiple_starting_points, markers: route.return_markers, path: route.path);
+					if(route.name_nld != nil)
+						routes_array.push( id: route.id, name: route.name_nld, info: route.info_nld, distance: route.afstand, multiple_startingpoints: route.multiple_starting_points, markers: route.return_markers, path: route.path);
+					end
 				end
+
 
 				result = { id: @city[0].id, name: city_info[0].name, info: city_info[0].body, country: country[0].country_name_nld, image_1: @city[0].city_images.url, image_2: @city[0].city_images_2.url, image_3: @city[0].city_images_3.url, image_4: @city[0].city_images_4.url, markers: markers_array, routes: routes_array };
 
@@ -59,7 +62,9 @@ class ApiController < ApplicationController
 
 			if language == 'eng'
 				for route in @routes
-					routes_array.push( id: route.id, name: route.name_eng, info: route.info_eng, distance: route.afstand, multiple_startingpoints: route.multiple_starting_points, markers: route.return_markers, path: route.path);
+					if(route.name_eng != nil)
+						routes_array.push( id: route.id, name: route.name_eng, info: route.info_eng, distance: route.afstand, multiple_startingpoints: route.multiple_starting_points, markers: route.return_markers, path: route.path);
+					end
 				end
 
 				result = { id: @city[0].id, name: city_info[0].name, info: city_info[0].body, country: country[0].country_name_eng, image_1: @city[0].city_images.url, image_2: @city[0].city_images_2.url, image_3: @city[0].city_images_3.url, image_4: @city[0].city_images_4.url, markers: markers_array, routes: routes_array };
@@ -68,7 +73,9 @@ class ApiController < ApplicationController
 
 			if language == 'esp'
 				for route in @routes
-					routes_array.push( id: route.id, name: route.name_esp, info: route.info_esp, distance: route.afstand, multiple_startingpoints: route.multiple_starting_points, markers: route.return_markers, path: route.path);
+					if(route.name_esp != nil)
+						routes_array.push( id: route.id, name: route.name_esp, info: route.info_esp, distance: route.afstand, multiple_startingpoints: route.multiple_starting_points, markers: route.return_markers, path: route.path);
+					end
 				end
 
 				result = { id: @city[0].id, name: city_info[0].name, info: city_info[0].body, country: country[0].country_name_esp, image_1: @city[0].city_images.url, image_2: @city[0].city_images_2.url, image_3: @city[0].city_images_3.url, image_4: @city[0].city_images_4.url, markers: markers_array, routes: routes_array };
