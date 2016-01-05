@@ -50,7 +50,7 @@ class ApiController < ApplicationController
 
 			if language == 'nld'
 				for route in @routes
-					if(route.name_nld != nil)
+					if(route.name_nld != "")
 						routes_array.push( id: route.id, name: route.name_nld, info: route.info_nld, distance: route.afstand, multiple_startingpoints: route.multiple_starting_points, markers: route.return_markers, path: route.path);
 					end
 				end
@@ -62,7 +62,7 @@ class ApiController < ApplicationController
 
 			if language == 'eng'
 				for route in @routes
-					if(route.name_eng != nil)
+					if(route.name_eng != "")
 						routes_array.push( id: route.id, name: route.name_eng, info: route.info_eng, distance: route.afstand, multiple_startingpoints: route.multiple_starting_points, markers: route.return_markers, path: route.path);
 					end
 				end
@@ -73,7 +73,7 @@ class ApiController < ApplicationController
 
 			if language == 'esp'
 				for route in @routes
-					if(route.name_esp != nil)
+					if(route.name_esp != "")
 						routes_array.push( id: route.id, name: route.name_esp, info: route.info_esp, distance: route.afstand, multiple_startingpoints: route.multiple_starting_points, markers: route.return_markers, path: route.path);
 					end
 				end
