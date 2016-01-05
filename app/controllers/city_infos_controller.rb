@@ -1,7 +1,7 @@
 class CityInfosController < ApplicationController
 
 	before_filter :authorize
-	
+
 	def index
 	end
 
@@ -49,6 +49,6 @@ class CityInfosController < ApplicationController
 
 	private
 		def city_info_params
-			params.require(:city_info).permit(:body, :language, :city_audio)
+			params.require(:city_info).permit(:body, :language, :city_audio, :ready)
 		end
 end

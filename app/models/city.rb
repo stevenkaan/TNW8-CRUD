@@ -16,19 +16,11 @@ class City < ActiveRecord::Base
 		languages = Array.new
 
 		for item in city_info
-			
-			if item.language == 'eng'
-				languages.push(item.language);	
-			else
-				if item.name.to_s.length > 0
-					if item.body.to_s.length > 0
-						languages.push(item.language);
-					end
-				end
+			if item.ready == true
+				languages.push(item.language);
 			end
-
 		end
-		
+
 		return languages
 		# if languages.length != 0
 		# 	return languages

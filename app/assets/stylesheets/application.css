@@ -534,10 +534,13 @@ textarea {
 	width: 360px;
 }
 #googleMap {
-	width: 582px;
-	height: 358px;
+	width: 968px;
+	height: 400px;
 	margin-left:10px;
 	margin-top:-30px;
+}
+.extra-length{
+	min-height: 265px;
 }
 .table-icon{
 	position: absolute;
@@ -549,6 +552,7 @@ textarea {
 	width: 100%;
 	display: block;
 }
+
 select{
 	margin-left: 24px;
 	width:356px;
@@ -568,8 +572,22 @@ select{
 	font-size: 12px;
 	outline: none;
 }
-select:hover{
+select:hover,#city_ready_esp:hover, #city_ready_nld:hover, #city_ready_eng:hover{
 	background: #2ca2a2;
+}
+#city_ready_esp, #city_ready_nld, #city_ready_eng{
+	width: auto;
+	margin-left: 0px;
+	background: #33bfbe;
+	padding: 0 20px;
+	height: 35px;
+	-webkit-border-radius: 5px !important;
+	border-radius: 5px !important;
+	color: #FFF;
+	padding: 5px 10px !important;
+}
+.upw{
+	margin-top: -47px;
 }
 .caret{
 	background: url('caret.png');

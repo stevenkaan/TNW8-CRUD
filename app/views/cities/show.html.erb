@@ -26,16 +26,19 @@
         <span id="nl" style="display: none;">
           <%= f.text_field :city_info_name_nld, :placeholder => "Naam Stad (Nederlands)", value: @city_info_array[0].name %>
           <%= f.text_area :city_info_text_nld, :placeholder => "Informatie Stad (Nederlands)", value: @city_info_array[0].body %>
+          <%= f.select :ready_nld,  [['Status: Gereed', true], ['Status: In ontwikkeling', false]],:selected => @city_info_array[0].ready, :class => "status-select" %>
         </span>
         <span id="en" style="display: inline;">
           <%= f.text_field :city_info_name_eng, :placeholder => "Naam Stad (Engels)", value: @city_info_array[1].name %>
           <%= f.text_area :city_info_text_eng, :placeholder => "Informatie Stad (Engels)", value: @city_info_array[1].body %>
+          <%= f.select :ready_eng, [['Status: Gereed', true], ['Status: In ontwikkeling', false]],:selected => @city_info_array[1].ready, :class => "status-select" %>
         </span>
         <span id="es" style="display: none;">
           <%= f.text_field :city_info_name_esp, :placeholder => "Naam Stad (Spaans)", value: @city_info_array[2].name %>
           <%= f.text_area :city_info_text_esp, :placeholder => "Informatie Stad (Spaans)", value: @city_info_array[2].body %>
+          <%= f.select :ready_esp, [['Status: Gereed', true], ['Status: In ontwikkeling', false]],:selected => @city_info_array[2].ready, :class => "status-select" %>
         </span>
-        <div class="btn-holder">
+        <div class="btn-holder upw">
           <%= f.submit "Opslaan" , :class => "btn btn-primary float-right"%>
         </div>
 

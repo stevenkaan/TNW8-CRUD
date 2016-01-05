@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20151216102436) do
   create_table "city_infos", force: true do |t|
     t.text     "body"
     t.string   "language"
+    t.boolean  "ready"
     t.integer  "city_id"
     t.datetime "created_at"
     t.datetime "updated_at"

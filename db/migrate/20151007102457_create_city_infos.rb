@@ -3,6 +3,7 @@ class CreateCityInfos < ActiveRecord::Migration
     create_table :city_infos do |t|
       t.text :body
       t.string :language
+      t.boolean :ready, :default => false
       t.references :city, index: true, foreign_key: true
 
       t.timestamps
