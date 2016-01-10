@@ -4,7 +4,7 @@
   <title>Download Sight Guide</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <%= favicon_link_tag 'favicon.ico' %>
-  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag  "website", media: "all", "data-turbolinks-track" => true %>
 
   <%= javascript_include_tag "jquery.js", "data-no-turbolink" => true %>
@@ -22,15 +22,57 @@
 </head>
 <body>
     <div class="scrollable">
-      <div class="website-logo"></div>
-      <div class="slogan"></div>
-      <div class="download-btn" onclick="download()">Download</div>
-      <div class="only-for-android">For Android only</div>
+      <section>
+        <h1>Discover<br/><span>the sound of the city</span></h1>
+        <h2>Just let the city guide you</h2>
+        <h3>
+          Leaving your device in your pocket<br/>
+          Get the experience of a real guide<br/>
+          No more reading<br/>
+          Easy to use
+        </h3>
+        <a href="https://play.google.com/store">
+          <div class="download-btn">
+            DOWNLOAD APP
+            <div class="android-icon"></div>
+          </div>
+        </a>
+        <div class="only-for-android">Android only</div>
+        <div class="website-logo"></div>
+        <div class="arrow"></div>
+      </section>
+      <div class="content">
+        <div class="content-header">HOW IT WORKS</div>
+        <div class="content-box">
+          <div class="box1">
+              <div class="icon"></div>
+              <div class="text">
+                Download the FREE app, search and download the city you want to travel to
+              </div>
+          </div>
+          <div class="box2">
+              <div class="icon"></div>
+              <div class="text">
+                Travel to the city and plug in your headphone
+              </div>
+          </div>
+          <div class="box3">
+              <div class="icon"></div>
+              <div class="text">
+                Explore the city by listening to your personal guide
+              </div>
+          </div>
+        </div>
+        <footer>
+          &copy; 2016 Sight Guide |
+          <a href="/login">Login</a>
+        </footer>
+      </div>
 
     </div>
+
     <div class="background-img"></div>
-    <footer>
-      <a href="/login">Login</a>
-    </footer>
+
+
 <body>
 </html>

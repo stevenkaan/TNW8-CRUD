@@ -9,8 +9,12 @@ body {
 	line-height: 24px;
 	color: #595959;
 }
+a{
+  text-decoration: none !important;
+  color: inherit;
+}
 .background-img{
-  background: url('sight_guide_bg.jpg') no-repeat center center fixed;
+  background: url('bg.png') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -29,29 +33,72 @@ body {
   left:0;
   z-index: 1;
 }
+section{
+  height: 100vh;
+  padding: 60px 60px 20px 60px;
+  position: relative;
+}
+h1{
+  color: #E65C3D;
+  font-weight: 300;
+  font-size: 5em;
+  text-transform: uppercase;
+  line-height: 75px;
+  margin: 0;
+  text-shadow: 2px 1px 3px #333;
+}
+h1 > span {
+  font-weight: 700;
+}
+h2{
+  margin: 30px 0 40px;
+  color: #FFF;
+  font-weight: 400;
+  font-size: 2.8em;
+  text-shadow: 2px 1px 3px #575757;
+}
+h3{
+  margin: 0;
+  font-size: 1.7em;
+  color: #FFF;
+  font-weight: 300;
+  text-shadow: 2px 1px 3px #575757;
+}
 .website-logo{
-  width:208px;
-  height:231px;
-  margin: 60px auto;
+  width:115px;
+  height:125px;
+  position: absolute;
+  top:60px;
+  right: 45px;
   background: url('logo_darkbg.png');
-
   background-size: 100% 100%;
 }
-.slogan{
-  width: 300px;
-  height: 30px;
-  background: url('slogan.png');
-  margin: -50px auto 30px;
+.arrow{
+  width: 45px;
+  height: 45px;
+  background: url('arrow.png');
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  margin-left: -23px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.arrow:hover{
+  bottom: 10px;
 }
 .download-btn {
   color: #FFF;
   background: #e76644;
-  width: 180px;
-  height: 34px;
+  width: 280px;
+  height: 54px;
   text-align: center;
-  line-height: 36px;
+  line-height: 56px;
+  margin: 70px 0 10px;
+  padding: 0 45px;
+  box-sizing: border-box;
   text-transform: uppercase;
-  margin: 20px auto 15px;
+  position: relative;
   outline: none;
   appearance: none;
   -webkit-appearance: none;
@@ -59,29 +106,99 @@ body {
   -o-appearance: none;
   -ms-appearance: none;
   border: none;
-  font-size: 14px;
-  border-radius: 5px;
+  font-size: 18px;
+  border-radius: 3px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+.android-icon{
+  background: url('android.png');
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 15px;
+  right: 20px;
 }
 .download-btn:hover {
   cursor: pointer;
+  background: #d35533;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1), 0 2px 10px 0 rgba(0, 0, 0, 0.08);
 }
 .only-for-android{
   color:#FFF;
-  width: 100%;
+  width: 280px;
   text-align: center;
+}
+.content{
+  background: #FFF;
+  width: 100%;
+}
+.content-header{
+  color: #8C8C8C;
+  font-size: 3.2em;
+  font-weight: 300;
+  padding: 60px 0 160px;
+  text-align: center;
+}
+.content-box{
+  margin: 0 60px 260px;
+  border-top: 1px solid #CCC;
+  position: relative;
+}
+.text{
+  color: #8C8C8C;
+  font-size: 0.9em;
+  text-align: center;
+  line-height: 15px;
+  margin-top: 15px;
+}
+.box1, .box2, .box3{
+  background: #FFF;
+}
+.box1{
+  width: 175px;
+  position: absolute;
+  left:0;
+  margin-top: -40px;
+}
+.box1 > .icon {
+  background:url('mobile.png');
+  width: 45px;
+  height: 81px;
+  margin: 0 auto;
+}
+.box2{
+  width: 136px;
+  position: absolute;
+  left:50%;
+  margin-left: -74px;
+  margin-top: -45px;
+}
+.box2 > .icon {
+  background:url('plane.png');
+  width: 86px;
+  height: 91px;
+  margin: 0 auto;
+}
+.box3{
+  width: 175px;
+  margin-top: -44px;
+  position: absolute;
+  right:0;
+}
+.box3 > .icon {
+  background:url('compass.png');
+  width: 84px;
+  height: 88px;
+  margin: 0 auto;
 }
 footer{
   width: 100vw;
   height:20px;
-  border-top: 1px solid #FFF;
+  background: #414141;
   line-height: 20px;
   color:#FFF;
-  text-align: center;
-  position: fixed;
-  left: 0;
-  bottom:0;
+  padding-left: 60px;
+  text-align: left;
   z-index: 9;
   font-size: 10px;
 }
